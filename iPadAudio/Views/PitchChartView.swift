@@ -7,8 +7,8 @@ struct PitchChartView: View {
     let pitchNoteMin: Int
     let pitchNoteMax: Int
 
-    private let noteNames = ["C", "D", "E", "F", "G", "A", "B"]
-    private let naturalSemitones = [0, 2, 4, 5, 7, 9, 11] // semitones within octave for naturals
+    private let allNoteNames = ["C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B"]
+    private let naturalSemitones: Set<Int> = [0, 2, 4, 5, 7, 9, 11]
 
     var body: some View {
         Canvas { context, size in
@@ -20,7 +20,7 @@ struct PitchChartView: View {
             let semiRange = Double(semiMax - semiMin)
             guard semiRange > 0 else { return }
 
-            let labelWidth: CGFloat = 32
+            let labelWidth: CGFloat = 36
             let chartX = labelWidth
             let chartW = w - labelWidth
 
@@ -99,28 +99,23 @@ struct PitchChartView: View {
             let yFrac = (Double(semi) - Double(semiMin)) / semiRange
             let y = h - CGFloat(yFrac) * h
 
-            // Octave lines (C notes) are major
             let isC = noteInOctave == 0
             let isNatural = naturalSemitones.contains(noteInOctave)
+            let lineOpacity: Double = isC ? 0.6 : (isNatural ? 0.35 : 0.2)
+            let lineWidth: CGFloat = isC ? 1 : 0.5
 
-            if isC {
-                // Major grid line
-                var path = Path()
-                path.move(to: CGPoint(x: labelWidth, y: y))
-                path.addLine(to: CGPoint(x: labelWidth + chartW, y: y))
-                context.stroke(path, with: .color(.gray.opacity(0.4)), lineWidth: 1)
+            var path = Path()
+            path.move(to: CGPoint(x: labelWidth, y: y))
+            path.addLine(to: CGPoint(x: labelWidth + chartW, y: y))
+            context.stroke(path, with: .color(.gray.opacity(lineOpacity)), lineWidth: lineWidth)
 
-                // Label
-                let octave = midi / 12 - 1
-                let text = Text("C\(octave)").font(.caption2).foregroundColor(.gray)
-                context.draw(text, at: CGPoint(x: labelWidth - 4, y: y), anchor: .trailing)
-            } else if isNatural {
-                // Minor grid line
-                var path = Path()
-                path.move(to: CGPoint(x: labelWidth, y: y))
-                path.addLine(to: CGPoint(x: labelWidth + chartW, y: y))
-                context.stroke(path, with: .color(.gray.opacity(0.15)), lineWidth: 0.5)
-            }
+            // Label every semitone
+            let octave = midi / 12 - 1
+            let name = allNoteNames[noteInOctave]
+            let label = isC ? "\(name)\(octave)" : name
+            let labelColor: Color = isC ? .gray : .gray.opacity(isNatural ? 0.7 : 0.5)
+            let text = Text(label).font(.caption2).foregroundColor(labelColor)
+            context.draw(text, at: CGPoint(x: labelWidth - 4, y: y), anchor: .trailing)
         }
     }
 }

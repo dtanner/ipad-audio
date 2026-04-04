@@ -146,20 +146,23 @@ final class YINPitchDetector {
             }
         }
 
-        // Power spectrum: conjugate multiply (|X|^2)
-        var powerReal = [Double](repeating: 0, count: halfN)
-        var powerImag = [Double](repeating: 0, count: halfN)
-
+        // Power spectrum: |X[k]|^2
+        // vDSP packed format stores DC in realp[0] and Nyquist in imagp[0],
+        // so compute squared magnitudes and repack correctly.
+        var mags = [Double](repeating: 0, count: halfN)
         realp.withUnsafeMutableBufferPointer { rBuf in
             imagp.withUnsafeMutableBufferPointer { iBuf in
-                powerReal.withUnsafeMutableBufferPointer { prBuf in
-                    powerImag.withUnsafeMutableBufferPointer { piBuf in
-                        var input = DSPDoubleSplitComplex(realp: rBuf.baseAddress!, imagp: iBuf.baseAddress!)
-                        var output = DSPDoubleSplitComplex(realp: prBuf.baseAddress!, imagp: piBuf.baseAddress!)
-                        vDSP_zvmulD(&input, 1, &input, 1, &output, 1, vDSP_Length(halfN), 1)
-                    }
-                }
+                var split = DSPDoubleSplitComplex(realp: rBuf.baseAddress!, imagp: iBuf.baseAddress!)
+                vDSP_zvmagsD(&split, 1, &mags, 1, vDSP_Length(halfN))
             }
+        }
+
+        var powerReal = [Double](repeating: 0, count: halfN)
+        var powerImag = [Double](repeating: 0, count: halfN)
+        powerReal[0] = realp[0] * realp[0]  // DC²
+        powerImag[0] = imagp[0] * imagp[0]  // Nyquist²
+        for k in 1..<halfN {
+            powerReal[k] = mags[k]
         }
 
         // Inverse FFT
@@ -183,8 +186,9 @@ final class YINPitchDetector {
             }
         }
 
-        // Normalize
-        var scale = 1.0 / Double(fftSize * 2)
+        // Normalize: vDSP real FFT scales forward by 2 and inverse is unnormalized,
+        // so the round-trip power spectrum scale is 4*N.
+        var scale = 1.0 / Double(fftSize * 4)
         vDSP_vsmulD(result, 1, &scale, &result, 1, vDSP_Length(fftSize))
 
         return Array(result.prefix(W))

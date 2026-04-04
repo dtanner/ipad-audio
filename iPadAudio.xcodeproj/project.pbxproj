@@ -3,63 +3,80 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 63;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		44AA00001111000011110101 /* YINPitchDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AA00001111000011110201 /* YINPitchDetector.swift */; };
-		44AA00001111000011110102 /* PitchNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AA00001111000011110202 /* PitchNote.swift */; };
-		44AA00001111000011110103 /* TunerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AA00001111000011110203 /* TunerViewModel.swift */; };
-		44AA00001111000011110104 /* TunerGaugeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AA00001111000011110204 /* TunerGaugeView.swift */; };
-		44AA00001111000011110105 /* PitchChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AA00001111000011110205 /* PitchChartView.swift */; };
-		44AA00001111000011110106 /* ReadoutBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AA00001111000011110206 /* ReadoutBar.swift */; };
-		55AA00001111000011110301 /* PanelContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AA00001111000011110401 /* PanelContainerView.swift */; };
-		55AA00001111000011110302 /* ValueOnlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AA00001111000011110402 /* ValueOnlyView.swift */; };
-		55AA00001111000011110303 /* ToggleButtonBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AA00001111000011110403 /* ToggleButtonBar.swift */; };
-		11AA00001111000011110001 /* RingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AA00001111000011110011 /* RingBuffer.swift */; };
-		11AA00001111000011110002 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AA00001111000011110012 /* AppSettings.swift */; };
-		11AA00001111000011110003 /* PanelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AA00001111000011110013 /* PanelType.swift */; };
-		11AA00001111000011110004 /* SPLChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AA00001111000011110014 /* SPLChartView.swift */; };
-		11AA00001111000011110005 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AA00001111000011110015 /* SettingsView.swift */; };
-		11AA00001111000011110006 /* FFTProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AA00001111000011110016 /* FFTProcessor.swift */; };
-		11AA00001111000011110007 /* ColorLUT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AA00001111000011110017 /* ColorLUT.swift */; };
-		11AA00001111000011110008 /* SpectrogramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AA00001111000011110018 /* SpectrogramView.swift */; };
+		080F862557DE8B9C862B3781 /* FFTProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E55DD844B62BD0398EA063 /* FFTProcessor.swift */; };
+		20E3590BFFA9720A67A1B49A /* PanelContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA915666940E27460CE9B276 /* PanelContainerView.swift */; };
+		299F97321DB54D25A6E7323B /* ColorLUT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0758224AC6C1069C89A5B9EB /* ColorLUT.swift */; };
+		303070A193B5DBF286AF7D73 /* RingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4973E0250913050FFE2E92 /* RingBuffer.swift */; };
+		3058755D85751264444675F0 /* PitchNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EF68092271CAEAD29651C9 /* PitchNote.swift */; };
+		352CEB709A642279D8C42686 /* PanelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA47008AFCCD5BC7C0F2DE6 /* PanelType.swift */; };
 		36D0414092B6ABA85CDF2D60 /* SPLCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2DA9C0F5E1338D103499B /* SPLCalculator.swift */; };
+		40265AD00FFF1F3D6B21500F /* SpectrogramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB50D4CDC8A78AD4D4A701F /* SpectrogramView.swift */; };
 		4A27EE27FB4CEED00B3202FE /* AWeightingFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F539788126A9C64AB0A26468 /* AWeightingFilter.swift */; };
+		61DED96B60B72B88A70C3304 /* RingBufferTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38217E9A598F7796960F2412 /* RingBufferTests.swift */; };
+		834DCA1B4EC3AB4446E4431B /* PitchChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDD3803A89CED19EEED94AA /* PitchChartView.swift */; };
 		9BFBBDB51F913CFEBFE97E84 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6787B6FC7D8ADF46346EAE4A /* ContentView.swift */; };
+		9F67F5BC79B431DCDCB7F73D /* ReadoutBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E099F8C732007A14CBB4E36B /* ReadoutBar.swift */; };
 		A0D96CF35E2E1E9CDEDB5B03 /* AudioEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027A23C166E2E6F2BBC20A9A /* AudioEngine.swift */; };
 		A1517BE8D021DBCFD6EBC873 /* iPadAudioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E2AA61799CCB6135C00E97 /* iPadAudioApp.swift */; };
+		A7BCAA43D8C3363FDD56EB87 /* PitchNoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0AD6CE9035B5A825BA1A42 /* PitchNoteTests.swift */; };
+		A82987118075898E21203904 /* YINPitchDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADBEE262460AF954F5A4D11 /* YINPitchDetectorTests.swift */; };
+		B4D2C354B4A0357F46809EB6 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F2E441950AA5DF644219C1 /* SettingsView.swift */; };
 		B6586C643C62920BC4747B81 /* AudioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6468455E9841370B8EAE7F1 /* AudioViewModel.swift */; };
+		B8C145C65EE6B9573283597D /* SPLChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5869B61BCDFD2C086356967C /* SPLChartView.swift */; };
 		DA0E45F7BA4D541F7DC4CE95 /* AudioConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C6BE1D32442A60E0669985 /* AudioConstants.swift */; };
+		E5FE3770B11CDD4613079DF0 /* ValueOnlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895A0593E5BBB1D9AA0BA567 /* ValueOnlyView.swift */; };
+		EB25FCD3EC3B2BA4CC9B456B /* YINPitchDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B949D2BF2B6D3380D8968995 /* YINPitchDetector.swift */; };
+		F1AF7A64C25CDF60EFB23D74 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A46D8A46FB1BCC39CDA2C7A /* AppSettings.swift */; };
+		F22817C06919E38B9CE890CF /* ToggleButtonBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9C159ABF8DE1E6214465C1 /* ToggleButtonBar.swift */; };
+		F28DFC4EC6C5AA9AA7085CEC /* TunerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1854CE4A3243425006BBC771 /* TunerViewModel.swift */; };
+		FF8AF9B2FD12223412C44106 /* TunerGaugeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAACBA80E85AB9533CA821C4 /* TunerGaugeView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5572540959DD858795DEACDB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8BDE6887B779E5210FA2BAA1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 44275A82CCABC356260E1CD2;
+			remoteInfo = iPadAudio;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		027A23C166E2E6F2BBC20A9A /* AudioEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngine.swift; sourceTree = "<group>"; };
-		5EEBFA1F34CDD42ACB9905CE /* iPadAudio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iPadAudio.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0758224AC6C1069C89A5B9EB /* ColorLUT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorLUT.swift; sourceTree = "<group>"; };
+		1854CE4A3243425006BBC771 /* TunerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunerViewModel.swift; sourceTree = "<group>"; };
+		27F2E441950AA5DF644219C1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		2A46D8A46FB1BCC39CDA2C7A /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		2C9C159ABF8DE1E6214465C1 /* ToggleButtonBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButtonBar.swift; sourceTree = "<group>"; };
+		38217E9A598F7796960F2412 /* RingBufferTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingBufferTests.swift; sourceTree = "<group>"; };
+		47E55DD844B62BD0398EA063 /* FFTProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFTProcessor.swift; sourceTree = "<group>"; };
+		4ADBEE262460AF954F5A4D11 /* YINPitchDetectorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YINPitchDetectorTests.swift; sourceTree = "<group>"; };
+		4D8E7489768BD8792D73F219 /* iPadAudioTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = iPadAudioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E4973E0250913050FFE2E92 /* RingBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingBuffer.swift; sourceTree = "<group>"; };
+		4FB50D4CDC8A78AD4D4A701F /* SpectrogramView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpectrogramView.swift; sourceTree = "<group>"; };
+		5869B61BCDFD2C086356967C /* SPLChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPLChartView.swift; sourceTree = "<group>"; };
+		5EEBFA1F34CDD42ACB9905CE /* iPadAudio.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = iPadAudio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6787B6FC7D8ADF46346EAE4A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		68C6BE1D32442A60E0669985 /* AudioConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioConstants.swift; sourceTree = "<group>"; };
+		73EF68092271CAEAD29651C9 /* PitchNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchNote.swift; sourceTree = "<group>"; };
+		895A0593E5BBB1D9AA0BA567 /* ValueOnlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueOnlyView.swift; sourceTree = "<group>"; };
 		92781A670715D2338CBD0585 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		AA915666940E27460CE9B276 /* PanelContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelContainerView.swift; sourceTree = "<group>"; };
 		B8C2DA9C0F5E1338D103499B /* SPLCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPLCalculator.swift; sourceTree = "<group>"; };
+		B949D2BF2B6D3380D8968995 /* YINPitchDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YINPitchDetector.swift; sourceTree = "<group>"; };
+		BAACBA80E85AB9533CA821C4 /* TunerGaugeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunerGaugeView.swift; sourceTree = "<group>"; };
+		CBA47008AFCCD5BC7C0F2DE6 /* PanelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelType.swift; sourceTree = "<group>"; };
 		D6468455E9841370B8EAE7F1 /* AudioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewModel.swift; sourceTree = "<group>"; };
 		D6E2AA61799CCB6135C00E97 /* iPadAudioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPadAudioApp.swift; sourceTree = "<group>"; };
+		DC0AD6CE9035B5A825BA1A42 /* PitchNoteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchNoteTests.swift; sourceTree = "<group>"; };
+		DEDD3803A89CED19EEED94AA /* PitchChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchChartView.swift; sourceTree = "<group>"; };
+		E099F8C732007A14CBB4E36B /* ReadoutBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadoutBar.swift; sourceTree = "<group>"; };
 		F539788126A9C64AB0A26468 /* AWeightingFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWeightingFilter.swift; sourceTree = "<group>"; };
-		11AA00001111000011110011 /* RingBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingBuffer.swift; sourceTree = "<group>"; };
-		11AA00001111000011110012 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
-		11AA00001111000011110013 /* PanelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelType.swift; sourceTree = "<group>"; };
-		11AA00001111000011110014 /* SPLChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPLChartView.swift; sourceTree = "<group>"; };
-		11AA00001111000011110015 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		11AA00001111000011110016 /* FFTProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFTProcessor.swift; sourceTree = "<group>"; };
-		11AA00001111000011110017 /* ColorLUT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorLUT.swift; sourceTree = "<group>"; };
-		11AA00001111000011110018 /* SpectrogramView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpectrogramView.swift; sourceTree = "<group>"; };
-		44AA00001111000011110201 /* YINPitchDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YINPitchDetector.swift; sourceTree = "<group>"; };
-		44AA00001111000011110202 /* PitchNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchNote.swift; sourceTree = "<group>"; };
-		44AA00001111000011110203 /* TunerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunerViewModel.swift; sourceTree = "<group>"; };
-		44AA00001111000011110204 /* TunerGaugeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunerGaugeView.swift; sourceTree = "<group>"; };
-		44AA00001111000011110205 /* PitchChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchChartView.swift; sourceTree = "<group>"; };
-		44AA00001111000011110206 /* ReadoutBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadoutBar.swift; sourceTree = "<group>"; };
-		55AA00001111000011110401 /* PanelContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelContainerView.swift; sourceTree = "<group>"; };
-		55AA00001111000011110402 /* ValueOnlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueOnlyView.swift; sourceTree = "<group>"; };
-		55AA00001111000011110403 /* ToggleButtonBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButtonBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -68,9 +85,9 @@
 			children = (
 				027A23C166E2E6F2BBC20A9A /* AudioEngine.swift */,
 				F539788126A9C64AB0A26468 /* AWeightingFilter.swift */,
-				11AA00001111000011110016 /* FFTProcessor.swift */,
+				47E55DD844B62BD0398EA063 /* FFTProcessor.swift */,
 				B8C2DA9C0F5E1338D103499B /* SPLCalculator.swift */,
-				44AA00001111000011110201 /* YINPitchDetector.swift */,
+				B949D2BF2B6D3380D8968995 /* YINPitchDetector.swift */,
 			);
 			path = Audio;
 			sourceTree = "<group>";
@@ -78,19 +95,29 @@
 		183E74F4D244CF391BA654CD /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				11AA00001111000011110012 /* AppSettings.swift */,
+				2A46D8A46FB1BCC39CDA2C7A /* AppSettings.swift */,
 				68C6BE1D32442A60E0669985 /* AudioConstants.swift */,
-				11AA00001111000011110013 /* PanelType.swift */,
-				44AA00001111000011110202 /* PitchNote.swift */,
+				CBA47008AFCCD5BC7C0F2DE6 /* PanelType.swift */,
+				73EF68092271CAEAD29651C9 /* PitchNote.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		29B36E6299AC14343842B61F /* iPadAudioTests */ = {
+			isa = PBXGroup;
+			children = (
+				DC0AD6CE9035B5A825BA1A42 /* PitchNoteTests.swift */,
+				38217E9A598F7796960F2412 /* RingBufferTests.swift */,
+				4ADBEE262460AF954F5A4D11 /* YINPitchDetectorTests.swift */,
+			);
+			path = iPadAudioTests;
 			sourceTree = "<group>";
 		};
 		5B29A28DBE9E45786BF67B99 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				D6468455E9841370B8EAE7F1 /* AudioViewModel.swift */,
-				44AA00001111000011110203 /* TunerViewModel.swift */,
+				1854CE4A3243425006BBC771 /* TunerViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -99,34 +126,35 @@
 			isa = PBXGroup;
 			children = (
 				5EEBFA1F34CDD42ACB9905CE /* iPadAudio.app */,
+				4D8E7489768BD8792D73F219 /* iPadAudioTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		C094AFE1093EE7DF01747F28 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				0758224AC6C1069C89A5B9EB /* ColorLUT.swift */,
+				4E4973E0250913050FFE2E92 /* RingBuffer.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		C554B02FF2C7E748F5A59C9E /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				6787B6FC7D8ADF46346EAE4A /* ContentView.swift */,
-				11AA00001111000011110015 /* SettingsView.swift */,
-				11AA00001111000011110014 /* SPLChartView.swift */,
-				11AA00001111000011110018 /* SpectrogramView.swift */,
-				44AA00001111000011110204 /* TunerGaugeView.swift */,
-				44AA00001111000011110205 /* PitchChartView.swift */,
-				44AA00001111000011110206 /* ReadoutBar.swift */,
-				55AA00001111000011110401 /* PanelContainerView.swift */,
-				55AA00001111000011110402 /* ValueOnlyView.swift */,
-				55AA00001111000011110403 /* ToggleButtonBar.swift */,
+				AA915666940E27460CE9B276 /* PanelContainerView.swift */,
+				DEDD3803A89CED19EEED94AA /* PitchChartView.swift */,
+				E099F8C732007A14CBB4E36B /* ReadoutBar.swift */,
+				27F2E441950AA5DF644219C1 /* SettingsView.swift */,
+				4FB50D4CDC8A78AD4D4A701F /* SpectrogramView.swift */,
+				5869B61BCDFD2C086356967C /* SPLChartView.swift */,
+				2C9C159ABF8DE1E6214465C1 /* ToggleButtonBar.swift */,
+				BAACBA80E85AB9533CA821C4 /* TunerGaugeView.swift */,
+				895A0593E5BBB1D9AA0BA567 /* ValueOnlyView.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		11AA00001111000011110020 /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				11AA00001111000011110017 /* ColorLUT.swift */,
-				11AA00001111000011110011 /* RingBuffer.swift */,
-			);
-			path = Utilities;
 			sourceTree = "<group>";
 		};
 		D149F425ECAA32740F51D99A /* iPadAudio */ = {
@@ -136,7 +164,7 @@
 				D6E2AA61799CCB6135C00E97 /* iPadAudioApp.swift */,
 				1731B1B5220E77E46FC37CBF /* Audio */,
 				183E74F4D244CF391BA654CD /* Models */,
-				11AA00001111000011110020 /* Utilities */,
+				C094AFE1093EE7DF01747F28 /* Utilities */,
 				5B29A28DBE9E45786BF67B99 /* ViewModels */,
 				C554B02FF2C7E748F5A59C9E /* Views */,
 			);
@@ -147,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				D149F425ECAA32740F51D99A /* iPadAudio */,
+				29B36E6299AC14343842B61F /* iPadAudioTests */,
 				65D425BBF081400AD9544884 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -154,6 +183,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		32888048AF4365E29F3ED20E /* iPadAudioTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 148F09FE89865E4C6C14FB25 /* Build configuration list for PBXNativeTarget "iPadAudioTests" */;
+			buildPhases = (
+				8C446C8E8FB9EB4D38DD654C /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				769789127B0A2841D983B074 /* PBXTargetDependency */,
+			);
+			name = iPadAudioTests;
+			packageProductDependencies = (
+			);
+			productName = iPadAudioTests;
+			productReference = 4D8E7489768BD8792D73F219 /* iPadAudioTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		44275A82CCABC356260E1CD2 /* iPadAudio */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0626A7CC8911B80B284D51A5 /* Build configuration list for PBXNativeTarget "iPadAudio" */;
@@ -178,7 +225,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 2640;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					32888048AF4365E29F3ED20E = {
+						DevelopmentTeam = "";
+					};
+					44275A82CCABC356260E1CD2 = {
+						DevelopmentTeam = "";
+					};
+				};
 			};
 			buildConfigurationList = 5025464EADE186728D283A8A /* Build configuration list for PBXProject "iPadAudio" */;
 			compatibilityVersion = "Xcode 14.0";
@@ -190,10 +245,12 @@
 			);
 			mainGroup = D62DAE348A9068DB1E5663F7;
 			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				44275A82CCABC356260E1CD2 /* iPadAudio */,
+				32888048AF4365E29F3ED20E /* iPadAudioTests */,
 			);
 		};
 /* End PBXProject section */
@@ -203,36 +260,73 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11AA00001111000011110002 /* AppSettings.swift in Sources */,
 				4A27EE27FB4CEED00B3202FE /* AWeightingFilter.swift in Sources */,
+				F1AF7A64C25CDF60EFB23D74 /* AppSettings.swift in Sources */,
 				DA0E45F7BA4D541F7DC4CE95 /* AudioConstants.swift in Sources */,
 				A0D96CF35E2E1E9CDEDB5B03 /* AudioEngine.swift in Sources */,
 				B6586C643C62920BC4747B81 /* AudioViewModel.swift in Sources */,
+				299F97321DB54D25A6E7323B /* ColorLUT.swift in Sources */,
 				9BFBBDB51F913CFEBFE97E84 /* ContentView.swift in Sources */,
-				11AA00001111000011110003 /* PanelType.swift in Sources */,
-				11AA00001111000011110001 /* RingBuffer.swift in Sources */,
-				11AA00001111000011110005 /* SettingsView.swift in Sources */,
+				080F862557DE8B9C862B3781 /* FFTProcessor.swift in Sources */,
+				20E3590BFFA9720A67A1B49A /* PanelContainerView.swift in Sources */,
+				352CEB709A642279D8C42686 /* PanelType.swift in Sources */,
+				834DCA1B4EC3AB4446E4431B /* PitchChartView.swift in Sources */,
+				3058755D85751264444675F0 /* PitchNote.swift in Sources */,
+				9F67F5BC79B431DCDCB7F73D /* ReadoutBar.swift in Sources */,
+				303070A193B5DBF286AF7D73 /* RingBuffer.swift in Sources */,
 				36D0414092B6ABA85CDF2D60 /* SPLCalculator.swift in Sources */,
-				11AA00001111000011110004 /* SPLChartView.swift in Sources */,
-				11AA00001111000011110006 /* FFTProcessor.swift in Sources */,
-				11AA00001111000011110007 /* ColorLUT.swift in Sources */,
-				11AA00001111000011110008 /* SpectrogramView.swift in Sources */,
+				B8C145C65EE6B9573283597D /* SPLChartView.swift in Sources */,
+				B4D2C354B4A0357F46809EB6 /* SettingsView.swift in Sources */,
+				40265AD00FFF1F3D6B21500F /* SpectrogramView.swift in Sources */,
+				F22817C06919E38B9CE890CF /* ToggleButtonBar.swift in Sources */,
+				FF8AF9B2FD12223412C44106 /* TunerGaugeView.swift in Sources */,
+				F28DFC4EC6C5AA9AA7085CEC /* TunerViewModel.swift in Sources */,
+				E5FE3770B11CDD4613079DF0 /* ValueOnlyView.swift in Sources */,
+				EB25FCD3EC3B2BA4CC9B456B /* YINPitchDetector.swift in Sources */,
 				A1517BE8D021DBCFD6EBC873 /* iPadAudioApp.swift in Sources */,
-				44AA00001111000011110101 /* YINPitchDetector.swift in Sources */,
-				44AA00001111000011110102 /* PitchNote.swift in Sources */,
-				44AA00001111000011110103 /* TunerViewModel.swift in Sources */,
-				44AA00001111000011110104 /* TunerGaugeView.swift in Sources */,
-				44AA00001111000011110105 /* PitchChartView.swift in Sources */,
-				44AA00001111000011110106 /* ReadoutBar.swift in Sources */,
-				55AA00001111000011110301 /* PanelContainerView.swift in Sources */,
-				55AA00001111000011110302 /* ValueOnlyView.swift in Sources */,
-				55AA00001111000011110303 /* ToggleButtonBar.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C446C8E8FB9EB4D38DD654C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7BCAA43D8C3363FDD56EB87 /* PitchNoteTests.swift in Sources */,
+				61DED96B60B72B88A70C3304 /* RingBufferTests.swift in Sources */,
+				A82987118075898E21203904 /* YINPitchDetectorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		769789127B0A2841D983B074 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 44275A82CCABC356260E1CD2 /* iPadAudio */;
+			targetProxy = 5572540959DD858795DEACDB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		01EAB262A5B58FF5C23A32CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dantanner.iPadAudioTests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iPadAudio.app/iPadAudio";
+			};
+			name = Debug;
+		};
 		25BE23EA24117E2F7CED9D53 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -268,10 +362,8 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 72SPM7GVK7;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -292,12 +384,30 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
+		};
+		29B85D7AC10C64A8AE7DC27A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dantanner.iPadAudioTests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iPadAudio.app/iPadAudio";
+			};
+			name = Release;
 		};
 		8E9E20A68E46DA5E29B882B2 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -334,10 +444,8 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 72SPM7GVK7;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -351,7 +459,6 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
@@ -363,7 +470,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				GENERATE_INFOPLIST_FILE = YES;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = iPadAudio/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -382,7 +489,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				GENERATE_INFOPLIST_FILE = YES;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = iPadAudio/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -404,6 +511,15 @@
 			buildConfigurations = (
 				C8B9A8F0B2A096BEA1539511 /* Debug */,
 				F770F7CD5067A7CBD959ECD5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		148F09FE89865E4C6C14FB25 /* Build configuration list for PBXNativeTarget "iPadAudioTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				01EAB262A5B58FF5C23A32CB /* Debug */,
+				29B85D7AC10C64A8AE7DC27A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

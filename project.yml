@@ -18,3 +18,17 @@ targets:
         SUPPORTED_INTERFACE_ORIENTATIONS: "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
         SWIFT_VERSION: "5.9"
         DEVELOPMENT_TEAM: ""
+
+  iPadAudioTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - iPadAudioTests
+    dependencies:
+      - target: iPadAudio
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.dantanner.iPadAudioTests
+        SWIFT_VERSION: "5.9"
+        DEVELOPMENT_TEAM: ""
+        GENERATE_INFOPLIST_FILE: "YES"
