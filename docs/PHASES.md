@@ -27,7 +27,7 @@ Update status as each phase is completed. Each phase is independently testable.
 ---
 
 ## Phase 2: SPL History Chart + Settings
-**Status:** NOT STARTED
+**Status:** COMPLETE
 
 **Goal:** Rolling SPL line chart and full settings screen.
 

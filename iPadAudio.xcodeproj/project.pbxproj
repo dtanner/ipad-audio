@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11AA00001111000011110001 /* RingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AA00001111000011110011 /* RingBuffer.swift */; };
+		11AA00001111000011110002 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AA00001111000011110012 /* AppSettings.swift */; };
+		11AA00001111000011110003 /* PanelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AA00001111000011110013 /* PanelType.swift */; };
+		11AA00001111000011110004 /* SPLChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AA00001111000011110014 /* SPLChartView.swift */; };
+		11AA00001111000011110005 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AA00001111000011110015 /* SettingsView.swift */; };
 		36D0414092B6ABA85CDF2D60 /* SPLCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2DA9C0F5E1338D103499B /* SPLCalculator.swift */; };
 		4A27EE27FB4CEED00B3202FE /* AWeightingFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F539788126A9C64AB0A26468 /* AWeightingFilter.swift */; };
 		9BFBBDB51F913CFEBFE97E84 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6787B6FC7D8ADF46346EAE4A /* ContentView.swift */; };
@@ -26,6 +31,11 @@
 		D6468455E9841370B8EAE7F1 /* AudioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewModel.swift; sourceTree = "<group>"; };
 		D6E2AA61799CCB6135C00E97 /* iPadAudioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPadAudioApp.swift; sourceTree = "<group>"; };
 		F539788126A9C64AB0A26468 /* AWeightingFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWeightingFilter.swift; sourceTree = "<group>"; };
+		11AA00001111000011110011 /* RingBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingBuffer.swift; sourceTree = "<group>"; };
+		11AA00001111000011110012 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		11AA00001111000011110013 /* PanelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelType.swift; sourceTree = "<group>"; };
+		11AA00001111000011110014 /* SPLChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPLChartView.swift; sourceTree = "<group>"; };
+		11AA00001111000011110015 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -42,7 +52,9 @@
 		183E74F4D244CF391BA654CD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				11AA00001111000011110012 /* AppSettings.swift */,
 				68C6BE1D32442A60E0669985 /* AudioConstants.swift */,
+				11AA00001111000011110013 /* PanelType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -67,8 +79,18 @@
 			isa = PBXGroup;
 			children = (
 				6787B6FC7D8ADF46346EAE4A /* ContentView.swift */,
+				11AA00001111000011110015 /* SettingsView.swift */,
+				11AA00001111000011110014 /* SPLChartView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		11AA00001111000011110020 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				11AA00001111000011110011 /* RingBuffer.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		D149F425ECAA32740F51D99A /* iPadAudio */ = {
@@ -78,6 +100,7 @@
 				D6E2AA61799CCB6135C00E97 /* iPadAudioApp.swift */,
 				1731B1B5220E77E46FC37CBF /* Audio */,
 				183E74F4D244CF391BA654CD /* Models */,
+				11AA00001111000011110020 /* Utilities */,
 				5B29A28DBE9E45786BF67B99 /* ViewModels */,
 				C554B02FF2C7E748F5A59C9E /* Views */,
 			);
@@ -144,12 +167,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11AA00001111000011110002 /* AppSettings.swift in Sources */,
 				4A27EE27FB4CEED00B3202FE /* AWeightingFilter.swift in Sources */,
 				DA0E45F7BA4D541F7DC4CE95 /* AudioConstants.swift in Sources */,
 				A0D96CF35E2E1E9CDEDB5B03 /* AudioEngine.swift in Sources */,
 				B6586C643C62920BC4747B81 /* AudioViewModel.swift in Sources */,
 				9BFBBDB51F913CFEBFE97E84 /* ContentView.swift in Sources */,
+				11AA00001111000011110003 /* PanelType.swift in Sources */,
+				11AA00001111000011110001 /* RingBuffer.swift in Sources */,
+				11AA00001111000011110005 /* SettingsView.swift in Sources */,
 				36D0414092B6ABA85CDF2D60 /* SPLCalculator.swift in Sources */,
+				11AA00001111000011110004 /* SPLChartView.swift in Sources */,
 				A1517BE8D021DBCFD6EBC873 /* iPadAudioApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
