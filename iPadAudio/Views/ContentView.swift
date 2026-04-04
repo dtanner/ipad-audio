@@ -26,43 +26,30 @@ struct ContentView: View {
 
     private var mainContent: some View {
         VStack(spacing: 0) {
-            // Readout bar with SPL, pitch, freeze, settings
-            ReadoutBar(
-                currentSPL: viewModel.currentSPL,
-                safeThreshold: viewModel.settings.safeThreshold,
-                cautionThreshold: viewModel.settings.cautionThreshold,
-                tuner: viewModel.tuner,
-                isFrozen: viewModel.isFrozen,
-                onToggleFreeze: { viewModel.isFrozen.toggle() },
-                onShowSettings: { showSettings = true }
-            )
+            // Readout bar with toggle buttons, SPL, pitch, freeze, settings
+            HStack(spacing: 0) {
+                ToggleButtonBar(activePanels: Binding(
+                    get: { viewModel.settings.activePanels },
+                    set: { viewModel.settings.activePanels = $0 }
+                ))
+                .padding(.leading, 16)
 
-            // SPL History Chart
-            SPLChartView(
-                splHistory: viewModel.splHistory.array,
-                historySeconds: viewModel.settings.historySeconds,
-                safeThreshold: viewModel.settings.safeThreshold,
-                cautionThreshold: viewModel.settings.cautionThreshold
-            )
-            .padding(.horizontal, 8)
+                ReadoutBar(
+                    currentSPL: viewModel.currentSPL,
+                    safeThreshold: viewModel.settings.safeThreshold,
+                    cautionThreshold: viewModel.settings.cautionThreshold,
+                    tuner: viewModel.tuner,
+                    isFrozen: viewModel.isFrozen,
+                    onToggleFreeze: { viewModel.isFrozen.toggle() },
+                    onShowSettings: { showSettings = true }
+                )
+            }
 
-            // Spectrogram
-            SpectrogramView(
-                columns: viewModel.spectrogramColumns.array,
-                freqMin: viewModel.settings.overtoneFreqMin,
-                freqMax: viewModel.settings.overtoneFreqMax
+            // Panel container: 0/1/2 panels with adaptive layout
+            PanelContainerView(
+                activePanels: viewModel.settings.activePanels,
+                viewModel: viewModel
             )
-            .padding(.horizontal, 8)
-
-            // Pitch Chart
-            PitchChartView(
-                pitchHistory: viewModel.pitchHistory.array,
-                historySeconds: viewModel.settings.historySeconds,
-                pitchRangeAuto: viewModel.settings.pitchRangeAuto,
-                pitchNoteMin: viewModel.settings.pitchNoteMin,
-                pitchNoteMax: viewModel.settings.pitchNoteMax
-            )
-            .padding(.horizontal, 8)
             .padding(.bottom, 8)
         }
         .onChange(of: viewModel.settings.historySeconds) {

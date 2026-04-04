@@ -88,7 +88,7 @@ Update status as each phase is completed. Each phase is independently testable.
 ---
 
 ## Phase 5: Panel Layout + Toggle Buttons
-**Status:** NOT STARTED
+**Status:** COMPLETE
 
 **Goal:** Flexible 0/1/2 panel layout with toggle buttons.
 
@@ -111,7 +111,7 @@ Update status as each phase is completed. Each phase is independently testable.
 **Goal:** Production quality, native iOS behavior.
 
 **Tasks:**
-- [ ] Lock to landscape orientation (Info.plist `UISupportedInterfaceOrientations`)
+- [ ] Allow for both orientations and don't require full screen. this is an upcoming rqeuirement from apple. (Info.plist `UISupportedInterfaceOrientations`)
 - [ ] Dark mode support (already dark theme, use `.preferredColorScheme(.dark)`)
 - [ ] Audio interruption handling (`AVAudioSession.interruptionNotification`) — show visible "Audio Interrupted" banner overlay with "Tap to resume" action (`AudioInterruptedBanner.swift`)
 - [ ] Audio route changes — handle mic disconnect gracefully, show banner

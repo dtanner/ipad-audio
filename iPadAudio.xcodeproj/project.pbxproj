@@ -13,6 +13,9 @@
 		44AA00001111000011110104 /* TunerGaugeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AA00001111000011110204 /* TunerGaugeView.swift */; };
 		44AA00001111000011110105 /* PitchChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AA00001111000011110205 /* PitchChartView.swift */; };
 		44AA00001111000011110106 /* ReadoutBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AA00001111000011110206 /* ReadoutBar.swift */; };
+		55AA00001111000011110301 /* PanelContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AA00001111000011110401 /* PanelContainerView.swift */; };
+		55AA00001111000011110302 /* ValueOnlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AA00001111000011110402 /* ValueOnlyView.swift */; };
+		55AA00001111000011110303 /* ToggleButtonBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AA00001111000011110403 /* ToggleButtonBar.swift */; };
 		11AA00001111000011110001 /* RingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AA00001111000011110011 /* RingBuffer.swift */; };
 		11AA00001111000011110002 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AA00001111000011110012 /* AppSettings.swift */; };
 		11AA00001111000011110003 /* PanelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AA00001111000011110013 /* PanelType.swift */; };
@@ -54,6 +57,9 @@
 		44AA00001111000011110204 /* TunerGaugeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunerGaugeView.swift; sourceTree = "<group>"; };
 		44AA00001111000011110205 /* PitchChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchChartView.swift; sourceTree = "<group>"; };
 		44AA00001111000011110206 /* ReadoutBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadoutBar.swift; sourceTree = "<group>"; };
+		55AA00001111000011110401 /* PanelContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelContainerView.swift; sourceTree = "<group>"; };
+		55AA00001111000011110402 /* ValueOnlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueOnlyView.swift; sourceTree = "<group>"; };
+		55AA00001111000011110403 /* ToggleButtonBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButtonBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -107,6 +113,9 @@
 				44AA00001111000011110204 /* TunerGaugeView.swift */,
 				44AA00001111000011110205 /* PitchChartView.swift */,
 				44AA00001111000011110206 /* ReadoutBar.swift */,
+				55AA00001111000011110401 /* PanelContainerView.swift */,
+				55AA00001111000011110402 /* ValueOnlyView.swift */,
+				55AA00001111000011110403 /* ToggleButtonBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -215,6 +224,9 @@
 				44AA00001111000011110104 /* TunerGaugeView.swift in Sources */,
 				44AA00001111000011110105 /* PitchChartView.swift in Sources */,
 				44AA00001111000011110106 /* ReadoutBar.swift in Sources */,
+				55AA00001111000011110301 /* PanelContainerView.swift in Sources */,
+				55AA00001111000011110302 /* ValueOnlyView.swift in Sources */,
+				55AA00001111000011110303 /* ToggleButtonBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
