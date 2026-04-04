@@ -1,0 +1,20 @@
+name: iPadAudio
+options:
+  bundleIdPrefix: com.dantanner
+  deploymentTarget:
+    iOS: "17.0"
+
+targets:
+  iPadAudio:
+    type: application
+    platform: iOS
+    sources:
+      - iPadAudio
+    settings:
+      base:
+        INFOPLIST_FILE: iPadAudio/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.dantanner.iPadAudio
+        TARGETED_DEVICE_FAMILY: "2"  # iPad only
+        SUPPORTED_INTERFACE_ORIENTATIONS: "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
+        SWIFT_VERSION: "5.9"
+        DEVELOPMENT_TEAM: ""

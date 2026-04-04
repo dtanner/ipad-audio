@@ -1,0 +1,347 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 63;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		36D0414092B6ABA85CDF2D60 /* SPLCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2DA9C0F5E1338D103499B /* SPLCalculator.swift */; };
+		4A27EE27FB4CEED00B3202FE /* AWeightingFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F539788126A9C64AB0A26468 /* AWeightingFilter.swift */; };
+		9BFBBDB51F913CFEBFE97E84 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6787B6FC7D8ADF46346EAE4A /* ContentView.swift */; };
+		A0D96CF35E2E1E9CDEDB5B03 /* AudioEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027A23C166E2E6F2BBC20A9A /* AudioEngine.swift */; };
+		A1517BE8D021DBCFD6EBC873 /* iPadAudioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E2AA61799CCB6135C00E97 /* iPadAudioApp.swift */; };
+		B6586C643C62920BC4747B81 /* AudioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6468455E9841370B8EAE7F1 /* AudioViewModel.swift */; };
+		DA0E45F7BA4D541F7DC4CE95 /* AudioConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C6BE1D32442A60E0669985 /* AudioConstants.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		027A23C166E2E6F2BBC20A9A /* AudioEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngine.swift; sourceTree = "<group>"; };
+		5EEBFA1F34CDD42ACB9905CE /* iPadAudio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iPadAudio.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6787B6FC7D8ADF46346EAE4A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		68C6BE1D32442A60E0669985 /* AudioConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioConstants.swift; sourceTree = "<group>"; };
+		92781A670715D2338CBD0585 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		B8C2DA9C0F5E1338D103499B /* SPLCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPLCalculator.swift; sourceTree = "<group>"; };
+		D6468455E9841370B8EAE7F1 /* AudioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewModel.swift; sourceTree = "<group>"; };
+		D6E2AA61799CCB6135C00E97 /* iPadAudioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPadAudioApp.swift; sourceTree = "<group>"; };
+		F539788126A9C64AB0A26468 /* AWeightingFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWeightingFilter.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		1731B1B5220E77E46FC37CBF /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				027A23C166E2E6F2BBC20A9A /* AudioEngine.swift */,
+				F539788126A9C64AB0A26468 /* AWeightingFilter.swift */,
+				B8C2DA9C0F5E1338D103499B /* SPLCalculator.swift */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		183E74F4D244CF391BA654CD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				68C6BE1D32442A60E0669985 /* AudioConstants.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5B29A28DBE9E45786BF67B99 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				D6468455E9841370B8EAE7F1 /* AudioViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		65D425BBF081400AD9544884 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5EEBFA1F34CDD42ACB9905CE /* iPadAudio.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C554B02FF2C7E748F5A59C9E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6787B6FC7D8ADF46346EAE4A /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D149F425ECAA32740F51D99A /* iPadAudio */ = {
+			isa = PBXGroup;
+			children = (
+				92781A670715D2338CBD0585 /* Info.plist */,
+				D6E2AA61799CCB6135C00E97 /* iPadAudioApp.swift */,
+				1731B1B5220E77E46FC37CBF /* Audio */,
+				183E74F4D244CF391BA654CD /* Models */,
+				5B29A28DBE9E45786BF67B99 /* ViewModels */,
+				C554B02FF2C7E748F5A59C9E /* Views */,
+			);
+			path = iPadAudio;
+			sourceTree = "<group>";
+		};
+		D62DAE348A9068DB1E5663F7 = {
+			isa = PBXGroup;
+			children = (
+				D149F425ECAA32740F51D99A /* iPadAudio */,
+				65D425BBF081400AD9544884 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		44275A82CCABC356260E1CD2 /* iPadAudio */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0626A7CC8911B80B284D51A5 /* Build configuration list for PBXNativeTarget "iPadAudio" */;
+			buildPhases = (
+				6C06E495155F5175B14D62DF /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iPadAudio;
+			packageProductDependencies = (
+			);
+			productName = iPadAudio;
+			productReference = 5EEBFA1F34CDD42ACB9905CE /* iPadAudio.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8BDE6887B779E5210FA2BAA1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 2640;
+			};
+			buildConfigurationList = 5025464EADE186728D283A8A /* Build configuration list for PBXProject "iPadAudio" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = D62DAE348A9068DB1E5663F7;
+			minimizedProjectReferenceProxies = 1;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				44275A82CCABC356260E1CD2 /* iPadAudio */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6C06E495155F5175B14D62DF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A27EE27FB4CEED00B3202FE /* AWeightingFilter.swift in Sources */,
+				DA0E45F7BA4D541F7DC4CE95 /* AudioConstants.swift in Sources */,
+				A0D96CF35E2E1E9CDEDB5B03 /* AudioEngine.swift in Sources */,
+				B6586C643C62920BC4747B81 /* AudioViewModel.swift in Sources */,
+				9BFBBDB51F913CFEBFE97E84 /* ContentView.swift in Sources */,
+				36D0414092B6ABA85CDF2D60 /* SPLCalculator.swift in Sources */,
+				A1517BE8D021DBCFD6EBC873 /* iPadAudioApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		25BE23EA24117E2F7CED9D53 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 72SPM7GVK7;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		8E9E20A68E46DA5E29B882B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 72SPM7GVK7;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		C8B9A8F0B2A096BEA1539511 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = iPadAudio/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dantanner.iPadAudio;
+				SDKROOT = iphoneos;
+				SUPPORTED_INTERFACE_ORIENTATIONS = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		F770F7CD5067A7CBD959ECD5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = iPadAudio/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dantanner.iPadAudio;
+				SDKROOT = iphoneos;
+				SUPPORTED_INTERFACE_ORIENTATIONS = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0626A7CC8911B80B284D51A5 /* Build configuration list for PBXNativeTarget "iPadAudio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C8B9A8F0B2A096BEA1539511 /* Debug */,
+				F770F7CD5067A7CBD959ECD5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		5025464EADE186728D283A8A /* Build configuration list for PBXProject "iPadAudio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				25BE23EA24117E2F7CED9D53 /* Debug */,
+				8E9E20A68E46DA5E29B882B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8BDE6887B779E5210FA2BAA1 /* Project object */;
+}
