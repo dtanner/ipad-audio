@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		44AA00001111000011110101 /* YINPitchDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AA00001111000011110201 /* YINPitchDetector.swift */; };
+		44AA00001111000011110102 /* PitchNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AA00001111000011110202 /* PitchNote.swift */; };
+		44AA00001111000011110103 /* TunerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AA00001111000011110203 /* TunerViewModel.swift */; };
+		44AA00001111000011110104 /* TunerGaugeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AA00001111000011110204 /* TunerGaugeView.swift */; };
+		44AA00001111000011110105 /* PitchChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AA00001111000011110205 /* PitchChartView.swift */; };
+		44AA00001111000011110106 /* ReadoutBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AA00001111000011110206 /* ReadoutBar.swift */; };
 		11AA00001111000011110001 /* RingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AA00001111000011110011 /* RingBuffer.swift */; };
 		11AA00001111000011110002 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AA00001111000011110012 /* AppSettings.swift */; };
 		11AA00001111000011110003 /* PanelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AA00001111000011110013 /* PanelType.swift */; };
@@ -42,6 +48,12 @@
 		11AA00001111000011110016 /* FFTProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFTProcessor.swift; sourceTree = "<group>"; };
 		11AA00001111000011110017 /* ColorLUT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorLUT.swift; sourceTree = "<group>"; };
 		11AA00001111000011110018 /* SpectrogramView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpectrogramView.swift; sourceTree = "<group>"; };
+		44AA00001111000011110201 /* YINPitchDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YINPitchDetector.swift; sourceTree = "<group>"; };
+		44AA00001111000011110202 /* PitchNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchNote.swift; sourceTree = "<group>"; };
+		44AA00001111000011110203 /* TunerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunerViewModel.swift; sourceTree = "<group>"; };
+		44AA00001111000011110204 /* TunerGaugeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunerGaugeView.swift; sourceTree = "<group>"; };
+		44AA00001111000011110205 /* PitchChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchChartView.swift; sourceTree = "<group>"; };
+		44AA00001111000011110206 /* ReadoutBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadoutBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -52,6 +64,7 @@
 				F539788126A9C64AB0A26468 /* AWeightingFilter.swift */,
 				11AA00001111000011110016 /* FFTProcessor.swift */,
 				B8C2DA9C0F5E1338D103499B /* SPLCalculator.swift */,
+				44AA00001111000011110201 /* YINPitchDetector.swift */,
 			);
 			path = Audio;
 			sourceTree = "<group>";
@@ -62,6 +75,7 @@
 				11AA00001111000011110012 /* AppSettings.swift */,
 				68C6BE1D32442A60E0669985 /* AudioConstants.swift */,
 				11AA00001111000011110013 /* PanelType.swift */,
+				44AA00001111000011110202 /* PitchNote.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -70,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				D6468455E9841370B8EAE7F1 /* AudioViewModel.swift */,
+				44AA00001111000011110203 /* TunerViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -89,6 +104,9 @@
 				11AA00001111000011110015 /* SettingsView.swift */,
 				11AA00001111000011110014 /* SPLChartView.swift */,
 				11AA00001111000011110018 /* SpectrogramView.swift */,
+				44AA00001111000011110204 /* TunerGaugeView.swift */,
+				44AA00001111000011110205 /* PitchChartView.swift */,
+				44AA00001111000011110206 /* ReadoutBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -191,6 +209,12 @@
 				11AA00001111000011110007 /* ColorLUT.swift in Sources */,
 				11AA00001111000011110008 /* SpectrogramView.swift in Sources */,
 				A1517BE8D021DBCFD6EBC873 /* iPadAudioApp.swift in Sources */,
+				44AA00001111000011110101 /* YINPitchDetector.swift in Sources */,
+				44AA00001111000011110102 /* PitchNote.swift in Sources */,
+				44AA00001111000011110103 /* TunerViewModel.swift in Sources */,
+				44AA00001111000011110104 /* TunerGaugeView.swift in Sources */,
+				44AA00001111000011110105 /* PitchChartView.swift in Sources */,
+				44AA00001111000011110106 /* ReadoutBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

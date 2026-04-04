@@ -6,10 +6,14 @@ final class AudioViewModel {
     var currentSPL: Double = AudioConstants.splMin
     var splHistory: RingBuffer<Double>
     var spectrogramColumns: RingBuffer<[Float]>
+    var currentPitch: Double?
+    var pitchHistory: RingBuffer<Double?>
     var isRunning = false
     var micPermissionDenied = false
+    var isFrozen = false
 
     let settings = AppSettings()
+    let tuner = TunerViewModel()
 
     private let engine = AudioEngine()
 
@@ -17,14 +21,30 @@ final class AudioViewModel {
         let capacity = settings.historySeconds * Int(AudioConstants.updateRate)
         splHistory = RingBuffer(capacity: capacity, defaultValue: AudioConstants.splMin)
         spectrogramColumns = RingBuffer(capacity: capacity, defaultValue: [Float]())
+        pitchHistory = RingBuffer<Double?>(capacity: capacity, defaultValue: nil)
 
         engine.onSPL = { [weak self] spl in
-            self?.currentSPL = spl
-            self?.splHistory.push(spl)
+            guard let self else { return }
+            self.currentSPL = spl
+            if !self.isFrozen {
+                self.splHistory.push(spl)
+            }
         }
 
         engine.onSpectrum = { [weak self] spectrum in
-            self?.spectrogramColumns.push(spectrum)
+            guard let self else { return }
+            if !self.isFrozen {
+                self.spectrogramColumns.push(spectrum)
+            }
+        }
+
+        engine.onPitch = { [weak self] pitch in
+            guard let self else { return }
+            self.currentPitch = pitch
+            self.tuner.update(pitch: pitch)
+            if !self.isFrozen {
+                self.pitchHistory.push(pitch)
+            }
         }
     }
 
@@ -50,6 +70,15 @@ final class AudioViewModel {
             newColBuffer.push(existingCols[i])
         }
         spectrogramColumns = newColBuffer
+
+        // Copy existing pitch data into new buffer
+        let existingPitch = pitchHistory.array
+        var newPitchBuffer = RingBuffer<Double?>(capacity: newCapacity, defaultValue: nil)
+        let pitchStart = max(0, existingPitch.count - newCapacity)
+        for i in pitchStart..<existingPitch.count {
+            newPitchBuffer.push(existingPitch[i])
+        }
+        pitchHistory = newPitchBuffer
     }
 
     func requestMicAndStart() {

@@ -26,34 +26,16 @@ struct ContentView: View {
 
     private var mainContent: some View {
         VStack(spacing: 0) {
-            // Top bar with SPL value and gear icon
-            HStack {
-                Spacer()
-
-                // SPL readout
-                HStack(alignment: .firstTextBaseline, spacing: 4) {
-                    Text(String(format: "%.0f", viewModel.currentSPL))
-                        .font(.system(size: 48, weight: .bold))
-                        .monospacedDigit()
-                        .foregroundStyle(splColor)
-                    Text("dB")
-                        .font(.title3)
-                        .foregroundStyle(.secondary)
-                }
-
-                Spacer()
-
-                // Settings gear
-                Button {
-                    showSettings = true
-                } label: {
-                    Image(systemName: "gearshape.fill")
-                        .font(.title2)
-                        .foregroundStyle(.gray)
-                }
-                .padding(.trailing, 16)
-            }
-            .padding(.vertical, 8)
+            // Readout bar with SPL, pitch, freeze, settings
+            ReadoutBar(
+                currentSPL: viewModel.currentSPL,
+                safeThreshold: viewModel.settings.safeThreshold,
+                cautionThreshold: viewModel.settings.cautionThreshold,
+                tuner: viewModel.tuner,
+                isFrozen: viewModel.isFrozen,
+                onToggleFreeze: { viewModel.isFrozen.toggle() },
+                onShowSettings: { showSettings = true }
+            )
 
             // SPL History Chart
             SPLChartView(
@@ -69,6 +51,16 @@ struct ContentView: View {
                 columns: viewModel.spectrogramColumns.array,
                 freqMin: viewModel.settings.overtoneFreqMin,
                 freqMax: viewModel.settings.overtoneFreqMax
+            )
+            .padding(.horizontal, 8)
+
+            // Pitch Chart
+            PitchChartView(
+                pitchHistory: viewModel.pitchHistory.array,
+                historySeconds: viewModel.settings.historySeconds,
+                pitchRangeAuto: viewModel.settings.pitchRangeAuto,
+                pitchNoteMin: viewModel.settings.pitchNoteMin,
+                pitchNoteMax: viewModel.settings.pitchNoteMax
             )
             .padding(.horizontal, 8)
             .padding(.bottom, 8)
@@ -87,16 +79,6 @@ struct ContentView: View {
                 .font(.title2)
             Text("Open Settings to grant microphone permission.")
                 .foregroundStyle(.secondary)
-        }
-    }
-
-    private var splColor: Color {
-        if viewModel.currentSPL >= viewModel.settings.cautionThreshold {
-            return .red
-        } else if viewModel.currentSPL >= viewModel.settings.safeThreshold {
-            return .yellow
-        } else {
-            return .green
         }
     }
 }

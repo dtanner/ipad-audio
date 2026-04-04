@@ -7,11 +7,14 @@ final class AudioEngine {
     private let dspQueue = DispatchQueue(label: "com.iPadAudio.dsp", qos: .userInteractive)
     private let aWeighting = AWeightingFilter()
     private let fftProcessor = FFTProcessor()
+    private let yinDetector = YINPitchDetector()
 
     /// Called on main queue with computed SPL value.
     var onSPL: ((Double) -> Void)?
     /// Called on main queue with FFT magnitude spectrum in dB.
     var onSpectrum: (([Float]) -> Void)?
+    /// Called on main queue with detected pitch frequency (nil if no pitch).
+    var onPitch: ((Double?) -> Void)?
 
     /// Actual sample rate determined at runtime.
     private(set) var actualSampleRate: Double = AudioConstants.sampleRate
@@ -23,6 +26,7 @@ final class AudioEngine {
         let hwFormat = inputNode.outputFormat(forBus: 0)
         actualSampleRate = hwFormat.sampleRate
         actualBlockSize = Int(actualSampleRate * 0.1) // 100ms
+        yinDetector.updateSampleRate(actualSampleRate)
 
         inputNode.installTap(onBus: 0, bufferSize: AVAudioFrameCount(actualBlockSize), format: hwFormat) { [weak self] buffer, _ in
             self?.handleBuffer(buffer)
@@ -58,9 +62,13 @@ final class AudioEngine {
             // FFT on raw (unfiltered) audio
             let spectrum = self.fftProcessor.process(samples)
 
+            // YIN pitch detection on raw audio
+            let pitch = self.yinDetector.detect(samples)
+
             DispatchQueue.main.async {
                 self.onSPL?(spl)
                 self.onSpectrum?(spectrum)
+                self.onPitch?(pitch)
             }
         }
     }
