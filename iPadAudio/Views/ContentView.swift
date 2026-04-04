@@ -63,6 +63,14 @@ struct ContentView: View {
                 cautionThreshold: viewModel.settings.cautionThreshold
             )
             .padding(.horizontal, 8)
+
+            // Spectrogram
+            SpectrogramView(
+                columns: viewModel.spectrogramColumns.array,
+                freqMin: viewModel.settings.overtoneFreqMin,
+                freqMax: viewModel.settings.overtoneFreqMax
+            )
+            .padding(.horizontal, 8)
             .padding(.bottom, 8)
         }
         .onChange(of: viewModel.settings.historySeconds) {

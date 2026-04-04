@@ -12,6 +12,9 @@
 		11AA00001111000011110003 /* PanelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AA00001111000011110013 /* PanelType.swift */; };
 		11AA00001111000011110004 /* SPLChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AA00001111000011110014 /* SPLChartView.swift */; };
 		11AA00001111000011110005 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AA00001111000011110015 /* SettingsView.swift */; };
+		11AA00001111000011110006 /* FFTProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AA00001111000011110016 /* FFTProcessor.swift */; };
+		11AA00001111000011110007 /* ColorLUT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AA00001111000011110017 /* ColorLUT.swift */; };
+		11AA00001111000011110008 /* SpectrogramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AA00001111000011110018 /* SpectrogramView.swift */; };
 		36D0414092B6ABA85CDF2D60 /* SPLCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2DA9C0F5E1338D103499B /* SPLCalculator.swift */; };
 		4A27EE27FB4CEED00B3202FE /* AWeightingFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F539788126A9C64AB0A26468 /* AWeightingFilter.swift */; };
 		9BFBBDB51F913CFEBFE97E84 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6787B6FC7D8ADF46346EAE4A /* ContentView.swift */; };
@@ -36,6 +39,9 @@
 		11AA00001111000011110013 /* PanelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelType.swift; sourceTree = "<group>"; };
 		11AA00001111000011110014 /* SPLChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPLChartView.swift; sourceTree = "<group>"; };
 		11AA00001111000011110015 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		11AA00001111000011110016 /* FFTProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFTProcessor.swift; sourceTree = "<group>"; };
+		11AA00001111000011110017 /* ColorLUT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorLUT.swift; sourceTree = "<group>"; };
+		11AA00001111000011110018 /* SpectrogramView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpectrogramView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -44,6 +50,7 @@
 			children = (
 				027A23C166E2E6F2BBC20A9A /* AudioEngine.swift */,
 				F539788126A9C64AB0A26468 /* AWeightingFilter.swift */,
+				11AA00001111000011110016 /* FFTProcessor.swift */,
 				B8C2DA9C0F5E1338D103499B /* SPLCalculator.swift */,
 			);
 			path = Audio;
@@ -81,6 +88,7 @@
 				6787B6FC7D8ADF46346EAE4A /* ContentView.swift */,
 				11AA00001111000011110015 /* SettingsView.swift */,
 				11AA00001111000011110014 /* SPLChartView.swift */,
+				11AA00001111000011110018 /* SpectrogramView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -88,6 +96,7 @@
 		11AA00001111000011110020 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				11AA00001111000011110017 /* ColorLUT.swift */,
 				11AA00001111000011110011 /* RingBuffer.swift */,
 			);
 			path = Utilities;
@@ -178,6 +187,9 @@
 				11AA00001111000011110005 /* SettingsView.swift in Sources */,
 				36D0414092B6ABA85CDF2D60 /* SPLCalculator.swift in Sources */,
 				11AA00001111000011110004 /* SPLChartView.swift in Sources */,
+				11AA00001111000011110006 /* FFTProcessor.swift in Sources */,
+				11AA00001111000011110007 /* ColorLUT.swift in Sources */,
+				11AA00001111000011110008 /* SpectrogramView.swift in Sources */,
 				A1517BE8D021DBCFD6EBC873 /* iPadAudioApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

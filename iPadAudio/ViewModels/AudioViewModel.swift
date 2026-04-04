@@ -5,6 +5,7 @@ import AVFoundation
 final class AudioViewModel {
     var currentSPL: Double = AudioConstants.splMin
     var splHistory: RingBuffer<Double>
+    var spectrogramColumns: RingBuffer<[Float]>
     var isRunning = false
     var micPermissionDenied = false
 
@@ -15,27 +16,40 @@ final class AudioViewModel {
     init() {
         let capacity = settings.historySeconds * Int(AudioConstants.updateRate)
         splHistory = RingBuffer(capacity: capacity, defaultValue: AudioConstants.splMin)
+        spectrogramColumns = RingBuffer(capacity: capacity, defaultValue: [Float]())
 
         engine.onSPL = { [weak self] spl in
             self?.currentSPL = spl
             self?.splHistory.push(spl)
         }
+
+        engine.onSpectrum = { [weak self] spectrum in
+            self?.spectrogramColumns.push(spectrum)
+        }
     }
 
-    /// Resize the history buffer when the user changes history length.
+    /// Resize the history buffers when the user changes history length.
     func updateHistoryCapacity() {
         let newCapacity = settings.historySeconds * Int(AudioConstants.updateRate)
         guard newCapacity != splHistory.capacity else { return }
 
-        // Copy existing data into new buffer
+        // Copy existing SPL data into new buffer
         let existing = splHistory.array
         var newBuffer = RingBuffer<Double>(capacity: newCapacity, defaultValue: AudioConstants.splMin)
-        // Keep the most recent values that fit
         let start = max(0, existing.count - newCapacity)
         for i in start..<existing.count {
             newBuffer.push(existing[i])
         }
         splHistory = newBuffer
+
+        // Copy existing spectrogram data into new buffer
+        let existingCols = spectrogramColumns.array
+        var newColBuffer = RingBuffer<[Float]>(capacity: newCapacity, defaultValue: [Float]())
+        let colStart = max(0, existingCols.count - newCapacity)
+        for i in colStart..<existingCols.count {
+            newColBuffer.push(existingCols[i])
+        }
+        spectrogramColumns = newColBuffer
     }
 
     func requestMicAndStart() {
