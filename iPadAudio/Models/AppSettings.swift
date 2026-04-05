@@ -8,12 +8,12 @@ final class AppSettings {
         get { access(keyPath: \.historySeconds); return _historySeconds }
         set { withMutation(keyPath: \.historySeconds) { _historySeconds = newValue.clamped(to: 5...300) } }
     }
-    @ObservationIgnored @AppStorage("historySeconds") private var _historySeconds = 30
+    @ObservationIgnored @AppStorage("historySeconds") private var _historySeconds = 20
 
     // MARK: - SPL Range
     // Adjustable dB range for the SPL history chart via touch gestures
 
-    static let splAbsMin: Double = 0
+    static let splAbsMin: Double = 30
     static let splAbsMax: Double = 140
     static let splRangeMin: Double = 10
     static let splRangeMax: Double = 140
@@ -25,7 +25,7 @@ final class AppSettings {
             _splDisplayMin = min(clamped, _splDisplayMax - Self.splRangeMin)
         }}
     }
-    @ObservationIgnored @AppStorage("splDisplayMin") private var _splDisplayMin = 20.0
+    @ObservationIgnored @AppStorage("splDisplayMin") private var _splDisplayMin = 30.0
 
     var splDisplayMax: Double {
         get { access(keyPath: \.splDisplayMax); return _splDisplayMax }
@@ -44,7 +44,7 @@ final class AppSettings {
             _safeThreshold = min(newValue.clamped(to: 40...95), _cautionThreshold - 1)
         }}
     }
-    @ObservationIgnored @AppStorage("safeThreshold") private var _safeThreshold = 55.0
+    @ObservationIgnored @AppStorage("safeThreshold") private var _safeThreshold = 75.0
 
     var cautionThreshold: Double {
         get { access(keyPath: \.cautionThreshold); return _cautionThreshold }
@@ -52,7 +52,7 @@ final class AppSettings {
             _cautionThreshold = max(newValue.clamped(to: 60...100), _safeThreshold + 1)
         }}
     }
-    @ObservationIgnored @AppStorage("cautionThreshold") private var _cautionThreshold = 75.0
+    @ObservationIgnored @AppStorage("cautionThreshold") private var _cautionThreshold = 85.0
 
     // MARK: - Pitch Note Range
     // Semitone offsets from A4: A0 = -48, C8 = 39

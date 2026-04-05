@@ -35,6 +35,7 @@ struct SPLChartView: View {
                 drawGrid(context: &context, chartLeft: chartLeft, chartWidth: chartWidth, chartHeight: chartHeight)
                 drawLine(context: &context, chartLeft: chartLeft, chartWidth: chartWidth, chartHeight: chartHeight)
             }
+            .clipped()
             .padding(.trailing, 8)
             .gesture(dragGesture(chartHeight: h, dbRange: dbRange))
             .gesture(pinchGesture(chartHeight: h))
@@ -171,8 +172,7 @@ struct SPLChartView: View {
     // MARK: - Helpers
 
     private func yPosition(for db: Double, height: CGFloat) -> CGFloat {
-        let clamped = min(max(db, yMin), yMax)
-        let fraction = (clamped - yMin) / (yMax - yMin)
+        let fraction = (db - yMin) / (yMax - yMin)
         return height * (1 - fraction)
     }
 
