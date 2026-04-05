@@ -26,7 +26,7 @@ struct ContentView: View {
 
     private var mainContent: some View {
         VStack(spacing: 0) {
-            // Readout bar with toggle buttons, SPL, pitch, freeze, settings
+            // Readout bar with toggle buttons, SPL, pitch, settings
             HStack(spacing: 0) {
                 ToggleButtonBar(activePanels: Binding(
                     get: { viewModel.settings.activePanels },
@@ -39,8 +39,6 @@ struct ContentView: View {
                     safeThreshold: viewModel.settings.safeThreshold,
                     cautionThreshold: viewModel.settings.cautionThreshold,
                     tuner: viewModel.tuner,
-                    isFrozen: viewModel.isFrozen,
-                    onToggleFreeze: { viewModel.isFrozen.toggle() },
                     onShowSettings: { showSettings = true }
                 )
             }

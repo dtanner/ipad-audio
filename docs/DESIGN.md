@@ -88,7 +88,7 @@ iPadAudio/
 │
 ├── Views/
 │   ├── ContentView.swift              # Top-level composition
-│   ├── ReadoutBar.swift               # SPL + pitch + tuner + freeze toggle + gear icon
+│   ├── ReadoutBar.swift               # SPL + pitch + tuner + gear icon
 │   ├── TunerGaugeView.swift           # Cents gauge (Canvas)
 │   ├── SPLChartView.swift             # Rolling SPL chart (Canvas)
 │   ├── PitchChartView.swift           # Piano-roll chart (Canvas)
@@ -108,7 +108,7 @@ iPadAudio/
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│ [O][M][P]    SPL: 72 dB    A4 ═══●═══ +3¢    [Freeze] [⚙]  │  ← ReadoutBar
+│ [O][M][P]    SPL: 72 dB    A4 ═══●═══ +3¢    [⚙]  │  ← ReadoutBar
 ├──────────────────────────────────────────────────────────────┤
 │                          │                                   │
 │     Panel 1              │          Panel 2                  │  ← PanelContainer
@@ -133,7 +133,6 @@ iPadAudio/
 
 ### Navigation & Controls
 - **Settings:** Gear icon (⚙) presents a `.sheet` modal — no hamburger menu, no "Exit" item
-- **Freeze:** Labeled toggle button freezes chart display while audio continues processing. Text changes to "Live" when frozen, with a distinct color to indicate state
 
 ### Panel Toggle Rules
 - Maximum 2 panels active simultaneously

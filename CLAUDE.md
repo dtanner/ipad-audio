@@ -16,7 +16,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Tuner gauge showing cents offset from nearest note
 - Piano-roll pitch history chart (Melodyne-style) with auto or fixed range
 - Flexible panel layout: toggle up to 2 panels (Meter, Pitch) or value-only mode, adaptive for multitasking
-- Freeze/Live toggle to pause chart display while audio continues
 - Settings presented as iOS-native sheet modal (no hamburger menu)
 - Persistent user settings via @AppStorage/UserDefaults
 

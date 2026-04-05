@@ -9,7 +9,6 @@ final class AudioViewModel {
     var pitchHistory: RingBuffer<Double?>
     var isRunning = false
     var micPermissionDenied = false
-    var isFrozen = false
 
     let settings = AppSettings()
     let tuner = TunerViewModel()
@@ -25,18 +24,14 @@ final class AudioViewModel {
         engine.onSPL = { [weak self] spl in
             guard let self else { return }
             self.currentSPL = spl
-            if !self.isFrozen {
-                self.splHistory.push(spl)
-            }
+            self.splHistory.push(spl)
         }
 
         engine.onPitch = { [weak self] pitch in
             guard let self else { return }
             self.currentPitch = pitch
             self.tuner.update(pitch: pitch)
-            if !self.isFrozen {
-                self.pitchHistory.push(pitch)
-            }
+            self.pitchHistory.push(pitch)
         }
     }
 

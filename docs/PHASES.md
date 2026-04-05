@@ -57,7 +57,7 @@ Update status as each phase is completed. Each phase is independently testable.
 - `iPadAudio/ViewModels/TunerViewModel.swift` — EMA smoothing (alpha=0.15 for cents), 5-frame note stability threshold, 10-frame timeout to clear, decay cents toward 0 when no pitch
 - `iPadAudio/Views/TunerGaugeView.swift` — Canvas: horizontal bar, center tick, moving indicator colored green (±8¢), yellow (±20¢), red (>±20¢)
 - `iPadAudio/Views/PitchChartView.swift` — Canvas: piano-roll Y-axis (semitone grid, octave major lines, note labels), scrolling X-axis, connected line for continuous pitch, dots for isolated, auto-range (median ±1 octave) or fixed range
-- `iPadAudio/Views/ReadoutBar.swift` — HStack: toggle buttons (left), SPL value colored by level (center-left), pitch note name + tuner gauge + cents (center-right), "Freeze"/"Live" labeled toggle + gear icon for settings sheet (right)
+- `iPadAudio/Views/ReadoutBar.swift` — HStack: toggle buttons (left), SPL value colored by level (center-left), pitch note name + tuner gauge + cents (center-right), gear icon for settings sheet (right)
 
 **Files to modify:**
 - `AudioEngine.swift` — add YIN to DSP pipeline (on raw audio)
@@ -96,7 +96,6 @@ Update status as each phase is completed. Each phase is independently testable.
 - [ ] Audio interruption handling (`AVAudioSession.interruptionNotification`) — show visible "Audio Interrupted" banner overlay with "Tap to resume" action (`AudioInterruptedBanner.swift`)
 - [ ] Audio route changes — handle mic disconnect gracefully, show banner
 - [ ] App lifecycle: stop engine on `.background`, restart on `.active` (observe `scenePhase`)
-- [ ] Freeze/Live toggle in ReadoutBar — labeled toggle, distinct color when frozen
 - [ ] Accessibility labels on all interactive elements
 - [ ] Performance profiling: overall <16ms frame time
 - [ ] Stage Manager / multitasking: test Split View, Slide Over, window resize — verify adaptive layout degrades gracefully

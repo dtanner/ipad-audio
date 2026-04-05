@@ -5,8 +5,6 @@ struct ReadoutBar: View {
     let safeThreshold: Double
     let cautionThreshold: Double
     let tuner: TunerViewModel
-    let isFrozen: Bool
-    let onToggleFreeze: () -> Void
     let onShowSettings: () -> Void
 
     var body: some View {
@@ -49,19 +47,6 @@ struct ReadoutBar: View {
             }
 
             Spacer()
-
-            // Freeze/Live toggle
-            Button {
-                onToggleFreeze()
-            } label: {
-                Text(isFrozen ? "Live" : "Freeze")
-                    .font(.callout.weight(.medium))
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 6)
-                    .background(isFrozen ? Color.blue : Color.gray.opacity(0.3))
-                    .foregroundStyle(isFrozen ? .white : .gray)
-                    .clipShape(RoundedRectangle(cornerRadius: 6))
-            }
 
             // Settings gear
             Button {
