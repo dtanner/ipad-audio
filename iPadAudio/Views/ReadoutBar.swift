@@ -8,10 +8,8 @@ struct ReadoutBar: View {
     let onShowSettings: () -> Void
 
     var body: some View {
-        HStack(spacing: 16) {
-            Spacer()
-
-            // SPL readout
+        HStack(spacing: 0) {
+            // SPL readout — stable left region
             HStack(alignment: .firstTextBaseline, spacing: 4) {
                 Text(String(format: "%.0f", currentSPL))
                     .font(.system(size: 36, weight: .bold))
@@ -21,32 +19,32 @@ struct ReadoutBar: View {
                     .font(.callout)
                     .foregroundStyle(.secondary)
             }
+            .frame(maxWidth: .infinity)
 
-            Spacer()
+            // Pitch readout + tuner gauge — stable right region
+            Group {
+                if let name = tuner.stableNoteName, let octave = tuner.stableOctave {
+                    HStack(spacing: 8) {
+                        Text("\(name)\(octave)")
+                            .font(.system(size: 36, weight: .bold))
+                            .foregroundStyle(.cyan)
 
-            // Pitch readout + tuner gauge
-            if let name = tuner.stableNoteName, let octave = tuner.stableOctave {
-                HStack(spacing: 8) {
-                    Text("\(name)\(octave)")
+                        TunerGaugeView(cents: tuner.smoothedCents, color: tuner.tunerColor)
+                            .frame(width: 120, height: 28)
+
+                        Text(centsText)
+                            .font(.system(size: 18, weight: .medium))
+                            .monospacedDigit()
+                            .foregroundStyle(centsColor)
+                            .frame(width: 50, alignment: .leading)
+                    }
+                } else {
+                    Text("—")
                         .font(.system(size: 36, weight: .bold))
-                        .foregroundStyle(.cyan)
-
-                    TunerGaugeView(cents: tuner.smoothedCents, color: tuner.tunerColor)
-                        .frame(width: 120, height: 28)
-
-                    Text(centsText)
-                        .font(.system(size: 18, weight: .medium))
-                        .monospacedDigit()
-                        .foregroundStyle(centsColor)
-                        .frame(width: 50, alignment: .leading)
+                        .foregroundStyle(.gray.opacity(0.4))
                 }
-            } else {
-                Text("—")
-                    .font(.system(size: 36, weight: .bold))
-                    .foregroundStyle(.gray.opacity(0.4))
             }
-
-            Spacer()
+            .frame(maxWidth: .infinity)
 
             // Settings gear
             Button {
