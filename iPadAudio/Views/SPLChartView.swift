@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct SPLChartView: View {
-    let splHistory: [Double]
+    let splHistory: RingBuffer<Double>
     let historySeconds: Int
     let safeThreshold: Double
     let cautionThreshold: Double
@@ -148,24 +148,43 @@ struct SPLChartView: View {
     // MARK: - SPL Line
 
     private func drawLine(context: inout GraphicsContext, chartLeft: CGFloat, chartWidth: CGFloat, chartHeight: CGFloat) {
-        guard splHistory.count >= 2 else { return }
+        let pointCount = splHistory.count
+        guard pointCount >= 2 else { return }
 
         let totalSamples = historySeconds * Int(AudioConstants.updateRate)
-        let pointCount = splHistory.count
+        let xScale = chartWidth / CGFloat(totalSamples - 1)
 
-        for i in 0..<(pointCount - 1) {
-            let x1 = chartLeft + chartWidth * CGFloat(i) / CGFloat(totalSamples - 1)
-            let x2 = chartLeft + chartWidth * CGFloat(i + 1) / CGFloat(totalSamples - 1)
-            let y1 = yPosition(for: splHistory[i], height: chartHeight)
-            let y2 = yPosition(for: splHistory[i + 1], height: chartHeight)
+        // Batch consecutive segments of the same color into a single path
+        var currentPath = Path()
+        var currentColor = splColor(for: splHistory[0])
+        var prevX = chartLeft
+        var prevY = yPosition(for: splHistory[0], height: chartHeight)
 
-            var segment = Path()
-            segment.move(to: CGPoint(x: x1, y: y1))
-            segment.addLine(to: CGPoint(x: x2, y: y2))
+        for i in 1..<pointCount {
+            let x = chartLeft + xScale * CGFloat(i)
+            let y = yPosition(for: splHistory[i], height: chartHeight)
 
-            let midSPL = (splHistory[i] + splHistory[i + 1]) / 2
+            let midSPL = (splHistory[i - 1] + splHistory[i]) / 2
             let color = splColor(for: midSPL)
-            context.stroke(segment, with: .color(color), lineWidth: 3)
+
+            if color != currentColor {
+                // Flush the current batch
+                context.stroke(currentPath, with: .color(currentColor), lineWidth: 3)
+                currentPath = Path()
+                currentPath.move(to: CGPoint(x: prevX, y: prevY))
+                currentColor = color
+            } else if currentPath.isEmpty {
+                currentPath.move(to: CGPoint(x: prevX, y: prevY))
+            }
+
+            currentPath.addLine(to: CGPoint(x: x, y: y))
+            prevX = x
+            prevY = y
+        }
+
+        // Flush remaining
+        if !currentPath.isEmpty {
+            context.stroke(currentPath, with: .color(currentColor), lineWidth: 3)
         }
     }
 

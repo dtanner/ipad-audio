@@ -15,6 +15,9 @@ struct SPLReadout: View {
                 .font(.callout)
                 .foregroundStyle(.secondary)
         }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("Sound level")
+        .accessibilityValue("\(Int(currentSPL)) decibels")
     }
 
     private var splColor: Color {
@@ -46,10 +49,15 @@ struct PitchReadout: View {
                         .foregroundStyle(centsColor)
                         .frame(width: 50, alignment: .leading)
                 }
+                .accessibilityElement(children: .combine)
+                .accessibilityLabel("Pitch")
+                .accessibilityValue("\(noted.name)\(noted.octave), \(centsText)")
             } else {
                 Text("—")
                     .font(.system(size: 36, weight: .bold))
                     .foregroundStyle(.gray.opacity(0.4))
+                    .accessibilityLabel("Pitch")
+                    .accessibilityValue("No pitch detected")
             }
         }
     }

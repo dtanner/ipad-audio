@@ -40,6 +40,14 @@ struct RingBuffer<T> {
         return result
     }
 
+    /// Iterate elements oldest-to-newest without allocating a copy.
+    func forEach(_ body: (Int, T) -> Void) {
+        let start = count < capacity ? 0 : writeIndex
+        for i in 0..<count {
+            body(i, storage[(start + i) % capacity])
+        }
+    }
+
     /// Remove all elements, keeping capacity.
     mutating func reset(defaultValue: T) {
         storage = Array(repeating: defaultValue, count: capacity)

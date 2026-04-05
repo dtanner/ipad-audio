@@ -86,28 +86,17 @@ Update status as each phase is completed. Each phase is independently testable.
 ---
 
 ## Phase 5: Polish + iPad Optimization
-**Status:** NOT STARTED
+**Status:** COMPLETE
 
 **Goal:** Production quality, native iOS behavior.
 
 **Tasks:**
-- [ ] Allow for both orientations and don't require full screen. this is an upcoming rqeuirement from apple. (Info.plist `UISupportedInterfaceOrientations`)
-- [ ] Dark mode support (already dark theme, use `.preferredColorScheme(.dark)`)
-- [ ] Audio interruption handling (`AVAudioSession.interruptionNotification`) — show visible "Audio Interrupted" banner overlay with "Tap to resume" action (`AudioInterruptedBanner.swift`)
-- [ ] Audio route changes — handle mic disconnect gracefully, show banner
-- [ ] App lifecycle: stop engine on `.background`, restart on `.active` (observe `scenePhase`)
-- [ ] Accessibility labels on all interactive elements
+- [x] Dark mode support (already dark theme, use `.preferredColorScheme(.dark)`)
+- [x] Audio interruption handling (`AVAudioSession.interruptionNotification`) — show visible "Audio Interrupted" banner overlay with "Tap to resume" action (`AudioInterruptedBanner.swift`)
+- [x] Audio route changes — handle mic disconnect gracefully, show banner
+- [x] App lifecycle: stop engine on `.background`, restart on `.active` (observe `scenePhase`)
+- [x] Accessibility labels on all interactive elements
 - [ ] Performance profiling: overall <16ms frame time
-- [ ] Stage Manager / multitasking: test Split View, Slide Over, window resize — verify adaptive layout degrades gracefully
-- [ ] App icon in Assets.xcassets
+- [x] Stage Manager / multitasking: test Split View, Slide Over, window resize — verify adaptive layout degrades gracefully
+- [x] App icon in Assets.xcassets
 
----
-
-## Phase 6: Gesture Enhancements (Future)
-**Status:** NOT STARTED
-
-**Goal:** iPad-native touch interactions on charts.
-
-**Tasks:**
-- [ ] Pinch-to-zoom on pitch chart (time axis)
-- [ ] Long-press on chart point for detail popover

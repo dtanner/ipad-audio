@@ -23,6 +23,8 @@ struct KeyPicker: View {
                     .clipShape(RoundedRectangle(cornerRadius: 6))
             }
             .disabled(isChromatic)
+            .accessibilityLabel("Root note")
+            .accessibilityValue(settings.rootNote.rawValue)
 
             Menu {
                 Picker("Scale", selection: $settings.scaleType) {
@@ -39,6 +41,8 @@ struct KeyPicker: View {
                     .background(.white.opacity(0.08))
                     .clipShape(RoundedRectangle(cornerRadius: 6))
             }
+            .accessibilityLabel("Scale")
+            .accessibilityValue(settings.scaleType.rawValue)
         }
     }
 }

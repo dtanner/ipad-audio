@@ -61,11 +61,9 @@ final class AudioEngine {
         guard let channelData = buffer.floatChannelData else { return }
         let frameCount = Int(buffer.frameLength)
 
-        // Copy float samples to Double array on the audio thread
+        // Convert float samples to Double using vDSP (vectorized)
         var samples = [Double](repeating: 0, count: frameCount)
-        for i in 0..<frameCount {
-            samples[i] = Double(channelData[0][i])
-        }
+        vDSP_vspdp(channelData[0], 1, &samples, 1, vDSP_Length(frameCount))
 
         dspQueue.async { [weak self] in
             guard let self else { return }
@@ -78,7 +76,7 @@ final class AudioEngine {
             // Trim accumulator to keep at most 2x the analysis window
             let maxKeep = self.actualBlockSize * 2
             if self.sampleAccumulator.count > maxKeep {
-                self.sampleAccumulator.removeFirst(self.sampleAccumulator.count - maxKeep)
+                self.sampleAccumulator = Array(self.sampleAccumulator.suffix(maxKeep))
             }
 
             // SPL: compute every ~100ms worth of new samples

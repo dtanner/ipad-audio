@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct PitchChartView: View {
-    let pitchHistory: [Double?]
+    let pitchHistory: RingBuffer<Double?>
     let historySeconds: Int
     let settings: AppSettings
 
@@ -38,26 +38,32 @@ struct PitchChartView: View {
                 let count = pitchHistory.count
                 guard count > 0 else { return }
 
-                var prevPoint: CGPoint? = nil
-                var prevSemi: Double? = nil
                 let dotRadius: CGFloat = 2.5
                 let maxSemitoneJump: Double = 12.0
                 let a4Midi = 69
                 let inScale = MusicTheory.scalePitchClasses(root: settings.rootNote, scale: settings.scaleType)
+                let xScale = chartW / CGFloat(max(count - 1, 1))
+
+                // Batch paths by color: in-key lines, out-of-key lines, in-key dots, out-of-key dots
+                var inKeyPath = Path()
+                var outKeyPath = Path()
+                var inKeyDots = Path()
+                var outKeyDots = Path()
+
+                var prevPoint: CGPoint? = nil
+                var prevSemi: Double? = nil
 
                 for i in 0..<count {
-                    let x = chartX + CGFloat(i) / CGFloat(max(count - 1, 1)) * chartW
-
                     guard let hz = pitchHistory[i] else {
                         prevPoint = nil
                         prevSemi = nil
                         continue
                     }
 
+                    let x = chartX + CGFloat(i) * xScale
                     let semi = PitchNote.freqToSemitone(hz)
                     let yFrac = (semi - Double(semiMin)) / semiRange
                     let y = h - CGFloat(yFrac) * h
-
                     let point = CGPoint(x: x, y: y)
                     let midi = a4Midi + Int(semi.rounded())
                     let pitchClass = ((midi % 12) + 12) % 12
@@ -65,19 +71,38 @@ struct PitchChartView: View {
 
                     if let prev = prevPoint, let pSemi = prevSemi,
                        abs(semi - pSemi) <= maxSemitoneJump {
-                        var path = Path()
-                        path.move(to: prev)
-                        path.addLine(to: point)
-                        let color: Color = isInKey ? .cyan : .cyan.opacity(0.4)
-                        context.stroke(path, with: .color(color), lineWidth: 3)
+                        if isInKey {
+                            inKeyPath.move(to: prev)
+                            inKeyPath.addLine(to: point)
+                        } else {
+                            outKeyPath.move(to: prev)
+                            outKeyPath.addLine(to: point)
+                        }
                     } else {
                         let dotRect = CGRect(x: point.x - dotRadius, y: point.y - dotRadius,
                                              width: dotRadius * 2, height: dotRadius * 2)
-                        let color: Color = isInKey ? .cyan : .cyan.opacity(0.4)
-                        context.fill(Path(ellipseIn: dotRect), with: .color(color))
+                        if isInKey {
+                            inKeyDots.addEllipse(in: dotRect)
+                        } else {
+                            outKeyDots.addEllipse(in: dotRect)
+                        }
                     }
                     prevPoint = point
                     prevSemi = semi
+                }
+
+                // Draw all batched paths
+                if !inKeyPath.isEmpty {
+                    context.stroke(inKeyPath, with: .color(.cyan), lineWidth: 3)
+                }
+                if !outKeyPath.isEmpty {
+                    context.stroke(outKeyPath, with: .color(.cyan.opacity(0.4)), lineWidth: 3)
+                }
+                if !inKeyDots.isEmpty {
+                    context.fill(inKeyDots, with: .color(.cyan))
+                }
+                if !outKeyDots.isEmpty {
+                    context.fill(outKeyDots, with: .color(.cyan.opacity(0.4)))
                 }
             }
             .gesture(dragGesture(chartHeight: h, semiRange: semiRange))

@@ -34,6 +34,8 @@ struct SettingsView: View {
                 }
                 Slider(value: $settings.safeThreshold, in: 40...95, step: 1)
                     .tint(.green)
+                    .accessibilityLabel("Safe threshold")
+                    .accessibilityValue("\(Int(settings.safeThreshold)) decibels")
             }
             VStack(alignment: .leading) {
                 HStack {
@@ -45,6 +47,8 @@ struct SettingsView: View {
                 }
                 Slider(value: $settings.cautionThreshold, in: 60...100, step: 1)
                     .tint(.yellow)
+                    .accessibilityLabel("Caution threshold")
+                    .accessibilityValue("\(Int(settings.cautionThreshold)) decibels")
             }
         }
     }
@@ -69,6 +73,8 @@ struct SettingsView: View {
                     in: 5...300,
                     step: 5
                 )
+                .accessibilityLabel("History length")
+                .accessibilityValue(historyLabel)
             }
         }
     }

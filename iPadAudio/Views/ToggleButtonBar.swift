@@ -16,6 +16,9 @@ struct PanelToggleButton: View {
                 .background(isActive ? Color.blue.opacity(0.15) : Color.clear)
                 .clipShape(RoundedRectangle(cornerRadius: 6))
         }
+        .accessibilityLabel("\(panel.label) panel")
+        .accessibilityValue(isActive ? "On" : "Off")
+        .accessibilityHint("Double-tap to toggle")
     }
 
     private func togglePanel() {

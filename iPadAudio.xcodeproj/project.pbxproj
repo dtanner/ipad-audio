@@ -33,6 +33,8 @@
 		FF8AF9B2FD12223412C44106 /* TunerGaugeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAACBA80E85AB9533CA821C4 /* TunerGaugeView.swift */; };
 		2B3C4D5E6F7A8B9C0D1E2F3A /* MusicTheory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2B3C4D5E6F7A8B9C0D1E2F /* MusicTheory.swift */; };
 		4D5E6F7A8B9C0D1E2F3A4B5C /* KeyPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4D5E6F7A8B9C0D1E2F3A4B /* KeyPicker.swift */; };
+		5A6B7C8D9E0F1A2B3C4D5E6F /* AudioInterruptedBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7C8D9E0F1A2B3C4D5E6F7A /* AudioInterruptedBanner.swift */; };
+		7C8D9E0F1A2B3C4D5E6F7A8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D9E0F1A2B3C4D5E6F7A8B9C /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +77,8 @@
 		F539788126A9C64AB0A26468 /* AWeightingFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWeightingFilter.swift; sourceTree = "<group>"; };
 		1A2B3C4D5E6F7A8B9C0D1E2F /* MusicTheory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicTheory.swift; sourceTree = "<group>"; };
 		3C4D5E6F7A8B9C0D1E2F3A4B /* KeyPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPicker.swift; sourceTree = "<group>"; };
+		6B7C8D9E0F1A2B3C4D5E6F7A /* AudioInterruptedBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioInterruptedBanner.swift; sourceTree = "<group>"; };
+		8D9E0F1A2B3C4D5E6F7A8B9C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -140,6 +144,7 @@
 		C554B02FF2C7E748F5A59C9E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				6B7C8D9E0F1A2B3C4D5E6F7A /* AudioInterruptedBanner.swift */,
 				6787B6FC7D8ADF46346EAE4A /* ContentView.swift */,
 				3C4D5E6F7A8B9C0D1E2F3A4B /* KeyPicker.swift */,
 				AA915666940E27460CE9B276 /* PanelContainerView.swift */,
@@ -157,6 +162,7 @@
 		D149F425ECAA32740F51D99A /* iPadAudio */ = {
 			isa = PBXGroup;
 			children = (
+				8D9E0F1A2B3C4D5E6F7A8B9C /* Assets.xcassets */,
 				92781A670715D2338CBD0585 /* Info.plist */,
 				D6E2AA61799CCB6135C00E97 /* iPadAudioApp.swift */,
 				1731B1B5220E77E46FC37CBF /* Audio */,
@@ -203,6 +209,7 @@
 			buildConfigurationList = 0626A7CC8911B80B284D51A5 /* Build configuration list for PBXNativeTarget "iPadAudio" */;
 			buildPhases = (
 				6C06E495155F5175B14D62DF /* Sources */,
+				9E0F1A2B3C4D5E6F7A8B9C0D /* Resources */,
 			);
 			buildRules = (
 			);
@@ -275,7 +282,16 @@
 				F28DFC4EC6C5AA9AA7085CEC /* TunerViewModel.swift in Sources */,
 				E5FE3770B11CDD4613079DF0 /* ValueOnlyView.swift in Sources */,
 				EB25FCD3EC3B2BA4CC9B456B /* YINPitchDetector.swift in Sources */,
+				5A6B7C8D9E0F1A2B3C4D5E6F /* AudioInterruptedBanner.swift in Sources */,
 				A1517BE8D021DBCFD6EBC873 /* iPadAudioApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E0F1A2B3C4D5E6F7A8B9C0D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7C8D9E0F1A2B3C4D5E6F7A8B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

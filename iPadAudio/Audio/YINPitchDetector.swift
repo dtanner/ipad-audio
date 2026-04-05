@@ -10,8 +10,19 @@ final class YINPitchDetector {
 
     private var sampleRate: Double
 
+    // Cached FFT setup — reused across calls when fftSize is unchanged
+    private var cachedFFTSetup: OpaquePointer?
+    private var cachedFFTLog2n: vDSP_Length = 0
+    private var cachedFFTSize: Int = 0
+
     init(sampleRate: Double = 48000) {
         self.sampleRate = sampleRate
+    }
+
+    deinit {
+        if let setup = cachedFFTSetup {
+            vDSP_destroy_fftsetupD(setup)
+        }
     }
 
     func updateSampleRate(_ rate: Double) {
@@ -111,13 +122,26 @@ final class YINPitchDetector {
 
     // MARK: - FFT-based autocorrelation
 
+    private func fftSetup(for size: Int) -> OpaquePointer? {
+        if size == cachedFFTSize, let setup = cachedFFTSetup {
+            return setup
+        }
+        if let old = cachedFFTSetup {
+            vDSP_destroy_fftsetupD(old)
+        }
+        let log2n = vDSP_Length(log2(Double(size)))
+        cachedFFTSetup = vDSP_create_fftsetupD(log2n, FFTRadix(kFFTRadix2))
+        cachedFFTLog2n = log2n
+        cachedFFTSize = size
+        return cachedFFTSetup
+    }
+
     private func autocorrelation(samples: [Double], W: Int) -> [Double] {
         let fftSize = nextPowerOf2(2 * W)
         let log2n = vDSP_Length(log2(Double(fftSize)))
-        guard let fftSetup = vDSP_create_fftsetupD(log2n, FFTRadix(kFFTRadix2)) else {
+        guard let fftSetup = fftSetup(for: fftSize) else {
             return [Double](repeating: 0, count: W)
         }
-        defer { vDSP_destroy_fftsetupD(fftSetup) }
 
         let halfN = fftSize / 2
 

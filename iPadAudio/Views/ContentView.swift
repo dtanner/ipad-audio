@@ -3,6 +3,7 @@ import SwiftUI
 struct ContentView: View {
     @State private var viewModel = AudioViewModel()
     @State private var showSettings = false
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
         ZStack {
@@ -14,9 +15,31 @@ struct ContentView: View {
             } else {
                 mainContent
             }
+
+            if let message = viewModel.audioInterruptionMessage {
+                VStack {
+                    AudioInterruptedBanner(message: message) {
+                        viewModel.resumeAudio()
+                    }
+                    Spacer()
+                }
+                .padding(.top, 8)
+                .transition(.move(edge: .top).combined(with: .opacity))
+            }
         }
+        .animation(.easeInOut(duration: 0.3), value: viewModel.audioInterruptionMessage)
         .onAppear {
             viewModel.requestMicAndStart()
+        }
+        .onChange(of: scenePhase) {
+            switch scenePhase {
+            case .background:
+                viewModel.handleBackground()
+            case .active:
+                viewModel.handleForeground()
+            default:
+                break
+            }
         }
         .preferredColorScheme(.dark)
         .sheet(isPresented: $showSettings) {
@@ -61,6 +84,7 @@ struct ContentView: View {
                         .font(.title2)
                         .foregroundStyle(.gray)
                 }
+                .accessibilityLabel("Settings")
                 .padding(.trailing, 16)
             }
             .padding(.vertical, 8)

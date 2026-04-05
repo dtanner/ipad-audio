@@ -54,7 +54,7 @@ struct PanelContainerView: View {
         switch panel {
         case .meter:
             SPLChartView(
-                splHistory: viewModel.splHistory.array,
+                splHistory: viewModel.splHistory,
                 historySeconds: viewModel.settings.historySeconds,
                 safeThreshold: viewModel.settings.safeThreshold,
                 cautionThreshold: viewModel.settings.cautionThreshold,
@@ -62,7 +62,7 @@ struct PanelContainerView: View {
             )
         case .pitch:
             PitchChartView(
-                pitchHistory: viewModel.pitchHistory.array,
+                pitchHistory: viewModel.pitchHistory,
                 historySeconds: viewModel.settings.historySeconds,
                 settings: viewModel.settings
             )

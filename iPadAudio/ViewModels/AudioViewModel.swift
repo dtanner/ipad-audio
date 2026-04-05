@@ -10,6 +10,9 @@ final class AudioViewModel {
     var isRunning = false
     var micPermissionDenied = false
 
+    /// Non-nil when audio is interrupted or the mic route is lost.
+    var audioInterruptionMessage: String?
+
     let settings = AppSettings()
     let tuner = TunerViewModel()
 
@@ -33,6 +36,8 @@ final class AudioViewModel {
             self.tuner.update(pitch: pitch)
             self.pitchHistory.push(pitch)
         }
+
+        observeAudioNotifications()
     }
 
     /// Resize the history buffers when the user changes history length.
@@ -86,6 +91,24 @@ final class AudioViewModel {
         isRunning = false
     }
 
+    /// Resume audio after an interruption or route change.
+    func resumeAudio() {
+        audioInterruptionMessage = nil
+        startEngine()
+    }
+
+    /// Stop engine when app enters background.
+    func handleBackground() {
+        guard isRunning else { return }
+        stopEngine()
+    }
+
+    /// Restart engine when app returns to foreground.
+    func handleForeground() {
+        guard !isRunning, !micPermissionDenied, audioInterruptionMessage == nil else { return }
+        startEngine()
+    }
+
     private func startEngine() {
         do {
             let session = AVAudioSession.sharedInstance()
@@ -96,6 +119,67 @@ final class AudioViewModel {
             isRunning = true
         } catch {
             print("AudioEngine start failed: \(error)")
+        }
+    }
+
+    // MARK: - Audio Notifications
+
+    private func observeAudioNotifications() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleInterruption),
+            name: AVAudioSession.interruptionNotification,
+            object: AVAudioSession.sharedInstance()
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleRouteChange),
+            name: AVAudioSession.routeChangeNotification,
+            object: AVAudioSession.sharedInstance()
+        )
+    }
+
+    @objc private func handleInterruption(_ notification: Notification) {
+        guard let info = notification.userInfo,
+              let typeValue = info[AVAudioSessionInterruptionTypeKey] as? UInt,
+              let type = AVAudioSession.InterruptionType(rawValue: typeValue) else { return }
+
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            switch type {
+            case .began:
+                self.stopEngine()
+                self.audioInterruptionMessage = "Audio Interrupted"
+            case .ended:
+                let options = (info[AVAudioSessionInterruptionOptionKey] as? UInt)
+                    .flatMap { AVAudioSession.InterruptionOptions(rawValue: $0) }
+                if options?.contains(.shouldResume) == true {
+                    self.resumeAudio()
+                }
+            @unknown default:
+                break
+            }
+        }
+    }
+
+    @objc private func handleRouteChange(_ notification: Notification) {
+        guard let info = notification.userInfo,
+              let reasonValue = info[AVAudioSessionRouteChangeReasonKey] as? UInt,
+              let reason = AVAudioSession.RouteChangeReason(rawValue: reasonValue) else { return }
+
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            switch reason {
+            case .oldDeviceUnavailable:
+                self.stopEngine()
+                self.audioInterruptionMessage = "Microphone Disconnected"
+            case .newDeviceAvailable:
+                if self.audioInterruptionMessage != nil {
+                    self.resumeAudio()
+                }
+            default:
+                break
+            }
         }
     }
 }
