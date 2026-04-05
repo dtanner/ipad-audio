@@ -5,6 +5,7 @@ struct ReadoutBar: View {
     let safeThreshold: Double
     let cautionThreshold: Double
     let tuner: TunerViewModel
+    let noteSpellings: [String]
     let onShowSettings: () -> Void
 
     var body: some View {
@@ -23,9 +24,10 @@ struct ReadoutBar: View {
 
             // Pitch readout + tuner gauge — stable right region
             Group {
-                if let name = tuner.stableNoteName, let octave = tuner.stableOctave {
+                if let midi = tuner.stableMidi {
+                    let noted = MusicTheory.noteName(midi: midi, spellings: noteSpellings)
                     HStack(spacing: 8) {
-                        Text("\(name)\(octave)")
+                        Text("\(noted.name)\(noted.octave)")
                             .font(.system(size: 36, weight: .bold))
                             .foregroundStyle(.cyan)
 

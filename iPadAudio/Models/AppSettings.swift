@@ -55,6 +55,20 @@ final class AppSettings {
     }
     @ObservationIgnored @AppStorage("pitchNoteMax") private var _pitchNoteMax = 10 // G5
 
+    // MARK: - Key (Root + Scale)
+
+    var rootNote: MusicRoot {
+        get { access(keyPath: \.rootNote); return MusicRoot(rawValue: _rootNoteRaw) ?? .c }
+        set { withMutation(keyPath: \.rootNote) { _rootNoteRaw = newValue.rawValue } }
+    }
+    @ObservationIgnored @AppStorage("rootNote") private var _rootNoteRaw = "C"
+
+    var scaleType: MusicScale {
+        get { access(keyPath: \.scaleType); return MusicScale(rawValue: _scaleTypeRaw) ?? .major }
+        set { withMutation(keyPath: \.scaleType) { _scaleTypeRaw = newValue.rawValue } }
+    }
+    @ObservationIgnored @AppStorage("scaleType") private var _scaleTypeRaw = "Major"
+
     // MARK: - Active Panels
 
     var activePanels: [PanelType] {

@@ -31,6 +31,8 @@
 		F22817C06919E38B9CE890CF /* ToggleButtonBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9C159ABF8DE1E6214465C1 /* ToggleButtonBar.swift */; };
 		F28DFC4EC6C5AA9AA7085CEC /* TunerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1854CE4A3243425006BBC771 /* TunerViewModel.swift */; };
 		FF8AF9B2FD12223412C44106 /* TunerGaugeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAACBA80E85AB9533CA821C4 /* TunerGaugeView.swift */; };
+		2B3C4D5E6F7A8B9C0D1E2F3A /* MusicTheory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2B3C4D5E6F7A8B9C0D1E2F /* MusicTheory.swift */; };
+		4D5E6F7A8B9C0D1E2F3A4B5C /* KeyPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4D5E6F7A8B9C0D1E2F3A4B /* KeyPicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,8 @@
 		DEDD3803A89CED19EEED94AA /* PitchChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchChartView.swift; sourceTree = "<group>"; };
 		E099F8C732007A14CBB4E36B /* ReadoutBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadoutBar.swift; sourceTree = "<group>"; };
 		F539788126A9C64AB0A26468 /* AWeightingFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWeightingFilter.swift; sourceTree = "<group>"; };
+		1A2B3C4D5E6F7A8B9C0D1E2F /* MusicTheory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicTheory.swift; sourceTree = "<group>"; };
+		3C4D5E6F7A8B9C0D1E2F3A4B /* KeyPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -90,6 +94,7 @@
 			children = (
 				2A46D8A46FB1BCC39CDA2C7A /* AppSettings.swift */,
 				68C6BE1D32442A60E0669985 /* AudioConstants.swift */,
+				1A2B3C4D5E6F7A8B9C0D1E2F /* MusicTheory.swift */,
 				CBA47008AFCCD5BC7C0F2DE6 /* PanelType.swift */,
 				73EF68092271CAEAD29651C9 /* PitchNote.swift */,
 			);
@@ -136,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				6787B6FC7D8ADF46346EAE4A /* ContentView.swift */,
+				3C4D5E6F7A8B9C0D1E2F3A4B /* KeyPicker.swift */,
 				AA915666940E27460CE9B276 /* PanelContainerView.swift */,
 				DEDD3803A89CED19EEED94AA /* PitchChartView.swift */,
 				E099F8C732007A14CBB4E36B /* ReadoutBar.swift */,
@@ -253,6 +259,8 @@
 				A0D96CF35E2E1E9CDEDB5B03 /* AudioEngine.swift in Sources */,
 				B6586C643C62920BC4747B81 /* AudioViewModel.swift in Sources */,
 				9BFBBDB51F913CFEBFE97E84 /* ContentView.swift in Sources */,
+				4D5E6F7A8B9C0D1E2F3A4B5C /* KeyPicker.swift in Sources */,
+				2B3C4D5E6F7A8B9C0D1E2F3A /* MusicTheory.swift in Sources */,
 				20E3590BFFA9720A67A1B49A /* PanelContainerView.swift in Sources */,
 				352CEB709A642279D8C42686 /* PanelType.swift in Sources */,
 				834DCA1B4EC3AB4446E4431B /* PitchChartView.swift in Sources */,

@@ -34,11 +34,18 @@ struct ContentView: View {
                 ))
                 .padding(.leading, 16)
 
+                KeyPicker(settings: viewModel.settings)
+                    .padding(.leading, 12)
+
                 ReadoutBar(
                     currentSPL: viewModel.currentSPL,
                     safeThreshold: viewModel.settings.safeThreshold,
                     cautionThreshold: viewModel.settings.cautionThreshold,
                     tuner: viewModel.tuner,
+                    noteSpellings: MusicTheory.chromaticSpellings(
+                        root: viewModel.settings.rootNote,
+                        scale: viewModel.settings.scaleType
+                    ),
                     onShowSettings: { showSettings = true }
                 )
             }

@@ -13,7 +13,6 @@ struct PitchChartView: View {
     @State private var pinchStartMin: Int = 0
     @State private var pinchStartMax: Int = 0
 
-    private let allNoteNames = ["C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B"]
     private let naturalSemitones: Set<Int> = [0, 2, 4, 5, 7, 9, 11]
 
     var body: some View {
@@ -162,6 +161,8 @@ struct PitchChartView: View {
                            labelWidth: CGFloat, chartW: CGFloat, h: CGFloat) {
         let semiRange = Double(semiMax - semiMin)
         let a4Midi = 69
+        let spellings = MusicTheory.chromaticSpellings(root: settings.rootNote, scale: settings.scaleType)
+        let inScale = MusicTheory.scalePitchClasses(root: settings.rootNote, scale: settings.scaleType)
 
         for semi in semiMin...semiMax {
             let midi = a4Midi + semi
@@ -171,8 +172,8 @@ struct PitchChartView: View {
             let y = h - CGFloat(yFrac) * h
 
             let isC = noteInOctave == 0
-            let isNatural = naturalSemitones.contains(noteInOctave)
-            let lineOpacity: Double = isC ? 0.6 : (isNatural ? 0.35 : 0.2)
+            let isInScale = inScale.contains(noteInOctave)
+            let lineOpacity: Double = isC ? 0.6 : (isInScale ? 0.35 : 0.15)
             let lineWidth: CGFloat = isC ? 1 : 0.5
 
             var path = Path()
@@ -180,10 +181,9 @@ struct PitchChartView: View {
             path.addLine(to: CGPoint(x: labelWidth + chartW, y: y))
             context.stroke(path, with: .color(.gray.opacity(lineOpacity)), lineWidth: lineWidth)
 
-            let octave = midi / 12 - 1
-            let name = allNoteNames[noteInOctave]
-            let label = isC ? "\(name)\(octave)" : name
-            let labelColor: Color = isC ? .gray : .gray.opacity(isNatural ? 0.7 : 0.5)
+            let noted = MusicTheory.noteName(midi: midi, spellings: spellings)
+            let label = isC ? "\(noted.name)\(noted.octave)" : noted.name
+            let labelColor: Color = isC ? .gray : .gray.opacity(isInScale ? 0.7 : 0.4)
             let text = Text(label).font(.caption2).foregroundColor(labelColor)
             context.draw(text, at: CGPoint(x: labelWidth - 4, y: y), anchor: .trailing)
         }

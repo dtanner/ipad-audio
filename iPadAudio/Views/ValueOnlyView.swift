@@ -5,6 +5,7 @@ struct ValueOnlyView: View {
     let safeThreshold: Double
     let cautionThreshold: Double
     let tuner: TunerViewModel
+    let noteSpellings: [String]
 
     var body: some View {
         VStack(spacing: 24) {
@@ -22,9 +23,10 @@ struct ValueOnlyView: View {
             }
 
             // Pitch display
-            if let name = tuner.stableNoteName, let octave = tuner.stableOctave {
+            if let midi = tuner.stableMidi {
+                let noted = MusicTheory.noteName(midi: midi, spellings: noteSpellings)
                 VStack(spacing: 12) {
-                    Text("\(name)\(octave)")
+                    Text("\(noted.name)\(noted.octave)")
                         .font(.system(size: 72, weight: .bold))
                         .foregroundStyle(.cyan)
 

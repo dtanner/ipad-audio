@@ -16,7 +16,11 @@ struct PanelContainerView: View {
                     currentSPL: viewModel.currentSPL,
                     safeThreshold: viewModel.settings.safeThreshold,
                     cautionThreshold: viewModel.settings.cautionThreshold,
-                    tuner: viewModel.tuner
+                    tuner: viewModel.tuner,
+                    noteSpellings: MusicTheory.chromaticSpellings(
+                        root: viewModel.settings.rootNote,
+                        scale: viewModel.settings.scaleType
+                    )
                 )
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             } else {

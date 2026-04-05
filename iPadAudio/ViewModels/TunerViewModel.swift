@@ -4,6 +4,7 @@ import Foundation
 final class TunerViewModel {
     var stableNoteName: String?
     var stableOctave: Int?
+    var stableMidi: Int?
     var smoothedCents: Double = 0
 
     private let alpha: Double = 0.15
@@ -35,6 +36,7 @@ final class TunerViewModel {
             if stabilityCount >= stabilityThreshold {
                 stableNoteName = note.name
                 stableOctave = note.octave
+                stableMidi = Int((12.0 * log2(hz / 440.0) + 69).rounded())
             }
         } else {
             // No pitch — decay cents toward center
@@ -44,6 +46,7 @@ final class TunerViewModel {
             if timeoutCount >= timeoutThreshold {
                 stableNoteName = nil
                 stableOctave = nil
+                stableMidi = nil
                 stabilityCount = 0
                 lastRawNote = nil
             }
