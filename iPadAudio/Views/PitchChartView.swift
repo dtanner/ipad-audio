@@ -185,7 +185,8 @@ struct PitchChartView: View {
             let label = isC ? "\(noted.name)\(noted.octave)" : noted.name
             let labelColor: Color = isC ? .gray : .gray.opacity(isInScale ? 0.7 : 0.4)
             let text = Text(label).font(.caption2).foregroundColor(labelColor)
-            context.draw(text, at: CGPoint(x: labelWidth - 4, y: y), anchor: .trailing)
+            let anchor: UnitPoint = semi == semiMax ? .topTrailing : (semi == semiMin ? .bottomTrailing : .trailing)
+            context.draw(text, at: CGPoint(x: labelWidth - 4, y: y), anchor: anchor)
         }
     }
 }

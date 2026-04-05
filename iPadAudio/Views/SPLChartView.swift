@@ -40,7 +40,8 @@ struct SPLChartView: View {
 
             // Y-axis label
             let text = Text("\(Int(db))").font(.caption2).foregroundColor(labelColor)
-            context.draw(text, at: CGPoint(x: chartLeft - 6, y: y), anchor: .trailing)
+            let anchor: UnitPoint = db == yMax ? .topTrailing : (db == yMin ? .bottomTrailing : .trailing)
+            context.draw(text, at: CGPoint(x: chartLeft - 6, y: y), anchor: anchor)
 
             db += gridStep
         }
