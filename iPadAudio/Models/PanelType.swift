@@ -1,7 +1,6 @@
 import Foundation
 
 enum PanelType: String, CaseIterable, Identifiable {
-    case overtones
     case meter
     case pitch
 
@@ -9,7 +8,6 @@ enum PanelType: String, CaseIterable, Identifiable {
 
     var label: String {
         switch self {
-        case .overtones: "Overtones"
         case .meter: "Meter"
         case .pitch: "Pitch"
         }
@@ -17,7 +15,6 @@ enum PanelType: String, CaseIterable, Identifiable {
 
     var iconName: String {
         switch self {
-        case .overtones: "waveform"
         case .meter: "gauge.with.needle"
         case .pitch: "music.note"
         }

@@ -7,8 +7,6 @@ Detailed specifications for all signal processing algorithms, ported from [pi-au
 ```
 SAMPLE_RATE    = 48000       # Hz
 BLOCK_SIZE     = 4800        # samples per block (100ms at 48kHz)
-FFT_SIZE       = 16384       # zero-padded FFT length
-FFT_BIN_HZ     = 48000/16384 ≈ 2.93 Hz/bin
 UPDATE_RATE    = 10          # Hz (one block per 100ms)
 CALIBRATION_DB = 94.0        # dB reference for USB mic sensitivity
 ```
@@ -105,60 +103,7 @@ QUIET_THRESH  = 55 dB    (green → yellow transition)
 MODERATE_THRESH = 75 dB  (yellow → red transition)
 ```
 
-## 3. FFT / Spectrogram
-
-### FFT Processing
-
-```
-1. Apply Blackman-Harris window to raw (unfiltered) audio block (4800 samples)
-2. Zero-pad to FFT_SIZE (16384 samples)
-3. Compute real FFT → complex spectrum (8193 bins, 0 to Nyquist)
-4. Compute magnitude in dB: 20 * log10(|bin| + 1e-20)
-5. Store the positive-frequency magnitude array as one spectrogram column
-```
-
-### Spectrogram Display
-
-**Frequency range:** 50-8000 Hz (configurable via settings)
-
-**Logarithmic frequency axis mapping:**
-```
-For each display row (0 = top = high freq, H-1 = bottom = low freq):
-    log_freq = log10(freq_max) - row * (log10(freq_max) - log10(freq_min)) / (H - 1)
-    freq = 10^log_freq
-    bin_index = round(freq / FFT_BIN_HZ)
-```
-
-Pre-compute this mapping once (when display size or freq range changes).
-
-**Dynamic range:** -60 to 0 dB (relative). Values below -60 dB → darkest color. Values above 0 dB → brightest color.
-
-### Color LUT (256 entries)
-
-Interpolate RGB between these control points:
-
-```
-Index    R      G      B       Description
------    ---    ---    ---     -----------
-  0       5      5     15      dark background
- 20      10     10     50      deep blue (noise floor)
- 60      20     40    180      blue
-120       0    200    220      cyan (mid-range)
-180     240    220      0      yellow (signal)
-255     255     60     20      red (loud)
-```
-
-Linear interpolation between control points. Map dB to index:
-```
-index = clamp((dB - DB_MIN) / (DB_MAX - DB_MIN) * 255, 0, 255)
-```
-
-### Frequency Labels
-
-Draw labels at: 100, 200, 500, 1000, 2000, 4000, 8000 Hz (only those within display range).
-Format: "100", "200", "500", "1k", "2k", "4k", "8k"
-
-## 4. YIN Pitch Detection Algorithm
+## 3. YIN Pitch Detection Algorithm
 
 Monophonic pitch detection using autocorrelation. More robust than FFT peak-picking for musical signals.
 
@@ -289,7 +234,7 @@ if frequency > semitoneToFreq(settings.pitchNoteMax):
     return nil
 ```
 
-## 5. Pitch-to-Note Conversion
+## 4. Pitch-to-Note Conversion
 
 ### Frequency → Note
 ```
@@ -323,7 +268,7 @@ func noteNameFromSemitone(_ semitone: Int) -> String {
 }
 ```
 
-## 6. Tuner Display Smoothing
+## 5. Tuner Display Smoothing
 
 Applied in TunerViewModel, updated each frame (~30fps).
 
@@ -371,7 +316,7 @@ elif absCents <= 20: yellow  // close
 else:                red     // out of tune
 ```
 
-## 7. Piano-Roll Pitch Chart
+## 6. Piano-Roll Pitch Chart
 
 ### Auto-Range Mode
 ```

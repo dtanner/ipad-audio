@@ -28,24 +28,6 @@ final class AppSettings {
     }
     @ObservationIgnored @AppStorage("cautionThreshold") private var _cautionThreshold = 75.0
 
-    // MARK: - Overtone Frequency Range
-
-    var overtoneFreqMin: Int {
-        get { access(keyPath: \.overtoneFreqMin); return _overtoneFreqMin }
-        set { withMutation(keyPath: \.overtoneFreqMin) {
-            _overtoneFreqMin = min(newValue.clamped(to: 40...7999), _overtoneFreqMax - 1)
-        }}
-    }
-    @ObservationIgnored @AppStorage("overtoneFreqMin") private var _overtoneFreqMin = 50
-
-    var overtoneFreqMax: Int {
-        get { access(keyPath: \.overtoneFreqMax); return _overtoneFreqMax }
-        set { withMutation(keyPath: \.overtoneFreqMax) {
-            _overtoneFreqMax = max(newValue.clamped(to: 41...8000), _overtoneFreqMin + 1)
-        }}
-    }
-    @ObservationIgnored @AppStorage("overtoneFreqMax") private var _overtoneFreqMax = 8000
-
     // MARK: - Pitch Note Range
 
     var pitchNoteMin: Int {
@@ -77,7 +59,7 @@ final class AppSettings {
             access(keyPath: \.activePanels)
             let raw = _activePanelsRaw
             let types = raw.split(separator: ",").compactMap { PanelType(rawValue: String($0)) }
-            return types.isEmpty && raw.isEmpty ? [.overtones, .meter] : types
+            return types.isEmpty && raw.isEmpty ? [.meter, .pitch] : types
         }
         set {
             withMutation(keyPath: \.activePanels) {
@@ -86,7 +68,7 @@ final class AppSettings {
             }
         }
     }
-    @ObservationIgnored @AppStorage("activePanels") private var _activePanelsRaw = "overtones,meter"
+    @ObservationIgnored @AppStorage("activePanels") private var _activePanelsRaw = "meter,pitch"
 }
 
 // MARK: - Helpers

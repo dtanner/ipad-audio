@@ -25,7 +25,6 @@
 │  @Observable                    │
 │  - currentSPL: Double           │
 │  - splHistory: RingBuffer       │
-│  - spectrogramColumns: RingBuffer│
 │  - currentPitch: Double?        │
 │  - pitchHistory: RingBuffer     │
 └──────────────┬──────────────────┘
@@ -34,7 +33,6 @@
 │      DSP Serial Queue           │
 │  - AWeightingFilter.apply()     │
 │  - SPLCalculator.compute()      │
-│  - FFTProcessor.process()       │
 │  - YINPitchDetector.detect()    │
 └──────────────┬──────────────────┘
                │ buffer copy
@@ -76,13 +74,12 @@ iPadAudio/
 │   ├── AudioConstants.swift           # All numeric constants
 │   ├── AppSettings.swift              # @Observable + @AppStorage settings
 │   ├── PitchNote.swift                # Note/freq conversion functions
-│   └── PanelType.swift                # enum PanelType
+│   └── PanelType.swift                # enum PanelType (meter, pitch)
 │
 ├── Audio/
 │   ├── AudioEngine.swift              # AVAudioEngine lifecycle, mic tap
 │   ├── AWeightingFilter.swift         # IEC 61672 biquad cascade
 │   ├── SPLCalculator.swift            # RMS → dB conversion
-│   ├── FFTProcessor.swift             # Windowed FFT → magnitude dB
 │   └── YINPitchDetector.swift         # YIN pitch detection
 │
 ├── ViewModels/
@@ -94,7 +91,6 @@ iPadAudio/
 │   ├── ReadoutBar.swift               # SPL + pitch + tuner + freeze toggle + gear icon
 │   ├── TunerGaugeView.swift           # Cents gauge (Canvas)
 │   ├── SPLChartView.swift             # Rolling SPL chart (Canvas)
-│   ├── SpectrogramView.swift          # Scrolling spectrogram (Canvas)
 │   ├── PitchChartView.swift           # Piano-roll chart (Canvas)
 │   ├── PanelContainerView.swift       # 0/1/2 panel layout (adaptive for multitasking)
 │   ├── ValueOnlyView.swift            # Large SPL + pitch (no panels)
@@ -103,7 +99,6 @@ iPadAudio/
 │   └── AudioInterruptedBanner.swift   # Overlay banner for audio interruptions
 │
 └── Utilities/
-    ├── ColorLUT.swift                 # Spectrogram 256-entry color table
     └── RingBuffer.swift               # Generic fixed-capacity ring buffer
 ```
 
@@ -117,7 +112,7 @@ iPadAudio/
 ├──────────────────────────────────────────────────────────────┤
 │                          │                                   │
 │     Panel 1              │          Panel 2                  │  ← PanelContainer
-│  (e.g. Spectrogram)      │    (e.g. SPL Chart)              │
+│  (e.g. SPL Chart)        │    (e.g. Pitch Chart)            │
 │                          │                                   │
 └──────────────────────────────────────────────────────────────┘
 ```
@@ -163,21 +158,18 @@ iPadAudio/
 | History Length | Int | 5-300 seconds | 30 |
 | Safe Threshold | Double | 40-95 dB | 55 |
 | Caution Threshold | Double | 60-100 dB | 75 |
-| Overtone Freq Min | Int | 40-7999 Hz | 50 |
-| Overtone Freq Max | Int | 41-8000 Hz | 8000 |
 | Pitch Note Min | Int | -39 to +38 semitones | -27 (E2) |
 | Pitch Note Max | Int | -38 to +39 semitones | +10 (G5) |
 | Pitch Range Auto | Bool | — | true |
-| Active Panels | [String] | max 2 of [overtones, meter, pitch] | [overtones, meter] |
+| Active Panels | [String] | max 2 of [meter, pitch] | [meter, pitch] |
 
-Validation: safe < caution, freq min < freq max, note min < note max.
+Validation: safe < caution, note min < note max.
 
 ## Color Scheme
 
 Dark theme matching pi-audio:
 - Background: near-black (#0A0A14)
 - SPL colors: green (safe), yellow (caution), red (loud)
-- Spectrogram LUT: dark blue → blue → cyan → yellow → red (256 entries)
 - Chart grid/labels: medium gray
 - Active toggle: blue background
 - Inactive toggle: dimmed

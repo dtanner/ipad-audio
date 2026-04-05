@@ -9,7 +9,6 @@ struct SettingsView: View {
             Form {
                 splSection
                 historySection
-                overtoneSection
                 pitchSection
             }
             .navigationTitle("Settings")
@@ -83,46 +82,6 @@ struct SettingsView: View {
             let min = s / 60
             let sec = s % 60
             return sec == 0 ? "\(min)m" : "\(min)m \(sec)s"
-        }
-    }
-
-    // MARK: - Overtone Frequency Range
-
-    private var overtoneSection: some View {
-        Section("Overtone Frequency Range") {
-            VStack(alignment: .leading) {
-                HStack {
-                    Text("Min")
-                    Spacer()
-                    Text("\(settings.overtoneFreqMin) Hz")
-                        .monospacedDigit()
-                        .foregroundStyle(.secondary)
-                }
-                // Log-scale slider for frequency
-                Slider(
-                    value: Binding(
-                        get: { log10(Double(settings.overtoneFreqMin)) },
-                        set: { settings.overtoneFreqMin = Int(pow(10, $0)) }
-                    ),
-                    in: log10(40)...log10(7999)
-                )
-            }
-            VStack(alignment: .leading) {
-                HStack {
-                    Text("Max")
-                    Spacer()
-                    Text("\(settings.overtoneFreqMax) Hz")
-                        .monospacedDigit()
-                        .foregroundStyle(.secondary)
-                }
-                Slider(
-                    value: Binding(
-                        get: { log10(Double(settings.overtoneFreqMax)) },
-                        set: { settings.overtoneFreqMax = Int(pow(10, $0)) }
-                    ),
-                    in: log10(41)...log10(8000)
-                )
-            }
         }
     }
 

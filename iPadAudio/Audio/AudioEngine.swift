@@ -6,13 +6,10 @@ final class AudioEngine {
     private let engine = AVAudioEngine()
     private let dspQueue = DispatchQueue(label: "com.iPadAudio.dsp", qos: .userInteractive)
     private let aWeighting = AWeightingFilter()
-    private let fftProcessor = FFTProcessor()
     private let yinDetector = YINPitchDetector()
 
     /// Called on main queue with computed SPL value.
     var onSPL: ((Double) -> Void)?
-    /// Called on main queue with FFT magnitude spectrum in dB.
-    var onSpectrum: (([Float]) -> Void)?
     /// Called on main queue with detected pitch frequency (nil if no pitch).
     var onPitch: ((Double?) -> Void)?
 
@@ -59,15 +56,11 @@ final class AudioEngine {
             let weighted = self.aWeighting.apply(samples)
             let spl = SPLCalculator.compute(weighted)
 
-            // FFT on raw (unfiltered) audio
-            let spectrum = self.fftProcessor.process(samples)
-
             // YIN pitch detection on raw audio
             let pitch = self.yinDetector.detect(samples)
 
             DispatchQueue.main.async {
                 self.onSPL?(spl)
-                self.onSpectrum?(spectrum)
                 self.onPitch?(pitch)
             }
         }

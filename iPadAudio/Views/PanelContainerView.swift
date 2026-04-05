@@ -37,12 +37,6 @@ struct PanelContainerView: View {
     @ViewBuilder
     private func panelView(for panel: PanelType) -> some View {
         switch panel {
-        case .overtones:
-            SpectrogramView(
-                columns: viewModel.spectrogramColumns.array,
-                freqMin: viewModel.settings.overtoneFreqMin,
-                freqMax: viewModel.settings.overtoneFreqMax
-            )
         case .meter:
             SPLChartView(
                 splHistory: viewModel.splHistory.array,

@@ -3,18 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 63;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		080F862557DE8B9C862B3781 /* FFTProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E55DD844B62BD0398EA063 /* FFTProcessor.swift */; };
 		20E3590BFFA9720A67A1B49A /* PanelContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA915666940E27460CE9B276 /* PanelContainerView.swift */; };
-		299F97321DB54D25A6E7323B /* ColorLUT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0758224AC6C1069C89A5B9EB /* ColorLUT.swift */; };
 		303070A193B5DBF286AF7D73 /* RingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4973E0250913050FFE2E92 /* RingBuffer.swift */; };
 		3058755D85751264444675F0 /* PitchNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EF68092271CAEAD29651C9 /* PitchNote.swift */; };
 		352CEB709A642279D8C42686 /* PanelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA47008AFCCD5BC7C0F2DE6 /* PanelType.swift */; };
 		36D0414092B6ABA85CDF2D60 /* SPLCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2DA9C0F5E1338D103499B /* SPLCalculator.swift */; };
-		40265AD00FFF1F3D6B21500F /* SpectrogramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB50D4CDC8A78AD4D4A701F /* SpectrogramView.swift */; };
 		4A27EE27FB4CEED00B3202FE /* AWeightingFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F539788126A9C64AB0A26468 /* AWeightingFilter.swift */; };
 		61DED96B60B72B88A70C3304 /* RingBufferTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38217E9A598F7796960F2412 /* RingBufferTests.swift */; };
 		834DCA1B4EC3AB4446E4431B /* PitchChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDD3803A89CED19EEED94AA /* PitchChartView.swift */; };
@@ -48,19 +45,16 @@
 
 /* Begin PBXFileReference section */
 		027A23C166E2E6F2BBC20A9A /* AudioEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngine.swift; sourceTree = "<group>"; };
-		0758224AC6C1069C89A5B9EB /* ColorLUT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorLUT.swift; sourceTree = "<group>"; };
 		1854CE4A3243425006BBC771 /* TunerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunerViewModel.swift; sourceTree = "<group>"; };
 		27F2E441950AA5DF644219C1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		2A46D8A46FB1BCC39CDA2C7A /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		2C9C159ABF8DE1E6214465C1 /* ToggleButtonBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButtonBar.swift; sourceTree = "<group>"; };
 		38217E9A598F7796960F2412 /* RingBufferTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingBufferTests.swift; sourceTree = "<group>"; };
-		47E55DD844B62BD0398EA063 /* FFTProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFTProcessor.swift; sourceTree = "<group>"; };
 		4ADBEE262460AF954F5A4D11 /* YINPitchDetectorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YINPitchDetectorTests.swift; sourceTree = "<group>"; };
 		4D8E7489768BD8792D73F219 /* iPadAudioTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = iPadAudioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E4973E0250913050FFE2E92 /* RingBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingBuffer.swift; sourceTree = "<group>"; };
-		4FB50D4CDC8A78AD4D4A701F /* SpectrogramView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpectrogramView.swift; sourceTree = "<group>"; };
 		5869B61BCDFD2C086356967C /* SPLChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPLChartView.swift; sourceTree = "<group>"; };
-		5EEBFA1F34CDD42ACB9905CE /* iPadAudio.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = iPadAudio.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5EEBFA1F34CDD42ACB9905CE /* iPadAudio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iPadAudio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6787B6FC7D8ADF46346EAE4A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		68C6BE1D32442A60E0669985 /* AudioConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioConstants.swift; sourceTree = "<group>"; };
 		73EF68092271CAEAD29651C9 /* PitchNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchNote.swift; sourceTree = "<group>"; };
@@ -85,7 +79,6 @@
 			children = (
 				027A23C166E2E6F2BBC20A9A /* AudioEngine.swift */,
 				F539788126A9C64AB0A26468 /* AWeightingFilter.swift */,
-				47E55DD844B62BD0398EA063 /* FFTProcessor.swift */,
 				B8C2DA9C0F5E1338D103499B /* SPLCalculator.swift */,
 				B949D2BF2B6D3380D8968995 /* YINPitchDetector.swift */,
 			);
@@ -134,7 +127,6 @@
 		C094AFE1093EE7DF01747F28 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				0758224AC6C1069C89A5B9EB /* ColorLUT.swift */,
 				4E4973E0250913050FFE2E92 /* RingBuffer.swift */,
 			);
 			path = Utilities;
@@ -148,7 +140,6 @@
 				DEDD3803A89CED19EEED94AA /* PitchChartView.swift */,
 				E099F8C732007A14CBB4E36B /* ReadoutBar.swift */,
 				27F2E441950AA5DF644219C1 /* SettingsView.swift */,
-				4FB50D4CDC8A78AD4D4A701F /* SpectrogramView.swift */,
 				5869B61BCDFD2C086356967C /* SPLChartView.swift */,
 				2C9C159ABF8DE1E6214465C1 /* ToggleButtonBar.swift */,
 				BAACBA80E85AB9533CA821C4 /* TunerGaugeView.swift */,
@@ -230,9 +221,6 @@
 					32888048AF4365E29F3ED20E = {
 						DevelopmentTeam = "";
 					};
-					44275A82CCABC356260E1CD2 = {
-						DevelopmentTeam = "";
-					};
 				};
 			};
 			buildConfigurationList = 5025464EADE186728D283A8A /* Build configuration list for PBXProject "iPadAudio" */;
@@ -245,7 +233,6 @@
 			);
 			mainGroup = D62DAE348A9068DB1E5663F7;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -265,9 +252,7 @@
 				DA0E45F7BA4D541F7DC4CE95 /* AudioConstants.swift in Sources */,
 				A0D96CF35E2E1E9CDEDB5B03 /* AudioEngine.swift in Sources */,
 				B6586C643C62920BC4747B81 /* AudioViewModel.swift in Sources */,
-				299F97321DB54D25A6E7323B /* ColorLUT.swift in Sources */,
 				9BFBBDB51F913CFEBFE97E84 /* ContentView.swift in Sources */,
-				080F862557DE8B9C862B3781 /* FFTProcessor.swift in Sources */,
 				20E3590BFFA9720A67A1B49A /* PanelContainerView.swift in Sources */,
 				352CEB709A642279D8C42686 /* PanelType.swift in Sources */,
 				834DCA1B4EC3AB4446E4431B /* PitchChartView.swift in Sources */,
@@ -277,7 +262,6 @@
 				36D0414092B6ABA85CDF2D60 /* SPLCalculator.swift in Sources */,
 				B8C145C65EE6B9573283597D /* SPLChartView.swift in Sources */,
 				B4D2C354B4A0357F46809EB6 /* SettingsView.swift in Sources */,
-				40265AD00FFF1F3D6B21500F /* SpectrogramView.swift in Sources */,
 				F22817C06919E38B9CE890CF /* ToggleButtonBar.swift in Sources */,
 				FF8AF9B2FD12223412C44106 /* TunerGaugeView.swift in Sources */,
 				F28DFC4EC6C5AA9AA7085CEC /* TunerViewModel.swift in Sources */,
@@ -470,7 +454,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 72SPM7GVK7;
 				INFOPLIST_FILE = iPadAudio/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -489,7 +473,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 72SPM7GVK7;
 				INFOPLIST_FILE = iPadAudio/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -12,11 +12,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - Real-time A-weighted SPL (Sound Pressure Level) measurement
 - Rolling history chart of SPL over configurable time window (5s to 5min)
-- Scrolling FFT-based spectrogram with logarithmic frequency axis and color mapping
 - YIN-based pitch detection with note name, octave, and cents deviation
 - Tuner gauge showing cents offset from nearest note
 - Piano-roll pitch history chart (Melodyne-style) with auto or fixed range
-- Flexible panel layout: toggle up to 2 of 3 panels (Overtones, Meter, Pitch) or value-only mode, adaptive for multitasking
+- Flexible panel layout: toggle up to 2 panels (Meter, Pitch) or value-only mode, adaptive for multitasking
 - Freeze/Live toggle to pause chart display while audio continues
 - Settings presented as iOS-native sheet modal (no hamburger menu)
 - Persistent user settings via @AppStorage/UserDefaults
@@ -45,24 +44,23 @@ MVVM with Swift's `@Observable` macro (iOS 17+). See [docs/DESIGN.md](docs/DESIG
 ### Data Flow
 ```
 AVAudioEngine mic tap (audio thread)
-  → DSP serial queue: A-weight → SPL, FFT → spectrum, YIN → pitch
+  → DSP serial queue: A-weight → SPL, YIN → pitch
   → DispatchQueue.main → AudioViewModel (@Observable)
   → SwiftUI views observe and redraw
 ```
 
 ### Key Directories
 - `iPadAudio/Models/` — data models, constants, settings
-- `iPadAudio/Audio/` — audio engine, DSP processors (A-weighting, FFT, YIN)
+- `iPadAudio/Audio/` — audio engine, DSP processors (A-weighting, YIN)
 - `iPadAudio/ViewModels/` — observable view models bridging audio to UI
 - `iPadAudio/Views/` — all SwiftUI views and Canvas renderers
-- `iPadAudio/Utilities/` — RingBuffer, ColorLUT
+- `iPadAudio/Utilities/` — RingBuffer
 
 ### Key Files
 - `AudioEngine.swift` — AVAudioEngine lifecycle, mic tap, DSP dispatch
 - `AWeightingFilter.swift` — IEC 61672 A-weighting via Accelerate vDSP_biquad
-- `FFTProcessor.swift` — Blackman-Harris window + 16384-point vDSP FFT
 - `YINPitchDetector.swift` — YIN pitch detection algorithm
-- `AudioViewModel.swift` — central @Observable publishing SPL/FFT/pitch to UI
+- `AudioViewModel.swift` — central @Observable publishing SPL/pitch to UI
 - `AppSettings.swift` — all user settings with @AppStorage persistence
 - `ContentView.swift` — top-level view composition
 
@@ -86,3 +84,6 @@ See [docs/PHASES.md](docs/PHASES.md) for detailed phase tracking. Update the sta
 - System font (SF Pro) for text, `.monospacedDigit()` for numeric readouts only
 - Dark color scheme by default (`.preferredColorScheme(.dark)`)
 - Landscape orientation primary (11" iPad), adaptive for Split View / Slide Over
+
+## Project Coding Rules
+- When commenting, use evergreen style comments and only comment about the current state of the code, not how we got there
