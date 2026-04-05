@@ -10,12 +10,14 @@
 	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
-	<key>UIRequiresFullScreen</key>
-	<true/>
+	<key>UILaunchScreen</key>
+	<dict/>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>iPadAudio needs microphone access to measure sound levels and analyze audio in real time.</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
