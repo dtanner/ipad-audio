@@ -4,7 +4,7 @@ struct KeyPicker: View {
     @Bindable var settings: AppSettings
 
     var body: some View {
-        HStack(spacing: 4) {
+        HStack(spacing: 6) {
             Menu {
                 Picker("Root", selection: $settings.rootNote) {
                     ForEach(MusicRoot.allCases) { root in
@@ -15,10 +15,10 @@ struct KeyPicker: View {
                 Text(settings.rootNote.rawValue)
                     .font(.system(size: 15, weight: .semibold))
                     .foregroundStyle(.white)
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 4)
+                    .padding(.horizontal, 10)
+                    .frame(height: 36)
                     .background(.white.opacity(0.1))
-                    .clipShape(RoundedRectangle(cornerRadius: 5))
+                    .clipShape(RoundedRectangle(cornerRadius: 6))
             }
 
             Menu {
@@ -31,10 +31,10 @@ struct KeyPicker: View {
                 Text(settings.scaleType.rawValue)
                     .font(.system(size: 13, weight: .medium))
                     .foregroundStyle(.white.opacity(0.7))
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 4)
+                    .padding(.horizontal, 10)
+                    .frame(height: 36)
                     .background(.white.opacity(0.08))
-                    .clipShape(RoundedRectangle(cornerRadius: 5))
+                    .clipShape(RoundedRectangle(cornerRadius: 6))
             }
         }
     }
