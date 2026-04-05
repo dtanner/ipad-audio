@@ -21,29 +21,17 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Build & Run
 
-This is a standard Xcode project. No external dependencies — all DSP uses Apple's Accelerate framework.
+This is a standard Xcode project. No external dependencies — all DSP uses Apple's Accelerate framework. Uses [just](https://github.com/casey/just) as a command runner — the justfile auto-detects the connected iPad.
 
 ```bash
-# Open in Xcode
-open iPadAudio.xcodeproj
-
-# Find connected iPad device ID
-xcrun xctrace list devices
-
-# Build for connected iPad (replace DEVICE_ID with actual ID from above)
-xcodebuild -scheme iPadAudio -destination 'id=DEVICE_ID' build
-
-# Find the built .app path
-APP_PATH=$(xcodebuild -scheme iPadAudio -showBuildSettings 2>/dev/null | grep -m1 'CODESIGNING_FOLDER_PATH' | awk '{print $3}')
-
-# Install on connected iPad
-xcrun devicectl device install app --device DEVICE_ID "$APP_PATH"
-
-# Launch on iPad
-xcrun devicectl device process launch --device DEVICE_ID com.dantanner.iPadAudio
-
-# Run tests (once tests exist)
-xcodebuild -scheme iPadAudio -destination 'platform=iOS Simulator,name=iPad Air' test
+just              # List all available commands
+just open         # Open project in Xcode
+just devices      # List connected devices
+just build        # Build for connected iPad
+just install      # Install the built app on connected iPad
+just launch       # Launch the app on connected iPad
+just deploy       # Build, install, and launch (all-in-one)
+just test         # Run tests in simulator
 ```
 
 **Important:** The app requires microphone access. It must run on a real device (not Simulator) for meaningful audio testing.
@@ -98,4 +86,4 @@ See [docs/PHASES.md](docs/PHASES.md) for detailed phase tracking. Update the sta
 
 ## Project Coding Rules
 - When commenting, use evergreen style comments and only comment about the current state of the code, not how we got there
-- After completing a feature or bug fix that affects the app UI or behavior, build and deploy to the connected iPad using the build/install/launch commands above so the change can be tested on-device
+- After completing a feature or bug fix that affects the app UI or behavior, run `just deploy` to build, install, and launch on the connected iPad for on-device testing
