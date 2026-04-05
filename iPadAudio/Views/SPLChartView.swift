@@ -136,7 +136,7 @@ struct SPLChartView: View {
             context.stroke(path, with: .color(gridColor), lineWidth: 0.5)
 
             // Y-axis label
-            let text = Text("\(Int(db))").font(.caption2).foregroundColor(labelColor)
+            let text = Text("\(Int(db))").font(.footnote).foregroundColor(labelColor)
             let anchor: UnitPoint = db == yMax ? .topTrailing : (db == yMin ? .bottomTrailing : .trailing)
             context.draw(text, at: CGPoint(x: chartLeft - 6, y: y), anchor: anchor)
 
@@ -164,7 +164,7 @@ struct SPLChartView: View {
 
             let midSPL = (splHistory[i] + splHistory[i + 1]) / 2
             let color = splColor(for: midSPL)
-            context.stroke(segment, with: .color(color), lineWidth: 2)
+            context.stroke(segment, with: .color(color), lineWidth: 3)
         }
     }
 

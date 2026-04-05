@@ -42,6 +42,8 @@ struct PitchChartView: View {
                 var prevSemi: Double? = nil
                 let dotRadius: CGFloat = 2.5
                 let maxSemitoneJump: Double = 12.0
+                let a4Midi = 69
+                let inScale = MusicTheory.scalePitchClasses(root: settings.rootNote, scale: settings.scaleType)
 
                 for i in 0..<count {
                     let x = chartX + CGFloat(i) / CGFloat(max(count - 1, 1)) * chartW
@@ -57,17 +59,22 @@ struct PitchChartView: View {
                     let y = h - CGFloat(yFrac) * h
 
                     let point = CGPoint(x: x, y: y)
+                    let midi = a4Midi + Int(semi.rounded())
+                    let pitchClass = ((midi % 12) + 12) % 12
+                    let isInKey = inScale.contains(pitchClass)
 
                     if let prev = prevPoint, let pSemi = prevSemi,
                        abs(semi - pSemi) <= maxSemitoneJump {
                         var path = Path()
                         path.move(to: prev)
                         path.addLine(to: point)
-                        context.stroke(path, with: .color(.cyan), lineWidth: 2)
+                        let color: Color = isInKey ? .cyan : .cyan.opacity(0.4)
+                        context.stroke(path, with: .color(color), lineWidth: 3)
                     } else {
                         let dotRect = CGRect(x: point.x - dotRadius, y: point.y - dotRadius,
                                              width: dotRadius * 2, height: dotRadius * 2)
-                        context.fill(Path(ellipseIn: dotRect), with: .color(.cyan))
+                        let color: Color = isInKey ? .cyan : .cyan.opacity(0.4)
+                        context.fill(Path(ellipseIn: dotRect), with: .color(color))
                     }
                     prevPoint = point
                     prevSemi = semi
@@ -184,7 +191,7 @@ struct PitchChartView: View {
             let noted = MusicTheory.noteName(midi: midi, spellings: spellings)
             let label = isC ? "\(noted.name)\(noted.octave)" : noted.name
             let labelColor: Color = isC ? .gray : .gray.opacity(isInScale ? 0.7 : 0.4)
-            let text = Text(label).font(.caption2).foregroundColor(labelColor)
+            let text = Text(label).font(.footnote).foregroundColor(labelColor)
             let anchor: UnitPoint = semi == semiMax ? .topTrailing : (semi == semiMin ? .bottomTrailing : .trailing)
             context.draw(text, at: CGPoint(x: labelWidth - 4, y: y), anchor: anchor)
         }
