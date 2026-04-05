@@ -48,9 +48,7 @@ struct PanelContainerView: View {
             PitchChartView(
                 pitchHistory: viewModel.pitchHistory.array,
                 historySeconds: viewModel.settings.historySeconds,
-                pitchRangeAuto: viewModel.settings.pitchRangeAuto,
-                pitchNoteMin: viewModel.settings.pitchNoteMin,
-                pitchNoteMax: viewModel.settings.pitchNoteMax
+                settings: viewModel.settings
             )
         }
     }

@@ -9,7 +9,6 @@ struct SettingsView: View {
             Form {
                 splSection
                 historySection
-                pitchSection
             }
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
@@ -85,56 +84,4 @@ struct SettingsView: View {
         }
     }
 
-    // MARK: - Pitch Note Range
-
-    private var pitchSection: some View {
-        Section("Pitch Range") {
-            Toggle("Auto Range", isOn: $settings.pitchRangeAuto)
-
-            if !settings.pitchRangeAuto {
-                VStack(alignment: .leading) {
-                    HStack {
-                        Text("Min Note")
-                        Spacer()
-                        Text(noteName(for: settings.pitchNoteMin))
-                            .foregroundStyle(.secondary)
-                    }
-                    Slider(
-                        value: Binding(
-                            get: { Double(settings.pitchNoteMin) },
-                            set: { settings.pitchNoteMin = Int($0) }
-                        ),
-                        in: -39...38,
-                        step: 1
-                    )
-                }
-                VStack(alignment: .leading) {
-                    HStack {
-                        Text("Max Note")
-                        Spacer()
-                        Text(noteName(for: settings.pitchNoteMax))
-                            .foregroundStyle(.secondary)
-                    }
-                    Slider(
-                        value: Binding(
-                            get: { Double(settings.pitchNoteMax) },
-                            set: { settings.pitchNoteMax = Int($0) }
-                        ),
-                        in: -38...39,
-                        step: 1
-                    )
-                }
-            }
-        }
-    }
-
-    /// Convert semitone offset from A4 to note name + octave.
-    private func noteName(for semitone: Int) -> String {
-        let noteNames = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
-        // A4 = semitone 0, MIDI 69
-        let midi = 69 + semitone
-        let octave = (midi / 12) - 1
-        let noteIndex = ((midi % 12) + 12) % 12
-        return "\(noteNames[noteIndex])\(octave)"
-    }
 }

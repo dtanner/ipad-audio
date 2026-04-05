@@ -29,11 +29,19 @@ final class AppSettings {
     @ObservationIgnored @AppStorage("cautionThreshold") private var _cautionThreshold = 75.0
 
     // MARK: - Pitch Note Range
+    // Semitone offsets from A4: A0 = -48, C8 = 39
+    // Range constrained to 12–60 semitones (1–5 octaves)
+
+    static let pitchNoteAbsMin = -48 // A0
+    static let pitchNoteAbsMax = 39  // C8
+    static let pitchRangeMin = 12    // 1 octave
+    static let pitchRangeMax = 60    // 5 octaves
 
     var pitchNoteMin: Int {
         get { access(keyPath: \.pitchNoteMin); return _pitchNoteMin }
         set { withMutation(keyPath: \.pitchNoteMin) {
-            _pitchNoteMin = min(newValue.clamped(to: -39...38), _pitchNoteMax - 1)
+            let clamped = newValue.clamped(to: Self.pitchNoteAbsMin...(Self.pitchNoteAbsMax - Self.pitchRangeMin))
+            _pitchNoteMin = min(clamped, _pitchNoteMax - Self.pitchRangeMin)
         }}
     }
     @ObservationIgnored @AppStorage("pitchNoteMin") private var _pitchNoteMin = -27 // E2
@@ -41,16 +49,11 @@ final class AppSettings {
     var pitchNoteMax: Int {
         get { access(keyPath: \.pitchNoteMax); return _pitchNoteMax }
         set { withMutation(keyPath: \.pitchNoteMax) {
-            _pitchNoteMax = max(newValue.clamped(to: -38...39), _pitchNoteMin + 1)
+            let clamped = newValue.clamped(to: (Self.pitchNoteAbsMin + Self.pitchRangeMin)...Self.pitchNoteAbsMax)
+            _pitchNoteMax = max(clamped, _pitchNoteMin + Self.pitchRangeMin)
         }}
     }
     @ObservationIgnored @AppStorage("pitchNoteMax") private var _pitchNoteMax = 10 // G5
-
-    var pitchRangeAuto: Bool {
-        get { access(keyPath: \.pitchRangeAuto); return _pitchRangeAuto }
-        set { withMutation(keyPath: \.pitchRangeAuto) { _pitchRangeAuto = newValue } }
-    }
-    @ObservationIgnored @AppStorage("pitchRangeAuto") private var _pitchRangeAuto = true
 
     // MARK: - Active Panels
 
