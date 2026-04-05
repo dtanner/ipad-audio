@@ -7,7 +7,6 @@ final class YINPitchDetector {
     private let rmsGate: Double = 1e-4
     private let freqMin: Double = 30
     private let freqMax: Double = 5000
-    private let c6Ceiling: Double = 1046.5
 
     private var sampleRate: Double
 
@@ -106,7 +105,6 @@ final class YINPitchDetector {
         let frequency = sampleRate / tauRefined
 
         if frequency < freqMin || frequency > freqMax { return nil }
-        if frequency > c6Ceiling { return nil }
 
         return frequency
     }
