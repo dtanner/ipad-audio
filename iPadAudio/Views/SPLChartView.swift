@@ -5,22 +5,115 @@ struct SPLChartView: View {
     let historySeconds: Int
     let safeThreshold: Double
     let cautionThreshold: Double
+    let settings: AppSettings
 
-    private let yMin: Double = AudioConstants.splMin
-    private let yMax: Double = AudioConstants.splMax
-    private let gridStep: Double = 10 // dB per grid line
+    private let niceSteps: [Double] = [1, 2, 5, 10, 20, 50]
+    private let targetGridLines = 11
     private let labelWidth: CGFloat = 40
 
-    var body: some View {
-        Canvas { context, size in
-            let chartLeft = labelWidth
-            let chartWidth = size.width - chartLeft
-            let chartHeight = size.height
+    // Gesture state for drag panning
+    @State private var dragStartMin: Double = 0
+    @State private var dragStartMax: Double = 0
 
-            drawGrid(context: &context, chartLeft: chartLeft, chartWidth: chartWidth, chartHeight: chartHeight)
-            drawLine(context: &context, chartLeft: chartLeft, chartWidth: chartWidth, chartHeight: chartHeight)
+    // Gesture state for pinch zooming
+    @State private var pinchStartMin: Double = 0
+    @State private var pinchStartMax: Double = 0
+
+    private var yMin: Double { settings.splDisplayMin }
+    private var yMax: Double { settings.splDisplayMax }
+
+    var body: some View {
+        GeometryReader { geometry in
+            let h = geometry.size.height
+            let dbRange = yMax - yMin
+
+            Canvas { context, size in
+                let chartLeft = labelWidth
+                let chartWidth = size.width - chartLeft
+                let chartHeight = size.height
+
+                drawGrid(context: &context, chartLeft: chartLeft, chartWidth: chartWidth, chartHeight: chartHeight)
+                drawLine(context: &context, chartLeft: chartLeft, chartWidth: chartWidth, chartHeight: chartHeight)
+            }
+            .padding(.trailing, 8)
+            .gesture(dragGesture(chartHeight: h, dbRange: dbRange))
+            .gesture(pinchGesture(chartHeight: h))
         }
-        .padding(.trailing, 8)
+    }
+
+    // MARK: - Drag to Pan
+
+    private func dragGesture(chartHeight: CGFloat, dbRange: Double) -> some Gesture {
+        DragGesture(minimumDistance: 5)
+            .onChanged { value in
+                if dragStartMin == 0 && dragStartMax == 0 {
+                    dragStartMin = settings.splDisplayMin
+                    dragStartMax = settings.splDisplayMax
+                }
+
+                // Dragging up (negative y) should increase dB (shift range up)
+                let dbPerPixel = dbRange / Double(chartHeight)
+                let dbShift = value.translation.height * dbPerPixel
+
+                let range = dragStartMax - dragStartMin
+                var newMin = dragStartMin + dbShift
+                var newMax = dragStartMax + dbShift
+
+                // Clamp to absolute bounds while preserving range size
+                if newMin < AppSettings.splAbsMin {
+                    newMin = AppSettings.splAbsMin
+                    newMax = newMin + range
+                }
+                if newMax > AppSettings.splAbsMax {
+                    newMax = AppSettings.splAbsMax
+                    newMin = newMax - range
+                }
+
+                settings.splDisplayMin = newMin
+                settings.splDisplayMax = newMax
+            }
+            .onEnded { _ in
+                dragStartMin = 0
+                dragStartMax = 0
+            }
+    }
+
+    // MARK: - Pinch to Zoom
+
+    private func pinchGesture(chartHeight: CGFloat) -> some Gesture {
+        MagnifyGesture()
+            .onChanged { value in
+                if pinchStartMin == 0 && pinchStartMax == 0 {
+                    pinchStartMin = settings.splDisplayMin
+                    pinchStartMax = settings.splDisplayMax
+                }
+
+                let startRange = pinchStartMax - pinchStartMin
+                let center = (pinchStartMin + pinchStartMax) / 2.0
+
+                // Pinch out (scale > 1) narrows the range (zoom in), pinch in widens
+                let newRange = startRange / value.magnification
+                let clampedRange = min(max(newRange, AppSettings.splRangeMin), AppSettings.splRangeMax)
+
+                var newMin = center - clampedRange / 2.0
+                var newMax = center + clampedRange / 2.0
+
+                if newMin < AppSettings.splAbsMin {
+                    newMin = AppSettings.splAbsMin
+                    newMax = newMin + clampedRange
+                }
+                if newMax > AppSettings.splAbsMax {
+                    newMax = AppSettings.splAbsMax
+                    newMin = newMax - clampedRange
+                }
+
+                settings.splDisplayMin = newMin
+                settings.splDisplayMax = newMax
+            }
+            .onEnded { _ in
+                pinchStartMin = 0
+                pinchStartMax = 0
+            }
     }
 
     // MARK: - Grid
@@ -29,7 +122,11 @@ struct SPLChartView: View {
         let gridColor = Color.gray.opacity(0.3)
         let labelColor = Color.gray
 
-        var db = yMin
+        let range = yMax - yMin
+        let rawStep = range / Double(targetGridLines)
+        let gridStep = niceSteps.first { $0 >= rawStep } ?? niceSteps.last!
+
+        var db = (yMin / gridStep).rounded(.up) * gridStep
         while db <= yMax {
             let y = yPosition(for: db, height: chartHeight)
             // Horizontal grid line

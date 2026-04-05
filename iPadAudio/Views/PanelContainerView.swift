@@ -57,7 +57,8 @@ struct PanelContainerView: View {
                 splHistory: viewModel.splHistory.array,
                 historySeconds: viewModel.settings.historySeconds,
                 safeThreshold: viewModel.settings.safeThreshold,
-                cautionThreshold: viewModel.settings.cautionThreshold
+                cautionThreshold: viewModel.settings.cautionThreshold,
+                settings: viewModel.settings
             )
         case .pitch:
             PitchChartView(

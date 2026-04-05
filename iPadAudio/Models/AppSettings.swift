@@ -10,6 +10,32 @@ final class AppSettings {
     }
     @ObservationIgnored @AppStorage("historySeconds") private var _historySeconds = 30
 
+    // MARK: - SPL Range
+    // Adjustable dB range for the SPL history chart via touch gestures
+
+    static let splAbsMin: Double = 0
+    static let splAbsMax: Double = 140
+    static let splRangeMin: Double = 10
+    static let splRangeMax: Double = 140
+
+    var splDisplayMin: Double {
+        get { access(keyPath: \.splDisplayMin); return _splDisplayMin }
+        set { withMutation(keyPath: \.splDisplayMin) {
+            let clamped = newValue.clamped(to: Self.splAbsMin...(Self.splAbsMax - Self.splRangeMin))
+            _splDisplayMin = min(clamped, _splDisplayMax - Self.splRangeMin)
+        }}
+    }
+    @ObservationIgnored @AppStorage("splDisplayMin") private var _splDisplayMin = 20.0
+
+    var splDisplayMax: Double {
+        get { access(keyPath: \.splDisplayMax); return _splDisplayMax }
+        set { withMutation(keyPath: \.splDisplayMax) {
+            let clamped = newValue.clamped(to: (Self.splAbsMin + Self.splRangeMin)...Self.splAbsMax)
+            _splDisplayMax = max(clamped, _splDisplayMin + Self.splRangeMin)
+        }}
+    }
+    @ObservationIgnored @AppStorage("splDisplayMax") private var _splDisplayMax = 100.0
+
     // MARK: - SPL Thresholds
 
     var safeThreshold: Double {
