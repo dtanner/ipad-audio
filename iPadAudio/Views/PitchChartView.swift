@@ -33,13 +33,18 @@ struct PitchChartView: View {
             guard count > 0 else { return }
 
             var prevPoint: CGPoint? = nil
+            var prevSemi: Double? = nil
             let dotRadius: CGFloat = 2.5
+            // Max semitone jump before breaking a line connection;
+            // large enough for pitch bends, small enough to reject spurious detections
+            let maxSemitoneJump: Double = 12.0
 
             for i in 0..<count {
                 let x = chartX + CGFloat(i) / CGFloat(max(count - 1, 1)) * chartW
 
                 guard let hz = pitchHistory[i] else {
                     prevPoint = nil
+                    prevSemi = nil
                     continue
                 }
 
@@ -49,19 +54,21 @@ struct PitchChartView: View {
 
                 let point = CGPoint(x: x, y: y)
 
-                if let prev = prevPoint {
+                if let prev = prevPoint, let pSemi = prevSemi,
+                   abs(semi - pSemi) <= maxSemitoneJump {
                     // Connected line
                     var path = Path()
                     path.move(to: prev)
                     path.addLine(to: point)
                     context.stroke(path, with: .color(.cyan), lineWidth: 2)
                 } else {
-                    // Isolated dot
+                    // Isolated dot (gap, nil predecessor, or large pitch jump)
                     let dotRect = CGRect(x: point.x - dotRadius, y: point.y - dotRadius,
                                          width: dotRadius * 2, height: dotRadius * 2)
                     context.fill(Path(ellipseIn: dotRect), with: .color(.cyan))
                 }
                 prevPoint = point
+                prevSemi = semi
             }
         }
     }
