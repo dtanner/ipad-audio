@@ -17,9 +17,10 @@ final class AudioViewModel {
     private let engine = AudioEngine()
 
     init() {
-        let capacity = settings.historySeconds * Int(AudioConstants.updateRate)
-        splHistory = RingBuffer(capacity: capacity, defaultValue: AudioConstants.splMin)
-        pitchHistory = RingBuffer<Double?>(capacity: capacity, defaultValue: nil)
+        let splCapacity = settings.historySeconds * Int(AudioConstants.updateRate)
+        let pitchCapacity = settings.historySeconds * Int(AudioConstants.pitchUpdateRate)
+        splHistory = RingBuffer(capacity: splCapacity, defaultValue: AudioConstants.splMin)
+        pitchHistory = RingBuffer<Double?>(capacity: pitchCapacity, defaultValue: nil)
 
         engine.onSPL = { [weak self] spl in
             guard let self else { return }
@@ -41,13 +42,14 @@ final class AudioViewModel {
 
     /// Resize the history buffers when the user changes history length.
     func updateHistoryCapacity() {
-        let newCapacity = settings.historySeconds * Int(AudioConstants.updateRate)
-        guard newCapacity != splHistory.capacity else { return }
+        let newSplCapacity = settings.historySeconds * Int(AudioConstants.updateRate)
+        let newPitchCapacity = settings.historySeconds * Int(AudioConstants.pitchUpdateRate)
+        guard newSplCapacity != splHistory.capacity || newPitchCapacity != pitchHistory.capacity else { return }
 
         // Copy existing SPL data into new buffer
         let existing = splHistory.array
-        var newBuffer = RingBuffer<Double>(capacity: newCapacity, defaultValue: AudioConstants.splMin)
-        let start = max(0, existing.count - newCapacity)
+        var newBuffer = RingBuffer<Double>(capacity: newSplCapacity, defaultValue: AudioConstants.splMin)
+        let start = max(0, existing.count - newSplCapacity)
         for i in start..<existing.count {
             newBuffer.push(existing[i])
         }
@@ -55,8 +57,8 @@ final class AudioViewModel {
 
         // Copy existing pitch data into new buffer
         let existingPitch = pitchHistory.array
-        var newPitchBuffer = RingBuffer<Double?>(capacity: newCapacity, defaultValue: nil)
-        let pitchStart = max(0, existingPitch.count - newCapacity)
+        var newPitchBuffer = RingBuffer<Double?>(capacity: newPitchCapacity, defaultValue: nil)
+        let pitchStart = max(0, existingPitch.count - newPitchCapacity)
         for i in pitchStart..<existingPitch.count {
             newPitchBuffer.push(existingPitch[i])
         }
