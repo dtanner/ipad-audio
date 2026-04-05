@@ -28,9 +28,13 @@ struct ToggleButtonBar: View {
             } else if activePanels.count < 2 {
                 activePanels.append(panel)
             } else {
-                // Already 2 active — remove the leftmost, add the new one
-                activePanels.removeFirst()
-                activePanels.append(panel)
+                // Already 2 active — replace the other panel
+                activePanels = [panel]
+            }
+            // Ensure canonical order: meter (left), pitch (right)
+            let order = PanelType.allCases
+            activePanels.sort { a, b in
+                (order.firstIndex(of: a) ?? 0) < (order.firstIndex(of: b) ?? 0)
             }
         }
     }
