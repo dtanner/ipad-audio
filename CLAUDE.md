@@ -28,8 +28,20 @@ This is a standard Xcode project. No external dependencies — all DSP uses Appl
 # Open in Xcode
 open iPadAudio.xcodeproj
 
-# Build from command line
-xcodebuild -target iPadAudio -sdk iphoneos26.4 build CODE_SIGNING_ALLOWED=NO
+# Find connected iPad device ID
+xcrun xctrace list devices
+
+# Build for connected iPad (replace DEVICE_ID with actual ID from above)
+xcodebuild -scheme iPadAudio -destination 'id=DEVICE_ID' build
+
+# Find the built .app path
+APP_PATH=$(xcodebuild -scheme iPadAudio -showBuildSettings 2>/dev/null | grep -m1 'CODESIGNING_FOLDER_PATH' | awk '{print $3}')
+
+# Install on connected iPad
+xcrun devicectl device install app --device DEVICE_ID "$APP_PATH"
+
+# Launch on iPad
+xcrun devicectl device process launch --device DEVICE_ID com.dantanner.iPadAudio
 
 # Run tests (once tests exist)
 xcodebuild -scheme iPadAudio -destination 'platform=iOS Simulator,name=iPad Air' test
@@ -87,3 +99,4 @@ See [docs/PHASES.md](docs/PHASES.md) for detailed phase tracking. Update the sta
 
 ## Project Coding Rules
 - When commenting, use evergreen style comments and only comment about the current state of the code, not how we got there
+- After completing a feature or bug fix that affects the app UI or behavior, build and deploy to the connected iPad using the build/install/launch commands above so the change can be tested on-device
