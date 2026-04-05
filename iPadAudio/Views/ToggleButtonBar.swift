@@ -1,27 +1,24 @@
 import SwiftUI
 
-struct ToggleButtonBar: View {
+struct PanelToggleButton: View {
+    let panel: PanelType
     @Binding var activePanels: [PanelType]
 
     var body: some View {
-        HStack(spacing: 12) {
-            ForEach(PanelType.allCases) { panel in
-                let isActive = activePanels.contains(panel)
-                Button {
-                    togglePanel(panel)
-                } label: {
-                    Image(systemName: panel.iconName)
-                        .font(.title3)
-                        .foregroundStyle(isActive ? .blue : .gray.opacity(0.5))
-                        .frame(width: 36, height: 36)
-                        .background(isActive ? Color.blue.opacity(0.15) : Color.clear)
-                        .clipShape(RoundedRectangle(cornerRadius: 6))
-                }
-            }
+        let isActive = activePanels.contains(panel)
+        Button {
+            togglePanel()
+        } label: {
+            Image(systemName: panel.iconName)
+                .font(.title3)
+                .foregroundStyle(isActive ? .blue : .gray.opacity(0.5))
+                .frame(width: 36, height: 36)
+                .background(isActive ? Color.blue.opacity(0.15) : Color.clear)
+                .clipShape(RoundedRectangle(cornerRadius: 6))
         }
     }
 
-    private func togglePanel(_ panel: PanelType) {
+    private func togglePanel() {
         withAnimation(.easeInOut(duration: 0.25)) {
             if let index = activePanels.firstIndex(of: panel) {
                 activePanels.remove(at: index)

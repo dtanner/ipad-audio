@@ -24,35 +24,50 @@ struct ContentView: View {
         }
     }
 
+    private var activePanelsBinding: Binding<[PanelType]> {
+        Binding(
+            get: { viewModel.settings.activePanels },
+            set: { viewModel.settings.activePanels = $0 }
+        )
+    }
+
     private var mainContent: some View {
         VStack(spacing: 0) {
-            // Readout bar with toggle buttons, SPL, pitch, settings
+            // Top bar: SPL readout | pitch readout | gear
             HStack(spacing: 0) {
-                ToggleButtonBar(activePanels: Binding(
-                    get: { viewModel.settings.activePanels },
-                    set: { viewModel.settings.activePanels = $0 }
-                ))
-                .padding(.leading, 16)
-
-                KeyPicker(settings: viewModel.settings)
-                    .padding(.leading, 12)
-
-                ReadoutBar(
+                SPLReadout(
                     currentSPL: viewModel.currentSPL,
                     safeThreshold: viewModel.settings.safeThreshold,
-                    cautionThreshold: viewModel.settings.cautionThreshold,
+                    cautionThreshold: viewModel.settings.cautionThreshold
+                )
+                .frame(maxWidth: .infinity)
+
+                HStack(spacing: 4) {
+                    PanelToggleButton(panel: .meter, activePanels: activePanelsBinding)
+                    PanelToggleButton(panel: .pitch, activePanels: activePanelsBinding)
+                }
+
+                PitchReadout(
                     tuner: viewModel.tuner,
                     noteSpellings: MusicTheory.chromaticSpellings(
                         root: viewModel.settings.rootNote,
                         scale: viewModel.settings.scaleType
-                    ),
-                    onShowSettings: { showSettings = true }
+                    )
                 )
+                .frame(maxWidth: .infinity)
+
+                Button { showSettings = true } label: {
+                    Image(systemName: "gearshape.fill")
+                        .font(.title2)
+                        .foregroundStyle(.gray)
+                }
+                .padding(.trailing, 16)
             }
+            .padding(.vertical, 8)
 
             // Panel container: 0/1/2 panels with adaptive layout
             PanelContainerView(
-                activePanels: viewModel.settings.activePanels,
+                activePanels: activePanelsBinding,
                 viewModel: viewModel
             )
             .padding(.bottom, 8)

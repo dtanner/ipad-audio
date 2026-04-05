@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct PanelContainerView: View {
-    let activePanels: [PanelType]
+    @Binding var activePanels: [PanelType]
     let viewModel: AudioViewModel
 
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
@@ -26,7 +26,7 @@ struct PanelContainerView: View {
             } else {
                 HStack(spacing: 8) {
                     ForEach(panels) { panel in
-                        panelView(for: panel)
+                        panelWithHeader(for: panel)
                             .transition(.asymmetric(
                                 insertion: .move(edge: .trailing).combined(with: .opacity),
                                 removal: .move(edge: .leading).combined(with: .opacity)
@@ -36,6 +36,17 @@ struct PanelContainerView: View {
                 .padding(.horizontal, 8)
             }
         }
+    }
+
+    @ViewBuilder
+    private func panelWithHeader(for panel: PanelType) -> some View {
+        panelView(for: panel)
+            .overlay(alignment: .topTrailing) {
+                if panel == .pitch {
+                    KeyPicker(settings: viewModel.settings)
+                        .padding(6)
+                }
+            }
     }
 
     @ViewBuilder
