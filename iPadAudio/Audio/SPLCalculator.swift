@@ -4,7 +4,7 @@ import Foundation
 enum SPLCalculator {
     /// Compute A-weighted SPL in dB from filtered samples.
     /// - Parameter samples: A-weighted audio samples (Double)
-    /// - Returns: SPL value in dB (relative, calibrated with +94 dB offset)
+    /// - Returns: SPL value in dB (relative, calibrated with offset from AudioConstants.calibrationDB)
     static func compute(_ samples: [Double]) -> Double {
         var sumOfSquares: Double = 0
         vDSP_dotprD(samples, 1, samples, 1, &sumOfSquares, vDSP_Length(samples.count))

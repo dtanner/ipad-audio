@@ -85,10 +85,9 @@ func apply(_ samples: [Float]) -> [Float] {
 ## 2. SPL Calculation
 
 ```
-1. Apply Blackman-Harris window to raw audio
-2. Apply A-weighting filter
-3. Compute RMS: sqrt(mean(samples²))
-4. Convert to dB: 20 * log10(rms) + CALIBRATION_DB
+1. Apply A-weighting filter
+2. Compute RMS: sqrt(mean(samples²))
+3. Convert to dB: 20 * log10(rms) + CALIBRATION_DB
    - CALIBRATION_DB = 120.0 (reference level for iPad mic)
    - Guard against log(0): use max(rms, 1e-20)
 ```
