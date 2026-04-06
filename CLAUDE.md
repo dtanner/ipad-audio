@@ -11,10 +11,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Features
 
 - Real-time A-weighted SPL (Sound Pressure Level) measurement
-- Rolling history chart of SPL over configurable time window (5s to 5min)
+- Rolling history chart of SPL over configurable time window (5s to 5min), adjustable dB range via touch gestures
 - YIN-based pitch detection with note name, octave, and cents deviation
 - Tuner gauge showing cents offset from nearest note
-- Piano-roll pitch history chart (Melodyne-style) with auto or fixed range
+- Piano-roll pitch history chart (Melodyne-style) with fixed range and key/scale-aware note grid
+- Key and scale selection (15 scales including Chromatic) with correct enharmonic spelling
 - Flexible panel layout: toggle up to 2 panels (Meter, Pitch) or value-only mode, adaptive for multitasking
 - Settings presented as iOS-native sheet modal (no hamburger menu)
 - Persistent user settings via @AppStorage/UserDefaults
@@ -61,6 +62,7 @@ AVAudioEngine mic tap (audio thread)
 - `YINPitchDetector.swift` — YIN pitch detection algorithm
 - `AudioViewModel.swift` — central @Observable publishing SPL/pitch to UI
 - `AppSettings.swift` — all user settings with @AppStorage persistence
+- `MusicTheory.swift` — root notes, scales, enharmonic spelling utilities
 - `ContentView.swift` — top-level view composition
 
 ## Implementation Status

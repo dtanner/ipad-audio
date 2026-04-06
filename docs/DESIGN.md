@@ -73,6 +73,7 @@ iPadAudio/
 ├── Models/
 │   ├── AudioConstants.swift           # All numeric constants
 │   ├── AppSettings.swift              # @Observable + @AppStorage settings
+│   ├── MusicTheory.swift              # Root notes, scales, enharmonic spelling
 │   ├── PitchNote.swift                # Note/freq conversion functions
 │   └── PanelType.swift                # enum PanelType (meter, pitch)
 │
@@ -92,6 +93,7 @@ iPadAudio/
 │   ├── TunerGaugeView.swift           # Cents gauge (Canvas)
 │   ├── SPLChartView.swift             # Rolling SPL chart (Canvas)
 │   ├── PitchChartView.swift           # Piano-roll chart (Canvas)
+│   ├── KeyPicker.swift                # Root note + scale type selector overlay
 │   ├── PanelContainerView.swift       # 0/1/2 panel layout (adaptive for multitasking)
 │   ├── ValueOnlyView.swift            # Large SPL + pitch (no panels)
 │   ├── ToggleButtonBar.swift          # Panel toggle buttons
@@ -154,15 +156,18 @@ iPadAudio/
 
 | Setting | Type | Range | Default |
 |---------|------|-------|---------|
-| History Length | Int | 5-300 seconds | 30 |
-| Safe Threshold | Double | 40-95 dB | 55 |
-| Caution Threshold | Double | 60-100 dB | 75 |
-| Pitch Note Min | Int | -39 to +38 semitones | -27 (E2) |
-| Pitch Note Max | Int | -38 to +39 semitones | +10 (G5) |
-| Pitch Range Auto | Bool | — | true |
+| History Length | Int | 5-300 seconds | 20 |
+| SPL Display Min | Double | 30-130 dB | 30 |
+| SPL Display Max | Double | 40-140 dB | 100 |
+| Safe Threshold | Double | 40-95 dB | 75 |
+| Caution Threshold | Double | 60-100 dB | 85 |
+| Pitch Note Min | Int | -48 to +27 semitones | -27 (E2) |
+| Pitch Note Max | Int | -36 to +39 semitones | +10 (G5) |
+| Root Note | MusicRoot | 12 chromatic roots | C |
+| Scale Type | MusicScale | 15 scales (Major through Chromatic) | Major |
 | Active Panels | [String] | max 2 of [meter, pitch] | [meter, pitch] |
 
-Validation: safe < caution, note min < note max.
+Validation: safe < caution, note min < note max (12-60 semitone span enforced), SPL display min < max (10 dB minimum span).
 
 ## Color Scheme
 

@@ -96,7 +96,23 @@ Update status as each phase is completed. Each phase is independently testable.
 - [x] Audio route changes — handle mic disconnect gracefully, show banner
 - [x] App lifecycle: stop engine on `.background`, restart on `.active` (observe `scenePhase`)
 - [x] Accessibility labels on all interactive elements
-- [ ] Performance profiling: overall <16ms frame time
+- [x] Performance review and optimization
 - [x] Stage Manager / multitasking: test Split View, Slide Over, window resize — verify adaptive layout degrades gracefully
 - [x] App icon in Assets.xcassets
+
+---
+
+## Phase 6: Music Theory + Chart Enhancements
+**Status:** COMPLETE
+
+**Goal:** Key/scale-aware pitch display and improved chart usability.
+
+**Tasks:**
+- [x] Music theory model (`MusicTheory.swift`): root notes, 15 scale types, enharmonic spelling
+- [x] Key picker UI (`KeyPicker.swift`): root + scale selection overlay on pitch panel
+- [x] Chromatic scale option (root selector disabled when chromatic)
+- [x] Scale-aware note grid labels on piano-roll chart
+- [x] Adjustable SPL chart dB range via touch gestures (`splDisplayMin`/`splDisplayMax` settings)
+- [x] Clip SPL levels below minimum threshold
+- [x] Improved history line and axis label readability
 

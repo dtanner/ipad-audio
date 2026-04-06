@@ -7,8 +7,9 @@ Detailed specifications for all signal processing algorithms, ported from [pi-au
 ```
 SAMPLE_RATE    = 48000       # Hz
 BLOCK_SIZE     = 4800        # samples per block (100ms at 48kHz)
-UPDATE_RATE    = 10          # Hz (one block per 100ms)
-CALIBRATION_DB = 94.0        # dB reference for USB mic sensitivity
+UPDATE_RATE    = 10          # Hz (SPL, one block per 100ms)
+PITCH_RATE     = 50          # Hz (pitch detection with overlapping windows)
+CALIBRATION_DB = 120.0       # dB reference for iPad mic sensitivity
 ```
 
 ## 1. A-Weighting Filter (IEC 61672:2003)
@@ -88,7 +89,7 @@ func apply(_ samples: [Float]) -> [Float] {
 2. Apply A-weighting filter
 3. Compute RMS: sqrt(mean(samples²))
 4. Convert to dB: 20 * log10(rms) + CALIBRATION_DB
-   - CALIBRATION_DB = 94.0 (reference level for typical USB mics)
+   - CALIBRATION_DB = 120.0 (reference level for iPad mic)
    - Guard against log(0): use max(rms, 1e-20)
 ```
 
@@ -115,7 +116,6 @@ THRESHOLD    = 0.15      # aperiodicity threshold (lower = stricter)
 RMS_GATE     = 1e-4      # silence threshold
 FREQ_MIN     = 30 Hz     # reject below
 FREQ_MAX     = 5000 Hz   # reject above
-C6_CEILING   = 1046.5 Hz # hard ceiling for pitch reporting
 ```
 
 ### Algorithm Steps
@@ -223,10 +223,6 @@ return frequency
 ### Post-Detection Filtering (in AudioEngine)
 
 ```
-// Hard ceiling: never report above C6
-if frequency > C6_CEILING:
-    return nil
-
 // Range filtering: only report within user-configured semitone range
 if frequency < semitoneToFreq(settings.pitchNoteMin):
     return nil
