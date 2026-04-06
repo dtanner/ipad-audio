@@ -6,7 +6,7 @@ enum AudioConstants {
     static let updateRate: Double = 10        // Hz (SPL)
     static let pitchUpdateRate: Double = 50   // Hz (pitch detection with overlapping windows)
 
-    static let calibrationDB: Double = 120.0
+    static let calibrationDB: Double = 126.0
     static let splMin: Double = 20
     static let splMax: Double = 100
     static let quietThreshold: Double = 55
