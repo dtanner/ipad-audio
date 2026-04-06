@@ -205,8 +205,8 @@ struct PitchChartView: View {
 
             let isC = noteInOctave == 0
             let isInScale = inScale.contains(noteInOctave)
-            let lineOpacity: Double = (isC || isInScale) ? 0.6 : 0.15
-            let lineWidth: CGFloat = (isC || isInScale) ? 1 : 0.5
+            let lineOpacity: Double = isInScale ? 0.6 : 0.15
+            let lineWidth: CGFloat = isInScale ? 1 : 0.5
 
             var path = Path()
             path.move(to: CGPoint(x: labelWidth, y: y))
@@ -215,8 +215,9 @@ struct PitchChartView: View {
 
             let noted = MusicTheory.noteName(midi: midi, spellings: spellings)
             let label = isC ? "\(noted.name)\(noted.octave)" : noted.name
-            let labelColor: Color = isInScale ? .gray : .gray.opacity(0.4)
-            let text = Text(label).font(.subheadline).foregroundColor(labelColor)
+            let labelColor: Color = isC ? .white : (isInScale ? .gray : .gray.opacity(0.4))
+            let labelFont: Font = isC ? .subheadline.bold() : .subheadline
+            let text = Text(label).font(labelFont).foregroundColor(labelColor)
             let anchor: UnitPoint = semi == semiMax ? .topTrailing : (semi == semiMin ? .bottomTrailing : .trailing)
             context.draw(text, at: CGPoint(x: labelWidth - 4, y: y), anchor: anchor)
         }
