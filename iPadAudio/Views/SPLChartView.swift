@@ -120,7 +120,7 @@ struct SPLChartView: View {
     // MARK: - Grid
 
     private func drawGrid(context: inout GraphicsContext, chartLeft: CGFloat, chartWidth: CGFloat, chartHeight: CGFloat) {
-        let gridColor = Color.gray.opacity(0.3)
+        let gridColor = Color.gray.opacity(0.6)
         let labelColor = Color.gray
 
         let range = yMax - yMin
@@ -134,10 +134,10 @@ struct SPLChartView: View {
             var path = Path()
             path.move(to: CGPoint(x: chartLeft, y: y))
             path.addLine(to: CGPoint(x: chartLeft + chartWidth, y: y))
-            context.stroke(path, with: .color(gridColor), lineWidth: 0.5)
+            context.stroke(path, with: .color(gridColor), lineWidth: 1)
 
             // Y-axis label
-            let text = Text("\(Int(db))").font(.footnote).foregroundColor(labelColor)
+            let text = Text("\(Int(db))").font(.subheadline).foregroundColor(labelColor)
             let anchor: UnitPoint = db == yMax ? .topTrailing : (db == yMin ? .bottomTrailing : .trailing)
             context.draw(text, at: CGPoint(x: chartLeft - 6, y: y), anchor: anchor)
 
