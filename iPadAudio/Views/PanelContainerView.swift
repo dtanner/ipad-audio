@@ -41,10 +41,11 @@ struct PanelContainerView: View {
     @ViewBuilder
     private func panelWithHeader(for panel: PanelType) -> some View {
         panelView(for: panel)
-            .overlay(alignment: .topTrailing) {
+            .overlay(alignment: .topLeading) {
                 if panel == .pitch {
                     KeyPicker(settings: viewModel.settings)
-                        .padding(6)
+                        .padding(.leading, 40)
+                        .padding(.top, 6)
                 }
             }
     }
