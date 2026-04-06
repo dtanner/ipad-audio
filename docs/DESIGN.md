@@ -157,7 +157,7 @@ iPadAudio/
 | Setting | Type | Range | Default |
 |---------|------|-------|---------|
 | History Length | Int | 5-300 seconds | 20 |
-| SPL Display Min | Double | 30-130 dB | 30 |
+| SPL Display Min | Double | 25-130 dB | 30 |
 | SPL Display Max | Double | 40-140 dB | 100 |
 | Safe Threshold | Double | 40-95 dB | 75 |
 | Caution Threshold | Double | 60-100 dB | 85 |

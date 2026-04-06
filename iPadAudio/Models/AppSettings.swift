@@ -13,7 +13,7 @@ final class AppSettings {
     // MARK: - SPL Range
     // Adjustable dB range for the SPL history chart via touch gestures
 
-    static let splAbsMin: Double = 30
+    static let splAbsMin: Double = 25
     static let splAbsMax: Double = 140
     static let splRangeMin: Double = 10
     static let splRangeMax: Double = 140
