@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <linearGradient id="waveGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0D9488"/>
+      <stop offset="50%" stop-color="#14B8A6"/>
+      <stop offset="100%" stop-color="#22D3EE"/>
+    </linearGradient>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+    <!-- Rounded rectangle clip for iOS icon shape preview -->
+    <clipPath id="iconClip">
+      <rect x="0" y="0" width="1024" height="1024" rx="224" ry="224"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1024" height="1024" rx="224" ry="224" fill="url(#bgGrad)"/>
+
+  <!-- Organic waveform flowing across the icon -->
+  <path d="
+    M 80,520
+    C 120,520 140,480 170,440
+    C 200,400 220,370 260,350
+    C 300,330 320,380 350,430
+    C 380,480 400,560 440,600
+    C 480,640 500,620 530,560
+    C 560,500 580,420 620,380
+    C 660,340 680,360 710,420
+    C 740,480 760,570 800,610
+    C 840,650 870,600 900,540
+    C 930,480 950,440 960,420
+  " fill="none" stroke="url(#waveGrad)" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+
+  <!-- Second waveform layer for organic feel, slightly offset -->
+  <path d="
+    M 80,540
+    C 130,540 150,500 185,460
+    C 220,420 240,395 280,380
+    C 320,365 340,410 370,460
+    C 400,510 420,580 460,615
+    C 500,650 520,625 550,570
+    C 580,515 600,440 640,405
+    C 680,370 700,390 730,445
+    C 760,500 780,580 820,615
+    C 860,650 885,610 915,555
+    C 945,500 955,465 965,445
+  " fill="none" stroke="url(#waveGrad)" stroke-width="10" stroke-linecap="round" opacity="0.35"/>
+
+  <!-- Quarter note sitting above a wave peak -->
+  <!-- Note head (oval, slightly tilted) -->
+  <ellipse cx="430" cy="310" rx="42" ry="32" transform="rotate(-15, 430, 310)" fill="white" opacity="0.95"/>
+  <!-- Note stem -->
+  <rect x="468" y="140" width="10" height="175" rx="5" fill="white" opacity="0.95"/>
+  <!-- Flag (organic curve) -->
+  <path d="M 473,140 C 490,160 520,180 530,220 C 520,200 495,195 478,185" fill="white" opacity="0.95"/>
+</svg>

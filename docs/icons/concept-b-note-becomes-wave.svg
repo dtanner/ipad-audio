@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <linearGradient id="waveGradB" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#22D3EE"/>
+      <stop offset="50%" stop-color="#14B8A6"/>
+      <stop offset="100%" stop-color="#0D9488"/>
+    </linearGradient>
+    <linearGradient id="bgGradB" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+    <linearGradient id="noteGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#CBD5E1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1024" height="1024" rx="224" ry="224" fill="url(#bgGradB)"/>
+
+  <!-- Subtle background glow behind the note -->
+  <radialGradient id="glow" cx="0.5" cy="0.45" r="0.4">
+    <stop offset="0%" stop-color="#14B8A6" stop-opacity="0.12"/>
+    <stop offset="100%" stop-color="#14B8A6" stop-opacity="0"/>
+  </radialGradient>
+  <rect width="1024" height="1024" rx="224" ry="224" fill="url(#glow)"/>
+
+  <!-- Note head (large, centered lower area) -->
+  <ellipse cx="440" cy="640" rx="80" ry="60" transform="rotate(-15, 440, 640)" fill="url(#noteGrad)" opacity="0.95"/>
+
+  <!-- Stem that transitions into a waveform -->
+  <!-- Solid stem portion (lower part) -->
+  <rect x="514" y="380" width="14" height="210" rx="7" fill="url(#noteGrad)" opacity="0.95"/>
+
+  <!-- Stem morphs into organic waveform (upper part) -->
+  <path d="
+    M 521,380
+    C 521,360 530,330 540,300
+    C 555,260 530,220 510,200
+    C 490,180 520,150 545,135
+    C 570,120 545,90 525,80
+    C 510,72 530,55 550,50
+  " fill="none" stroke="url(#waveGradB)" stroke-width="14" stroke-linecap="round" opacity="0.95"/>
+
+  <!-- Flag area becomes waveform tendrils -->
+  <path d="
+    M 528,380
+    C 560,360 600,340 630,310
+    C 660,280 640,250 610,240
+    C 580,230 610,200 645,185
+    C 670,175 650,150 625,145
+  " fill="none" stroke="url(#waveGradB)" stroke-width="11" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- Secondary wave tendril -->
+  <path d="
+    M 528,400
+    C 570,385 620,370 660,345
+    C 700,320 680,290 650,275
+    C 625,262 655,235 690,220
+  " fill="none" stroke="url(#waveGradB)" stroke-width="8" stroke-linecap="round" opacity="0.35"/>
+</svg>

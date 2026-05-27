@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <linearGradient id="waveGradC" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0D9488"/>
+      <stop offset="40%" stop-color="#14B8A6"/>
+      <stop offset="100%" stop-color="#22D3EE"/>
+    </linearGradient>
+    <linearGradient id="bgGradC" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1024" height="1024" rx="224" ry="224" fill="url(#bgGradC)"/>
+
+  <!-- Subtle ambient glow -->
+  <radialGradient id="glowC" cx="0.48" cy="0.5" r="0.45">
+    <stop offset="0%" stop-color="#14B8A6" stop-opacity="0.1"/>
+    <stop offset="100%" stop-color="#14B8A6" stop-opacity="0"/>
+  </radialGradient>
+  <rect width="1024" height="1024" rx="224" ry="224" fill="url(#glowC)"/>
+
+  <!-- Multiple waveform lines that collectively suggest a quarter note shape -->
+
+  <!-- Wave lines forming the notehead region (oval cluster, lower center) -->
+  <path d="M 240,600 C 280,590 320,565 370,555 C 420,545 470,540 510,555 C 550,570 580,595 600,615 C 620,635 600,660 560,670 C 520,680 470,680 420,670 C 370,660 330,640 290,625 C 260,615 245,608 240,600Z"
+    fill="none" stroke="url(#waveGradC)" stroke-width="6" stroke-linecap="round" opacity="0.9"/>
+
+  <path d="M 260,585 C 300,572 350,550 400,540 C 450,530 495,530 535,545 C 570,558 590,580 600,600 C 610,620 590,645 550,655 C 510,665 460,662 410,650 C 360,638 320,620 285,605 C 268,597 260,590 260,585Z"
+    fill="none" stroke="url(#waveGradC)" stroke-width="5" stroke-linecap="round" opacity="0.7"/>
+
+  <path d="M 290,575 C 330,560 380,542 430,535 C 480,528 520,532 550,545 C 575,556 585,575 585,592 C 585,610 570,630 535,640 C 500,650 455,648 410,638 C 365,628 330,610 305,595 C 292,587 288,580 290,575Z"
+    fill="none" stroke="url(#waveGradC)" stroke-width="4" stroke-linecap="round" opacity="0.5"/>
+
+  <!-- Filled center of notehead for solidity -->
+  <ellipse cx="435" cy="600" rx="75" ry="50" transform="rotate(-12, 435, 600)" fill="url(#waveGradC)" opacity="0.25"/>
+
+  <!-- Wave lines forming the stem (vertical, right side of notehead going up) -->
+  <path d="M 540,590 C 542,550 544,500 545,450 C 546,400 546,350 545,300 C 544,250 542,210 540,180"
+    fill="none" stroke="url(#waveGradC)" stroke-width="8" stroke-linecap="round" opacity="0.9"/>
+
+  <!-- Organic wave ripples along the stem -->
+  <path d="M 530,560 C 525,520 528,475 535,435 C 542,395 548,355 550,315 C 552,275 548,240 540,210"
+    fill="none" stroke="url(#waveGradC)" stroke-width="5" stroke-linecap="round" opacity="0.5"/>
+
+  <path d="M 555,550 C 558,510 556,465 552,425 C 548,385 546,345 548,305 C 550,265 554,230 558,200"
+    fill="none" stroke="url(#waveGradC)" stroke-width="4" stroke-linecap="round" opacity="0.35"/>
+
+  <!-- Wave lines forming the flag -->
+  <path d="M 542,180 C 560,195 585,220 605,250 C 625,280 635,310 630,335 C 625,355 610,345 600,325 C 590,305 575,280 560,265"
+    fill="none" stroke="url(#waveGradC)" stroke-width="7" stroke-linecap="round" opacity="0.85"/>
+
+  <path d="M 548,195 C 565,210 590,235 610,265 C 630,295 640,320 635,340"
+    fill="none" stroke="url(#waveGradC)" stroke-width="4" stroke-linecap="round" opacity="0.4"/>
+
+  <!-- Scattered subtle wave fragments around the note for atmosphere -->
+  <path d="M 180,400 C 200,390 220,395 240,410" fill="none" stroke="url(#waveGradC)" stroke-width="3" stroke-linecap="round" opacity="0.2"/>
+  <path d="M 700,500 C 720,490 750,495 770,510" fill="none" stroke="url(#waveGradC)" stroke-width="3" stroke-linecap="round" opacity="0.2"/>
+  <path d="M 650,700 C 670,695 690,700 710,710" fill="none" stroke="url(#waveGradC)" stroke-width="3" stroke-linecap="round" opacity="0.2"/>
+  <path d="M 200,300 C 215,295 235,300 250,310" fill="none" stroke="url(#waveGradC)" stroke-width="2" stroke-linecap="round" opacity="0.15"/>
+  <path d="M 750,350 C 765,345 780,350 795,360" fill="none" stroke="url(#waveGradC)" stroke-width="2" stroke-linecap="round" opacity="0.15"/>
+</svg>
