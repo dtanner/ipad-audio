@@ -77,9 +77,10 @@ final class YINPitchDetectorTests: XCTestCase {
 
     func testRejectsFrequencyAboveCeiling() {
         let detector = YINPitchDetector(sampleRate: sampleRate)
-        // C6 ceiling is 1046.5 Hz; try a frequency well above it
-        let samples = makeSineWave(frequency: 2000.0, count: blockSize)
-        XCTAssertNil(detector.detect(samples), "Frequencies above C6 ceiling should be rejected")
+        // The detector ceiling is 5000 Hz (just above C8, the chart maximum);
+        // try a frequency well above it.
+        let samples = makeSineWave(frequency: 6000.0, count: blockSize)
+        XCTAssertNil(detector.detect(samples), "Frequencies above the 5 kHz ceiling should be rejected")
     }
 
     // MARK: - Sample rate update

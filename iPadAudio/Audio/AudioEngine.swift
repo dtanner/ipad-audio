@@ -7,6 +7,9 @@ final class AudioEngine {
     private let dspQueue = DispatchQueue(label: "com.iPadAudio.dsp", qos: .userInteractive)
     private let aWeighting = AWeightingFilter()
     private let yinDetector = YINPitchDetector()
+    /// Removes sub-bass rumble from the pitch path so YIN can't lock onto
+    /// low-frequency room/electrical hum. Filters the stream continuously.
+    private let pitchHighPass = HighPassFilter(cutoffHz: 60, sampleRate: AudioConstants.sampleRate)
 
     /// Called on main queue with computed SPL value.
     var onSPL: ((Double) -> Void)?
@@ -18,8 +21,10 @@ final class AudioEngine {
     /// Block size for SPL analysis (targets 100ms).
     private(set) var actualBlockSize: Int = AudioConstants.blockSize
 
-    /// Accumulated samples for overlapping pitch detection
+    /// Accumulated raw samples (used for SPL)
     private var sampleAccumulator = [Double]()
+    /// Accumulated high-pass-filtered samples (used for pitch), kept in sync with sampleAccumulator
+    private var pitchAccumulator = [Double]()
     /// Number of new samples since last SPL computation
     private var splSamplesAccumulated = 0
     /// Hop size for pitch detection (targets 20ms for 50 Hz updates)
@@ -34,6 +39,7 @@ final class AudioEngine {
         actualBlockSize = Int(actualSampleRate * 0.1) // 100ms for SPL
         pitchHopSize = Int(actualSampleRate / AudioConstants.pitchUpdateRate) // ~20ms
         yinDetector.updateSampleRate(actualSampleRate)
+        pitchHighPass.updateSampleRate(actualSampleRate)
 
         // Request smaller buffers to enable higher-rate pitch detection
         let tapBufferSize = AVAudioFrameCount(pitchHopSize)
@@ -50,8 +56,10 @@ final class AudioEngine {
         engine.inputNode.removeTap(onBus: 0)
         engine.stop()
         aWeighting.reset()
+        pitchHighPass.reset()
         dspQueue.async { [weak self] in
             self?.sampleAccumulator.removeAll()
+            self?.pitchAccumulator.removeAll()
             self?.splSamplesAccumulated = 0
             self?.pitchSamplesAccumulated = 0
         }
@@ -68,15 +76,18 @@ final class AudioEngine {
         dspQueue.async { [weak self] in
             guard let self else { return }
 
-            // Append new samples to accumulator
+            // Append new samples: raw for SPL, high-pass-filtered for pitch.
+            // Filtering the continuous stream (not per-window) avoids transients.
             self.sampleAccumulator.append(contentsOf: samples)
+            self.pitchAccumulator.append(contentsOf: self.pitchHighPass.apply(samples))
             self.splSamplesAccumulated += frameCount
             self.pitchSamplesAccumulated += frameCount
 
-            // Trim accumulator to keep at most 2x the analysis window
+            // Trim both accumulators identically to keep them aligned
             let maxKeep = self.actualBlockSize * 2
             if self.sampleAccumulator.count > maxKeep {
                 self.sampleAccumulator = Array(self.sampleAccumulator.suffix(maxKeep))
+                self.pitchAccumulator = Array(self.pitchAccumulator.suffix(maxKeep))
             }
 
             // SPL: compute every ~100ms worth of new samples
@@ -91,20 +102,21 @@ final class AudioEngine {
                 }
             }
 
-            // Pitch: compute every hop (~20ms) using overlapping windows.
-            // iOS may deliver large buffers, so loop to emit multiple detections.
-            if self.sampleAccumulator.count >= self.actualBlockSize {
+            // Pitch: compute every hop (~20ms) using overlapping windows of the
+            // high-pass-filtered stream. iOS may deliver large buffers, so loop
+            // to emit multiple detections.
+            if self.pitchAccumulator.count >= self.actualBlockSize {
                 var pitchResults = [Double?]()
                 while self.pitchSamplesAccumulated >= self.pitchHopSize {
                     self.pitchSamplesAccumulated -= self.pitchHopSize
 
                     // Compute how far back from the end this detection's window ends
                     let offset = self.pitchSamplesAccumulated
-                    let endIndex = self.sampleAccumulator.count - offset
+                    let endIndex = self.pitchAccumulator.count - offset
                     let startIndex = endIndex - self.actualBlockSize
                     if startIndex < 0 { continue }
 
-                    let pitchSamples = Array(self.sampleAccumulator[startIndex..<endIndex])
+                    let pitchSamples = Array(self.pitchAccumulator[startIndex..<endIndex])
                     let pitch = self.yinDetector.detect(pitchSamples)
                     pitchResults.append(pitch)
                 }

@@ -3,10 +3,16 @@ import Foundation
 
 /// YIN monophonic pitch detection algorithm using FFT-based autocorrelation.
 final class YINPitchDetector {
-    private let threshold: Double = 0.15
+    private let threshold: Double = 0.10
     private let rmsGate: Double = 1e-4
-    private let freqMin: Double = 30
+    // Analysis floor: low enough that low-frequency room tones fit a full period
+    // inside the window and are detected at their true pitch, rather than piling
+    // up as a boundary artifact near the output floor.
+    private let freqMin: Double = 45
     private let freqMax: Double = 5000
+    // Output floor at the C2/C#2 boundary: anything at C2 (65.4 Hz) or below is
+    // reliably room/electrical rumble, not a played note, so it's never reported.
+    private let freqFloor: Double = 67
 
     private var sampleRate: Double
 
@@ -115,7 +121,7 @@ final class YINPitchDetector {
         guard tauRefined > 0 else { return nil }
         let frequency = sampleRate / tauRefined
 
-        if frequency < freqMin || frequency > freqMax { return nil }
+        if frequency < freqFloor || frequency > freqMax { return nil }
 
         return frequency
     }

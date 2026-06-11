@@ -58,13 +58,13 @@ final class AppSettings {
     // Semitone offsets from A4: A0 = -48, C8 = 39
     // Range constrained to 12–60 semitones (1–5 octaves)
 
-    static let pitchNoteAbsMin = -48 // A0
+    static let pitchNoteAbsMin = -32 // C#2 (lowest frequency YIN can detect)
     static let pitchNoteAbsMax = 39  // C8
     static let pitchRangeMin = 12    // 1 octave
     static let pitchRangeMax = 60    // 5 octaves
 
     var pitchNoteMin: Int {
-        get { access(keyPath: \.pitchNoteMin); return _pitchNoteMin }
+        get { access(keyPath: \.pitchNoteMin); return max(_pitchNoteMin, Self.pitchNoteAbsMin) }
         set { withMutation(keyPath: \.pitchNoteMin) {
             let clamped = newValue.clamped(to: Self.pitchNoteAbsMin...(Self.pitchNoteAbsMax - Self.pitchRangeMin))
             _pitchNoteMin = min(clamped, _pitchNoteMax - Self.pitchRangeMin)
