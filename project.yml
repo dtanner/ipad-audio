@@ -4,6 +4,15 @@ options:
   deploymentTarget:
     iOS: "17.0"
 
+settings:
+  base:
+    # Bumped by `just release` — MARKETING_VERSION is the last released semver,
+    # CURRENT_PROJECT_VERSION a monotonically increasing integer build number.
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    DEVELOPMENT_TEAM: 72SPM7GVK7
+    CODE_SIGN_STYLE: Automatic
+
 targets:
   iPadAudio:
     type: application
@@ -17,7 +26,6 @@ targets:
         TARGETED_DEVICE_FAMILY: "2"  # iPad only
         SUPPORTED_INTERFACE_ORIENTATIONS: "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
         SWIFT_VERSION: "5.9"
-        DEVELOPMENT_TEAM: ""
 
   iPadAudioTests:
     type: bundle.unit-test
@@ -30,5 +38,4 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.dantanner.iPadAudioTests
         SWIFT_VERSION: "5.9"
-        DEVELOPMENT_TEAM: ""
         GENERATE_INFOPLIST_FILE: "YES"

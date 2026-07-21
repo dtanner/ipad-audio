@@ -22,17 +22,23 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Build & Run
 
-This is a standard Xcode project. No external dependencies — all DSP uses Apple's Accelerate framework. Uses [just](https://github.com/casey/just) as a command runner — the justfile auto-detects the connected iPad.
+The Xcode project is generated from `project.yml` with [xcodegen](https://github.com/yonaskolb/XcodeGen) — edit `project.yml` (not the .xcodeproj) for project settings. No external dependencies — all DSP uses Apple's Accelerate framework. Uses [just](https://github.com/casey/just) as a command runner — the justfile auto-detects the connected iPad (override with `IPAD=<name-or-udid>`).
 
 ```bash
 just              # List all available commands
+just generate     # Regenerate the Xcode project from project.yml
 just open         # Open project in Xcode
 just devices      # List connected devices
 just build        # Build for connected iPad
 just install      # Install the built app on connected iPad
 just launch       # Launch the app on connected iPad
 just deploy       # Build, install, and launch (all-in-one)
+just run          # Build, install, and launch in the simulator
+just logs         # Stream app logs from the booted simulator
 just test         # Run tests in simulator
+just shot <name>  # Screenshot the booted simulator
+just release <major|minor|bugfix>  # Version bump, archive, upload to App Store Connect
+just clean        # Remove build artifacts
 ```
 
 **Important:** The app requires microphone access. It must run on a real device (not Simulator) for meaningful audio testing.
