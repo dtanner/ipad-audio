@@ -1,0 +1,58 @@
+# SwiftLint config — `just lint` runs it in strict mode (warnings fail), and
+# `just check` / the pre-commit hook run lint along with tests and a build.
+excluded:
+  - build
+  - .build
+  - .llm
+  - .claude
+  - DerivedData
+  - "*.xcodeproj"
+
+disabled_rules:
+  - trailing_comma  # style choice; either form reads fine
+  # SwiftUI idiom: .sheet(isPresented:onDismiss:) { content }
+  - multiple_closures_with_trailing_closure
+
+# Short names (i, x, db, hz, fg), filter coefficients (b0_1), and decoded JSON
+# keys (Message) are idiomatic in math, audio, and API code.
+identifier_name:
+  min_length: 1
+  allowed_symbols: ["_"]
+  validates_start_with_lowercase: off
+
+type_name:
+  validates_start_with_lowercase: off  # e.g. iPadAudioApp
+
+# A switch with many cases is easy to read; don't count each case.
+cyclomatic_complexity:
+  ignores_case_statements: true
+
+line_length:
+  warning: 160
+  error: 200
+  ignores_comments: true
+  ignores_urls: true
+
+# SwiftUI view builders and audio render loops run longer than the defaults.
+function_body_length:
+  warning: 80
+  error: 150
+
+function_parameter_count:
+  warning: 7
+  error: 10
+
+large_tuple:
+  warning: 4
+  error: 5
+
+nesting:
+  type_level: 2
+
+type_body_length:
+  warning: 450
+  error: 550
+
+file_length:
+  warning: 650
+  error: 750

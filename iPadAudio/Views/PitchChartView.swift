@@ -50,8 +50,8 @@ struct PitchChartView: View {
                 var inKeyDots = Path()
                 var outKeyDots = Path()
 
-                var prevPoint: CGPoint? = nil
-                var prevSemi: Double? = nil
+                var prevPoint: CGPoint?
+                var prevSemi: Double?
 
                 for i in 0..<count {
                     guard let hz = pitchHistory[i] else {
@@ -190,7 +190,7 @@ struct PitchChartView: View {
     // MARK: - Grid Drawing
 
     private func drawGrid(context: GraphicsContext, size: CGSize, semiMin: Int, semiMax: Int,
-                           labelWidth: CGFloat, chartW: CGFloat, h: CGFloat) {
+                          labelWidth: CGFloat, chartW: CGFloat, h: CGFloat) {
         let semiRange = Double(semiMax - semiMin)
         let a4Midi = 69
         let spellings = MusicTheory.chromaticSpellings(root: settings.rootNote, scale: settings.scaleType)

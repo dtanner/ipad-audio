@@ -35,8 +35,9 @@ final class YINPitchDetector {
         sampleRate = rate
     }
 
+    // Predates SwiftLint; exempted rather than refactored.
     /// Detect pitch from raw audio samples. Returns frequency in Hz or nil.
-    func detect(_ samples: [Double]) -> Double? {
+    func detect(_ samples: [Double]) -> Double? { // swiftlint:disable:this cyclomatic_complexity
         let count = samples.count
         guard count > 0 else { return nil }
 
@@ -86,7 +87,7 @@ final class YINPitchDetector {
         }
 
         // Step 4: Absolute threshold search
-        var bestTau: Int? = nil
+        var bestTau: Int?
         var tau = 2
         while tau < W {
             if dprime[tau] < threshold {

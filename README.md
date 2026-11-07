@@ -42,6 +42,7 @@ Uses [just](https://github.com/casey/just) as a command runner:
 just build    # Build for connected iPad
 just deploy   # Build, install, and launch
 just test     # Run tests in simulator
+just check    # Tests, SwiftLint, and build (run before committing)
 ```
 
 See [CLAUDE.md](CLAUDE.md) for full build commands and architecture overview.

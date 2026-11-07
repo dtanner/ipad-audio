@@ -34,12 +34,20 @@ just install      # Install the built app on connected iPad
 just launch       # Launch the app on connected iPad
 just deploy       # Build, install, and launch (all-in-one)
 just run          # Build, install, and launch in the simulator
-just logs         # Stream app logs from the booted simulator
+just logs         # Stream app logs from the simulator
 just test         # Run tests in simulator
+just lint         # Run SwiftLint (strict)
+just check        # Tests, lint, and build — run before committing
+just install-hooks  # Make `just check` a git pre-commit hook
 just shot <name>  # Screenshot the booted simulator
 just release <major|minor|bugfix>  # Version bump, archive, upload to App Store Connect
 just clean        # Remove build artifacts
 ```
+
+Before committing, run `just check` (tests, SwiftLint in strict mode, and a
+build); `just install-hooks` makes that a pre-commit hook. Lint rules live in
+`.swiftlint.yml` (`brew install swiftlint`). Fix new violations rather than
+adding `swiftlint:disable` comments.
 
 **Important:** The app requires microphone access. It must run on a real device (not Simulator) for meaningful audio testing.
 

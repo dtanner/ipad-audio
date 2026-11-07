@@ -26,9 +26,10 @@ _udid:
     if [ -z "$dev" ]; then
         json=$(mktemp)
         xcrun devicectl list devices --json-output "$json" >/dev/null
-        # First paired iPad whose tunnel isn't unavailable — devicectl brings
-        # the tunnel up on demand, so "disconnected" still deploys over Wi-Fi.
-        dev=$(python3 -c "import json; ds=json.load(open('$json'))['result']['devices']; ok=lambda d: d.get('hardwareProperties',{}).get('productType','').startswith('iPad') and d.get('connectionProperties',{}).get('pairingState')=='paired' and d.get('connectionProperties',{}).get('tunnelState')!='unavailable'; print(next((d['hardwareProperties']['udid'] for d in ds if ok(d)), ''))")
+        # First physical, paired iPad whose tunnel isn't unavailable — devicectl
+        # also lists simulators (reality "simulated"), and brings the tunnel up on
+        # demand, so "disconnected" still deploys over Wi-Fi.
+        dev=$(python3 -c "import json; ds=json.load(open('$json'))['result']['devices']; ok=lambda d: d.get('hardwareProperties',{}).get('productType','').startswith('iPad') and d.get('hardwareProperties',{}).get('reality')!='simulated' and d.get('connectionProperties',{}).get('pairingState')=='paired' and d.get('connectionProperties',{}).get('tunnelState')!='unavailable'; print(next((d['hardwareProperties']['udid'] for d in ds if ok(d)), ''))")
         rm -f "$json"
     fi
     if [ -z "$dev" ]; then
@@ -71,15 +72,18 @@ run: generate
         -destination "generic/platform=iOS Simulator" \
         -derivedDataPath build/dd-sim \
         build
-    open -a Simulator
+    # DeviceHub (Xcode 27+) is the app that shows simulators.
+    open -b com.apple.dt.Devices
     xcrun simctl boot "{{sim}}" 2>/dev/null || true
     app="build/dd-sim/Build/Products/Debug-iphonesimulator/{{scheme}}.app"
-    xcrun simctl install booted "$app"
-    xcrun simctl launch booted {{bundle_id}}
+    # Target {{sim}} by name, not "booted", so another running simulator
+    # can't catch the install.
+    xcrun simctl install "{{sim}}" "$app"
+    xcrun simctl launch "{{sim}}" {{bundle_id}}
 
-# Stream the app's logs from the booted simulator
+# Stream the app's logs from the simulator
 logs:
-    xcrun simctl spawn booted log stream --level debug \
+    xcrun simctl spawn "{{sim}}" log stream --level debug \
         --predicate 'subsystem CONTAINS "{{bundle_id}}"'
 
 # Run the test suite on the simulator
@@ -97,8 +101,26 @@ shot name:
     @mkdir -p screenshots
     xcrun simctl io booted screenshot screenshots/{{name}}.png
 
+# Run SwiftLint (strict: warnings fail too)
+lint:
+    swiftlint lint --strict --quiet
+
+# Run tests, lint, and build — the same checks the pre-commit hook runs
+check: test lint build
+
+# Install a git pre-commit hook that runs `just check` before each commit
+install-hooks:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    # --git-path resolves the hooks dir from a worktree too.
+    hook="$(git rev-parse --git-path hooks)/pre-commit"
+    mkdir -p "$(dirname "$hook")"
+    printf '#!/bin/sh\nexec just check\n' > "$hook"
+    chmod +x "$hook"
+    echo "Installed pre-commit hook: $hook"
+
 # Bump the version, archive, and upload to App Store Connect, then commit and tag
-release kind: test
+release kind: test lint
     #!/usr/bin/env bash
     set -euo pipefail
     case "{{kind}}" in major|minor|bugfix) ;; *)
@@ -116,6 +138,15 @@ release kind: test
     fi
     if [ -n "$(git status --porcelain)" ]; then
         echo "Working tree is dirty — commit or stash before releasing."; exit 1
+    fi
+    # A release must be cut from an up-to-date main; anything else (an unmerged
+    # branch, a stale checkout) would ship and tag code that main doesn't have.
+    git fetch origin main --tags --quiet
+    if ! git merge-base --is-ancestor origin/main HEAD; then
+        echo "HEAD is not a fast-forward of origin/main; a release must be cut from main." >&2
+        echo "  HEAD:        $(git rev-parse --short HEAD)" >&2
+        echo "  origin/main: $(git rev-parse --short origin/main)" >&2
+        exit 1
     fi
     version=$(python3 - {{kind}} <<'EOF'
     import re, sys
@@ -152,8 +183,41 @@ release kind: test
         -authenticationKeyID {{asc_key_id}} \
         -authenticationKeyIssuerID {{asc_issuer_id}}
     git commit -am "Release $version"
-    git tag "v$version"
-    git push origin HEAD "v$version"
+
+    # Release notes from the commits since the last release go in the tag's
+    # annotation (read them with `git show v<version>`).
+    prev_tag=$(git describe --tags --abbrev=0 --match 'v*' HEAD~1 2>/dev/null || echo "")
+    if [ -n "$prev_tag" ]; then
+        commit_log=$(git log "${prev_tag}..HEAD~1" --oneline --no-merges)
+    else
+        commit_log=$(git log HEAD~1 --oneline --no-merges -20)
+    fi
+    notes_file=$(mktemp)
+    trap 'rm -f "$notes_file"' EXIT
+    prompt="Generate concise release notes for version $version of iPad Audio (an iPad app for visualizing pitch and sound).
+    Here are the commits since ${prev_tag:-the beginning}:
+
+    ${commit_log}
+
+    Guidelines:
+    - Group related commits into a single bullet point
+    - Focus on user-facing changes, not implementation details
+    - Skip version bumps, tooling changes, and purely internal refactors
+    - Keep each bullet to one line, use past tense
+    - Output only a bullet list (- item), nothing else"
+    if command -v claude &>/dev/null && claude -p "$prompt" > "$notes_file" 2>/dev/null && [ -s "$notes_file" ]; then
+        echo "Release notes (generated by Claude):"
+    else
+        echo "$commit_log" | sed 's/^[0-9a-f]* /- /' > "$notes_file"
+        echo "Release notes (from commit log):"
+    fi
+    cat "$notes_file"
+
+    git tag -a "v$version" -F "$notes_file"
+    # Named refs rather than the branch's upstream, so this behaves the same
+    # from the main checkout, a worktree, or any branch name.
+    git push origin HEAD:main
+    git push origin "refs/tags/v$version"
     echo "Uploaded $version to App Store Connect; committed, tagged, and pushed v$version."
 
 # Open the project in Xcode
